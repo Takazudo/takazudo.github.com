@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+	<title>Takazudolog</title>
+	<link href="http://takazudo.github.com/blog"/>
+	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
+  <updated>2012-04-10T06:50:05+09:00</updated>
+  <id>http://takazudo.github.com/blog</id>
+  <author>
+		<name>"Takazudo" Takeshi Takatsudo</name>
+		<email>takazudo@gmail.com</email>
+  </author>
+
+  
+  <entry>
+		<id>http://takazudo.github.com/blog/entry/2012-12-27/post3.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/blog/entry/2012-12-27/post3.html"/>
+    <title>This blog is still under dev.</title>
+    <updated>2012-12-27T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/blog</uri>
+    </author>
+    <content type="html">&lt;p&gt;See you later.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+		<id>http://takazudo.github.com/blog/entry/2012-12-27/post2.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/blog/entry/2012-12-27/post2.html"/>
+    <title>Aboijio oaijoTi OIDFOjfaoisd</title>
+    <updated>2012-12-27T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/blog</uri>
+    </author>
+    <content type="html">&lt;p&gt;The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+		<id>http://takazudo.github.com/blog/entry/2012-12-27/post1.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/blog/entry/2012-12-27/post1.html"/>
+    <title>Aboijio oaijoTi OIDFOjfaoisd</title>
+    <updated>2012-12-27T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/blog</uri>
+    </author>
+    <content type="html">&lt;p&gt;The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+		<id>http://takazudo.github.com/blog/entry/2012-01-03/mewmew.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/blog/entry/2012-01-03/mewmew.html"/>
+    <title>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</title>
+    <updated>2012-01-03T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/blog</uri>
+    </author>
+    <content type="html">&lt;p&gt;The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// exececece&lt;/span&gt;
+&lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;LazyJaxDavis&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;router&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+
+  &lt;span class='nx'&gt;router&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;bind&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;everyfetchstart&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;page&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+    &lt;span class='nx'&gt;$root&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;css&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;opacity&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mf'&gt;0.6&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='nb'&gt;window&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;scrollTo&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='nx'&gt;loading&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;show&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+    &lt;span class='nx'&gt;sidenav&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;currentify&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;page&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;path&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;});&lt;/span&gt;
+
+  &lt;span class='nx'&gt;router&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;bind&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;everyfetchsuccess&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;page&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+    &lt;span class='kd'&gt;var&lt;/span&gt; &lt;span class='nx'&gt;$newcontent&lt;/span&gt;&lt;span class='p'&gt;;&lt;/span&gt;
+    &lt;span class='nx'&gt;$root&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;css&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;opacity&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='nx'&gt;loading&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;hide&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+    &lt;span class='nx'&gt;$newcontent&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;page&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;rip&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;content&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)).&lt;/span&gt;&lt;span class='nx'&gt;hide&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+    &lt;span class='nx'&gt;$root&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;empty&lt;/span&gt;&lt;span class='p'&gt;().&lt;/span&gt;&lt;span class='nx'&gt;append&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;$newcontent&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='nx'&gt;$newcontent&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;fadeIn&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+    &lt;span class='nx'&gt;page&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;trigger&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;pageready&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='p'&gt;});&lt;/span&gt;
+
+  &lt;span class='nx'&gt;router&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;bind&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;everypageready&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;page&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+    &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;#whatthemaincontent&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;whatthemaincontent&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+    &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;#whattheloading&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;).&lt;/span&gt;&lt;span class='nx'&gt;whattheloading&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+  &lt;span class='p'&gt;});&lt;/span&gt;
+
+  &lt;span class='nx'&gt;router&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;bind&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;everyfetchfail&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(){&lt;/span&gt;
+    &lt;span class='nx'&gt;alert&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;ajax error!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='nx'&gt;$root&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;css&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;opacity&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+    &lt;span class='nx'&gt;loading&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;hide&lt;/span&gt;&lt;span class='p'&gt;();&lt;/span&gt;
+  &lt;span class='p'&gt;});&lt;/span&gt;
+
+  &lt;span class='nx'&gt;router&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;route&lt;/span&gt;&lt;span class='p'&gt;([&lt;/span&gt;
+    &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;path&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;/jQuery.LazyJaxDavis/doc/posttest.html&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+      &lt;span class='nx'&gt;method&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;POST&amp;#39;&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='p'&gt;]);&lt;/span&gt;
+
+&lt;span class='p'&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id='omg_is_this_top_page_woooot_so_sweeeet'&gt;OMG! Is this top page?? woooot so sweeeet!&lt;/h3&gt;
+
+&lt;p&gt;YES! THIS IS THE TOP PAGE!!&lt;/p&gt;
+
+&lt;p&gt;Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!?&lt;br /&gt;Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!?&lt;/p&gt;
+
+&lt;p&gt;Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!?&lt;br /&gt;Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!?&lt;/p&gt;
+
+&lt;h4 id='omg_is_this_top_page_woooot_so_sweeeet'&gt;OMG! Is this top page?? woooot so sweeeet!&lt;/h4&gt;
+
+&lt;p&gt;Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!?&lt;br /&gt;Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!? Wow did quick brown fox jump over the lazy dog!?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;list!&lt;/li&gt;
+
+&lt;li&gt;yes!&lt;/li&gt;
+
+&lt;li&gt;woooot&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is the first post of this blog. &lt;code&gt;var self = this;&lt;/code&gt;This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog.&lt;/p&gt;&lt;ul&gt;
+	&lt;li&gt;This foo bar moo mew go!&lt;/li&gt;
+	&lt;li&gt;This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! &lt;/li&gt;
+	&lt;li&gt;This foo bar moo mew go!&lt;/li&gt;
+	&lt;li&gt;This foo bar moo mew go!&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;This is the first post of this blog. &lt;code&gt;var self = this;&lt;/code&gt;This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog.&lt;/p&gt;&lt;p&gt;This is the first post of this blog. &lt;code&gt;var self = this;&lt;/code&gt;This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog.&lt;/p&gt;&lt;ol&gt;
+	&lt;li&gt;This foo bar moo mew go!&lt;/li&gt;
+	&lt;li&gt;This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! This foo bar moo mew go! &lt;/li&gt;
+	&lt;li&gt;This foo bar moo mew go!&lt;/li&gt;
+	&lt;li&gt;This foo bar moo mew go!&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;This is the first post of this blog. &lt;code&gt;var self = this;&lt;/code&gt;This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog.&lt;/p&gt;&lt;p&gt;This is the first post of this blog. &lt;code&gt;var self = this;&lt;/code&gt;This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog. This is the first post of this blog.&lt;/p&gt;</content>
+  </entry>
+  
+ 
+</feed>

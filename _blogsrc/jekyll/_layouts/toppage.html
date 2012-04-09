@@ -1,0 +1,21 @@
+---
+layout: base
+---
+<div class="mod-topentrylist">
+	<div class="mod-topentrylist-bd">
+		{% for post in site.posts limit:5 %}
+			<article class="mod-entry">
+				<header class="mod-entry-header">
+					<h1><a href="{{ site.basedir }}{{ post.url }}">{{ post.title }}</a></h1>
+					<p><time>{{ post.date | date_to_string }}</time> | <a href="{{ site.basedir }}{{ post.url }}#postcomments">Comments</a></p>
+				</header>
+				<div class="mod-entry-body">
+					{{ post.content }}
+				</div>
+			</article>
+		{% endfor %}
+	</div>
+	<div class="mod-topentrylist-ft">
+		<a href="{{ site.basedir }}/archives.html">Blog Archives</a>
+	</div>
+</div>
