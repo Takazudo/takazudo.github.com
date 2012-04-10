@@ -1,5 +1,4 @@
-$.tinyscroller.option
-  changehash: false
+$.tinyscroller.option changehash: false
 $.tinyscroller.live()
 
 $ ->

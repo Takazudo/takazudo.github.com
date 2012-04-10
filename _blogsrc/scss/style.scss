@@ -20,10 +20,11 @@ $maxlayoutwidth: 1080px;
 $color_base: #262626;
 $color_typo_base: #8B8C8C;
 $color_typo_accent: #959595;
+$color_typo_tag: shade($color_typo_base, 35%);
 $color_typo_a_hover: #eee;
 $color_typo_a_active: #a33;
 $color_typo_a_focus: #AB7245;
-$color_typo_a_disabled: shade($color_typo_base, 40%);
+$color_typo_a_disabled: shade($color_typo_base, 35%);
 $color_typo_input_focus: #eee;
 $color_border_base: #404040;
 
@@ -72,6 +73,8 @@ body {
 	background:url(../img/mark_l.png) repeat 0 0;
 }
 .mod-all {
+	max-width:100%;
+	overflow:hidden;
 	background:url(../img/noise.png);
 	text-align:center;
 	font-family:$sans;
@@ -343,9 +346,6 @@ body {
 				li {
 					border-top:1px solid $color_border_base;
 					padding:7px 0 8px;
-					a {
-						@include inline-block;
-					}
 				}
 			}
 		}
@@ -385,41 +385,53 @@ body {
 	}
 }
 .mod-archivelist {
+	padding:0 0 20px;
 	h1 {
 		@extend .mod-h;
 		padding-bottom:20px;
 	}
-	ul {
-		list-style-type:disc;
-		li {
-			padding-bottom:5px;
-			line-height:1.7em;
+	.mod-archivelist-bd {
+		.mod-archivelist-item {
+			border-top:1px dashed $color_border_base;
 			position:relative;
+			padding:8px 0 8px;
 			*zoom:1; /* ie */
 			time {
 				padding-right:8px;
 				font-size:.8em;
 			}
-			span {
-				font-family:$serif;
+			div {
+				a {
+					font-family:$serif;
+				}
+				ul {
+					font-size:.8em;
+					padding:2px 0 0;
+					color:$color_typo_tag;
+					li {
+						@include inline-block;
+						white-space:nowrap;
+					}
+				}
 			}
-		}
-	}
-	@media only screen and (min-width: 640px) {
-		ul {
-			li {
-				padding-bottom:10px;
-				padding-left:7em;
+			@media only screen and (min-width: 640px) {
+				border:0;
+				line-height:1.7em;
+				padding-top:0;
+				padding-bottom:16px;
+				padding-left:6em;
 				position:relative;
-				*zoom:1; /* ie */
 				time {
 					position:absolute;
 					left:0;
 					top:0;
-					font-size:1em;
+					font-size:.9em;
 				}
-				span {
+				div {
 					font-size:1.4em;
+					ul {
+						font-size:.7em;
+					}
 				}
 			}
 		}
@@ -428,18 +440,26 @@ body {
 .mod-entry {
 	padding:0 0 20px;
 	.mod-entry-header {
-		padding:0 0 10px;
+		padding:0 0 15px;
 		h1 {
 			@extend .mod-h;
 		}
 		p {
-			padding:10px 0 0;
+			padding:15px 0 0;
 			time {
 				padding:0 5px 0 0;
 			}
 			a {
 				padding:0 0 0 5px;
 				text-transform:uppercase;
+			}
+		}
+		ul {
+			color:$color_typo_tag;
+			li {
+				@include inline-block;
+				white-space:nowrap;
+				padding:0 5px 0 0;
 			}
 		}
 	}
@@ -525,11 +545,11 @@ body {
 	padding:0 0 30px;
 	li {
 		position:relative;
-		margin:0 0 0 4em;
+		margin:0 0 0 6em;
 		*zoom:1; /* ie */
 		span {
 			position:absolute;
-			left:-4em;
+			left:-6em;
 			top:0;
 		}
 	}

@@ -5,9 +5,21 @@ title: Blog Archives
 
 <section class="mod-archivelist">
 	<h1>{{ page.title }}</h1>
-	<ul>
+	<div class="mod-archivelist-bd">
 		{% for post in site.posts %}
-			<li><time>{{ post.date | date_to_string }}</time> <span><a href="{{ site.basedir }}{{ post.url }}">{{ post.title }}</a></span></li>
+			<div class="mod-archivelist-item">
+				<time>{{ post.date | date_to_string }}</time>
+				<div>
+					<a href="{{ site.basedir }}{{ post.url }}">{{ post.title }}</a>
+					{% if post.categories %}
+						<ul>
+							{% for category in post.categories %}
+								<li>[ {{ category }} ]</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</div>
+			</div>
 		{% endfor %}
 	</ul>
 </section>

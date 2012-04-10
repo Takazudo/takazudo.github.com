@@ -7,8 +7,6 @@
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="{{ site.basedir }}/js/all.js"></script>
 <meta property="fb:admins" content="1166983159">
 <meta property="og:site_name" content="Takazudolog">
 <meta property="og:title" content="Takazudolog">
@@ -16,4 +14,6 @@
 <meta property="og:description" content="Takazudo's dev notes.">
 <meta property="og:url" content="http://takazudo.github.com/blog/">
 <meta property="og:type" content="{% if page.ogtype %}{{ page.ogtype }}{% else %}article{% endif %}">
+<script src="{{ site.basedir }}/js/modernizr.min.js"></script>
+<script>if(!Modernizr.mq()) Modernizr.load('/blog/js/respond.min.js');</script>
 </head>

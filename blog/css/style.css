@@ -336,7 +336,7 @@ a {
   a:focus {
     color: #ab7245; }
   a.state-disabled {
-    color: #535454;
+    color: #5a5b5b;
     pointer-events: none;
     text-decoration: none;
     cursor: default; }
@@ -355,6 +355,8 @@ body {
   background: url(../img/mark_l.png) repeat 0 0; }
 
 .mod-all {
+  max-width: 100%;
+  overflow: hidden;
   background: url(../img/noise.png);
   text-align: center;
   font-family: "PT Sans", "Helvetica Neue", Arial, sans-serif;
@@ -641,14 +643,6 @@ body {
     .mod-sidenavblocks .mod-sidenavblocks-group section ul li {
       border-top: 1px solid #404040;
       padding: 7px 0 8px; }
-      .mod-sidenavblocks .mod-sidenavblocks-group section ul li a {
-        display: -moz-inline-box;
-        -moz-box-orient: vertical;
-        display: inline-block;
-        vertical-align: baseline;
-        zoom: 1;
-        *display: inline;
-        *vertical-align: auto; }
 @media only screen and (min-width: 515px) and (max-width:839px) {
   .mod-sidenavblocks {
     margin: 0 0 0 -15px;
@@ -678,47 +672,75 @@ body {
     content: 'ー';
     font-size: .8em; }
 
-.mod-archivelist h1 {
-  padding-bottom: 20px; }
-.mod-archivelist ul {
-  list-style-type: disc; }
-  .mod-archivelist ul li {
-    padding-bottom: 5px;
-    line-height: 1.7em;
+.mod-archivelist {
+  padding: 0 0 20px; }
+  .mod-archivelist h1 {
+    padding-bottom: 20px; }
+  .mod-archivelist .mod-archivelist-bd .mod-archivelist-item {
+    border-top: 1px dashed #404040;
     position: relative;
+    padding: 8px 0 8px;
     *zoom: 1;
     /* ie */ }
-    .mod-archivelist ul li time {
+    .mod-archivelist .mod-archivelist-bd .mod-archivelist-item time {
       padding-right: 8px;
       font-size: .8em; }
-    .mod-archivelist ul li span {
+    .mod-archivelist .mod-archivelist-bd .mod-archivelist-item div a {
       font-family: "PT Serif", Georgia, Times, "Times New Roman", serif; }
-@media only screen and (min-width: 640px) {
-  .mod-archivelist ul li {
-    padding-bottom: 10px;
-    padding-left: 7em;
-    position: relative;
-    *zoom: 1;
-    /* ie */ }
-    .mod-archivelist ul li time {
-      position: absolute;
-      left: 0;
-      top: 0;
-      font-size: 1em; }
-    .mod-archivelist ul li span {
-      font-size: 1.4em; } }
+    .mod-archivelist .mod-archivelist-bd .mod-archivelist-item div ul {
+      font-size: .8em;
+      padding: 2px 0 0;
+      color: #5a5b5b; }
+      .mod-archivelist .mod-archivelist-bd .mod-archivelist-item div ul li {
+        display: -moz-inline-box;
+        -moz-box-orient: vertical;
+        display: inline-block;
+        vertical-align: baseline;
+        zoom: 1;
+        *display: inline;
+        *vertical-align: auto;
+        white-space: nowrap; }
+    @media only screen and (min-width: 640px) {
+      .mod-archivelist .mod-archivelist-bd .mod-archivelist-item {
+        border: 0;
+        line-height: 1.7em;
+        padding-top: 0;
+        padding-bottom: 16px;
+        padding-left: 6em;
+        position: relative; }
+        .mod-archivelist .mod-archivelist-bd .mod-archivelist-item time {
+          position: absolute;
+          left: 0;
+          top: 0;
+          font-size: .9em; }
+        .mod-archivelist .mod-archivelist-bd .mod-archivelist-item div {
+          font-size: 1.4em; }
+          .mod-archivelist .mod-archivelist-bd .mod-archivelist-item div ul {
+            font-size: .7em; } }
 
 .mod-entry {
   padding: 0 0 20px; }
   .mod-entry .mod-entry-header {
-    padding: 0 0 10px; }
+    padding: 0 0 15px; }
     .mod-entry .mod-entry-header p {
-      padding: 10px 0 0; }
+      padding: 15px 0 0; }
       .mod-entry .mod-entry-header p time {
         padding: 0 5px 0 0; }
       .mod-entry .mod-entry-header p a {
         padding: 0 0 0 5px;
         text-transform: uppercase; }
+    .mod-entry .mod-entry-header ul {
+      color: #5a5b5b; }
+      .mod-entry .mod-entry-header ul li {
+        display: -moz-inline-box;
+        -moz-box-orient: vertical;
+        display: inline-block;
+        vertical-align: baseline;
+        zoom: 1;
+        *display: inline;
+        *vertical-align: auto;
+        white-space: nowrap;
+        padding: 0 5px 0 0; }
   .mod-entry .mod-entry-body {
     padding: 0 0 10px; }
     .mod-entry .mod-entry-body h2 {
@@ -782,12 +804,12 @@ body {
     clear: both; }
   .mod-postpager li {
     position: relative;
-    margin: 0 0 0 4em;
+    margin: 0 0 0 6em;
     *zoom: 1;
     /* ie */ }
     .mod-postpager li span {
       position: absolute;
-      left: -4em;
+      left: -6em;
       top: 0; }
 
 code {
