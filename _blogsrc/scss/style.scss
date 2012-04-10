@@ -212,7 +212,7 @@ body {
 	text-align:left;
 	padding:15px 0 15px;
 	@media only screen and (min-width: 840px) {
-		padding-top:25px;
+		padding-top:30px;
 		float:left;
 		width:100%;
 		margin:0 -260px 0 0;
@@ -506,7 +506,6 @@ body {
 		border-bottom:1px dashed $color_border_base;
 		padding:20px 0 18px;
 		.fb-likewrap {
-			overflow:hidden;
 			max-width:100%;
 		}
 	}
@@ -520,6 +519,22 @@ body {
 	.mod-entry-footer {
 	}
 }
+
+.mod-postpager {
+	@include clearfix;
+	padding:0 0 30px;
+	li {
+		position:relative;
+		margin:0 0 0 4em;
+		*zoom:1; /* ie */
+		span {
+			position:absolute;
+			left:-4em;
+			top:0;
+		}
+	}
+}
+
 
 // ============================================================
 // codes & pygments

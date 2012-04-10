@@ -516,7 +516,7 @@ body {
   padding: 15px 0 15px; }
   @media only screen and (min-width: 840px) {
     .mod-main {
-      padding-top: 25px;
+      padding-top: 30px;
       float: left;
       width: 100%;
       margin: 0 -260px 0 0; }
@@ -766,12 +766,29 @@ body {
     border-bottom: 1px dashed #404040;
     padding: 20px 0 18px; }
     .mod-entry .mod-entry-share .fb-likewrap {
-      overflow: hidden;
       max-width: 100%; }
   .mod-entry .mod-entry-comments {
     padding: 20px 0 0; }
     .mod-entry .mod-entry-comments h1 {
       padding-bottom: 10px; }
+
+.mod-postpager {
+  zoom: 1;
+  padding: 0 0 30px; }
+  .mod-postpager:before, .mod-postpager:after {
+    content: "";
+    display: table; }
+  .mod-postpager:after {
+    clear: both; }
+  .mod-postpager li {
+    position: relative;
+    margin: 0 0 0 4em;
+    *zoom: 1;
+    /* ie */ }
+    .mod-postpager li span {
+      position: absolute;
+      left: -4em;
+      top: 0; }
 
 code {
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace; }
