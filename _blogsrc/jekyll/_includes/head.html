@@ -1,7 +1,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>{{ site.title }} - {{ page.title }}</title>
+<title>{{ site.title }}{% unless page.toppage %} - {{ page.title }}{% endunless %}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ site.basedir }}/css/style.css">
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
