@@ -62,11 +62,40 @@ $ ->
     $.getScript('https://platform.twitter.com/widgets.js')
 
 
+  # disableCurrentLinks
+  
+  $.fn.disableCurrentLinks = ->
+    className = 'state-disabled'
+    @each ->
+      $('a', this).each ->
+        $a = $(@)
+        if ($a.attr 'href') is location.pathname
+          $a.addClass className
+        else
+          $a.removeClass className
+  
+  # handleCodeHighlight
+
+  $.fn.handleCodeHighlight = ->
+    @each ->
+      $el = $(@)
+      $pre = $('pre', $el)
+      html = $pre.html()
+      #console.log html
+      lines = html.split /\n\r?/
+      lines = $.map lines, (line) ->
+        "<div class='line'>#{line or ' '}</div>"
+      $pre.html lines.join('')
+      $table = $('<table><tr><td></td></tr></table>')
+      ($table.find 'td').append $pre
+      $el.append $table
+
   # main
 
   $.LazyJaxDavis (router) ->
 
     $root = $('#lazyjaxdavisroot')
+    $body = $('body')
     scrollDefer = null
 
     router.option
@@ -87,7 +116,9 @@ $ ->
           page.trigger 'pageready'
           scrollDefer = null
 
-    #router.bind 'everypageready', ->
+    router.bind 'everypageready', ->
+      $body.disableCurrentLinks()
+      ($root.find '.highlight').handleCodeHighlight()
 
     router.routeTransparents [
       {

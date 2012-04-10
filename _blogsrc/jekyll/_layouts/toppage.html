@@ -1,5 +1,6 @@
 ---
 layout: base
+ogtype: blog
 ---
 <div class="mod-topentrylist">
 	<div class="mod-topentrylist-bd">
@@ -10,7 +11,12 @@ layout: base
 					<p><time>{{ post.date | date_to_string }}</time> | <a href="{{ site.basedir }}{{ post.url }}#postcomments">Comments</a></p>
 				</header>
 				<div class="mod-entry-body">
-					{{ post.content }}
+					{% if post.excerpt %}
+						{{ post.excerpt }}
+						<p><a href="{{ site.basedir }}{{ post.url }}#more">Read the rest of this entry »</a></p>
+					{% else %}
+						{{ post.content }}
+					{% endif %}
 				</div>
 			</article>
 		{% endfor %}

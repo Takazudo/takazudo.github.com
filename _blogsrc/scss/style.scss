@@ -23,6 +23,7 @@ $color_typo_accent: #959595;
 $color_typo_a_hover: #eee;
 $color_typo_a_active: #a33;
 $color_typo_a_focus: #AB7245;
+$color_typo_a_disabled: shade($color_typo_base, 40%);
 $color_typo_input_focus: #eee;
 $color_border_base: #404040;
 
@@ -44,6 +45,12 @@ a {
 	&:hover { color: $color_typo_a_hover; }
 	&:active { color: $color_typo_a_active; }
 	&:focus { color: $color_typo_a_focus; }
+	&.state-disabled {
+		color:$color_typo_a_disabled;
+		pointer-events:none;
+		text-decoration:none;
+		cursor:default;
+	}
 }
 small {
 	font-size:1em;
@@ -91,6 +98,9 @@ body {
 			font-size:3.5em;
 			font-weight:bold;
 			line-height:1.2;
+			a.state-disabled {
+				color:$color_typo_base;
+			}
 		}
 		h2 {
 			font-size:1.4em;
@@ -202,7 +212,7 @@ body {
 	text-align:left;
 	padding:15px 0 15px;
 	@media only screen and (min-width: 840px) {
-		padding-top:30px;
+		padding-top:25px;
 		float:left;
 		width:100%;
 		margin:0 -260px 0 0;
@@ -454,7 +464,41 @@ body {
 		ul { @extend .mod-ul; }
 		ol { @extend .mod-ol; }
 		.highlight{
-			padding:0 0 20px;
+			margin:0 -30px 20px;
+			background:$color_base;
+			border:1px solid $color_border_base;
+			border-right:0;
+			border-left:0;
+			@include border-radius(3px);
+			padding:10px;
+			overflow: auto;
+			&::-webkit-scrollbar {
+				height:6px;
+				background:#262626;
+			}
+			&::-webkit-scrollbar-thumb:horizontal {
+				background:#333;
+				-webkit-border-radius:4px;
+				border-radius:4px
+			}
+			table {
+				width:100%;
+				td {
+					white-space:nowrap;
+				}
+			}
+			pre {
+				.line {
+					white-space:pre;
+				}
+			}
+			@media only screen and (min-width: 480px) {
+				margin-right:0;
+				margin-left:0;
+				border:1px solid $color_border_base;
+				pre {
+				}
+			}
 		}
 	}
 	.mod-entry-share {
@@ -492,18 +536,9 @@ code {
 	}
 }
 .highlight {
-	pre {
-		background:$color_base;
-		border:1px solid $color_border_base;
-		@include border-radius(3px);
-		line-height: 1.45em;
-		font-size: 14px;
-		color:#93a1a1;
-		padding:10px;
-		overflow: auto;
-		&::-webkit-scrollbar {  height: .5em; background: #0f0; }
-		&::-webkit-scrollbar-thumb:horizontal { background: #f00;  -webkit-border-radius: 4px; border-radius: 4px }
-	}
+	line-height: 1.45em;
+	font-size: 14px;
+	color:#93a1a1;
 	//.lineno {
 	//	@include inline-block;
 	//	width:3em;

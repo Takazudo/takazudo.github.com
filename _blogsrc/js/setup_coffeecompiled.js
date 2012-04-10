@@ -60,9 +60,41 @@
     socialutil_twitter = function() {
       return $.getScript('https://platform.twitter.com/widgets.js');
     };
+    $.fn.disableCurrentLinks = function() {
+      var className;
+      className = 'state-disabled';
+      return this.each(function() {
+        return $('a', this).each(function() {
+          var $a;
+          $a = $(this);
+          if (($a.attr('href')) === location.pathname) {
+            return $a.addClass(className);
+          } else {
+            return $a.removeClass(className);
+          }
+        });
+      });
+    };
+    $.fn.handleCodeHighlight = function() {
+      return this.each(function() {
+        var $el, $pre, $table, html, lines;
+        $el = $(this);
+        $pre = $('pre', $el);
+        html = $pre.html();
+        lines = html.split(/\n\r?/);
+        lines = $.map(lines, function(line) {
+          return "<div class='line'>" + (line || ' ') + "</div>";
+        });
+        $pre.html(lines.join(''));
+        $table = $('<table><tr><td></td></tr></table>');
+        ($table.find('td')).append($pre);
+        return $el.append($table);
+      });
+    };
     return $.LazyJaxDavis(function(router) {
-      var $root, scrollDefer;
+      var $body, $root, scrollDefer;
       $root = $('#lazyjaxdavisroot');
+      $body = $('body');
       scrollDefer = null;
       router.option({
         ignoregetvals: true,
@@ -85,6 +117,10 @@
             return scrollDefer = null;
           });
         });
+      });
+      router.bind('everypageready', function() {
+        $body.disableCurrentLinks();
+        return ($root.find('.highlight')).handleCodeHighlight();
       });
       return router.routeTransparents([
         {

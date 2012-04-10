@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2012-04-10T06:50:05+09:00</updated>
+  <updated>2012-04-11T03:24:33+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -58,7 +58,7 @@
       <uri>http://takazudo.github.com/blog</uri>
     </author>
     <content type="html">&lt;p&gt;The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo. The quick brown fox woohoo.&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// exececece&lt;/span&gt;
+&lt;!--more--&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='c1'&gt;// exececece&lt;/span&gt;
 &lt;span class='nx'&gt;$&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;LazyJaxDavis&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;router&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
 
   &lt;span class='nx'&gt;router&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;bind&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;everyfetchstart&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;page&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;

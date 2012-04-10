@@ -7,7 +7,7 @@ layout: base
 		<p><time>{{ page.date | date_to_string }}</time> | <a href="#postcomments">Comments</a></p>
 	</header>
 	<div class="mod-entry-body">
-		{{ content }}
+		{{ content | mark_excerpt }}
 	</div>
 	<div class="mod-entry-share">
 		<a href="http://twitter.com/share"
