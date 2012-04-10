@@ -16,7 +16,7 @@ module.exports = function(grunt){
         files: [
           'scss/*.scss'
         ],
-        tasks: 'sass concat notifyOK'
+        tasks: 'sass cssmin concat notifyOK'
       }
     },
     concat: {
@@ -27,9 +27,8 @@ module.exports = function(grunt){
         'js/setup.js',
         'js/setup_coffeecompiled.min.js'
       ],
-      'jekyll/css/style.css': [
-        'css/style.css'
-      ]
+      'jekyll/css/style.css': [ 'css/style.css' ],
+      'jekyll/css/style.min.css': [ 'css/style.min.css' ]
     },
     uglify: {
       'js/setup_coffeecompiled.min.js': 'js/setup_coffeecompiled.js'
@@ -39,10 +38,13 @@ module.exports = function(grunt){
     },
     sass: {
       'css/style.css': 'scss/style.scss'
+    },
+    cssmin: {
+      'css/style.min.css': 'css/style.css'
     }
   });
 
   grunt.loadTasks('gruntTasks');
-  grunt.registerTask('default', 'coffee uglify concat sass notifyOK');
+  grunt.registerTask('default', 'coffee uglify concat sass cssmin notifyOK');
 
 };
