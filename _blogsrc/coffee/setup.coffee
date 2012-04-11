@@ -22,12 +22,14 @@ $ ->
     window.disqus_url = location.href
     window.disqus_script = 'embed.js'
 
-    # disqus sunipet
-    `(function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());`
+    try # disqus sometimes returns error
+
+      # disqus sunipet
+      `(function () {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }());`
 
   # fblike
 

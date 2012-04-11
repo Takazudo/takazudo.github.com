@@ -22,11 +22,13 @@
       window.disqus_identifier = location.href;
       window.disqus_url = location.href;
       window.disqus_script = 'embed.js';
-      return (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());;
+      try {
+        return (function () {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }());;
+      } catch (_error) {}
     };
     socialutil_fblike = (function() {
       var fbLoaded, init;
