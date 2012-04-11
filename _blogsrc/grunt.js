@@ -22,6 +22,7 @@ module.exports = function(grunt){
     concat: {
       'jekyll/js/all.js': [
         'js/jquery.tinyscroller.min.js',
+        'js/spin.min.js',
         'js/davis.min.js',
         'js/jquery.lazyjaxdavis.min.js',
         'js/setup.js',

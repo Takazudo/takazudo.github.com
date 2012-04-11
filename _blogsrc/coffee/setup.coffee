@@ -60,9 +60,8 @@ $ ->
     ($el) ->
       if not gplusoneLoaded
         init()
-      else
-        if gapi
-          gapi.plusone.go()
+      else if gapi
+        gapi.plusone.go()
 
 
   # twitter
@@ -103,9 +102,19 @@ $ ->
 
   $.LazyJaxDavis (router) ->
 
+    $loadingplacer = $('#loadingplacer')
     $root = $('#lazyjaxdavisroot')
     $body = $('body')
     scrollDefer = null
+    $spinner = null
+
+    attachSpinner = ->
+      spinner_options =
+        color: '#878C8C'
+        length: 20
+        radius: 30
+      spinner = (new Spinner(spinner_options)).spin($loadingplacer[0])
+      $spinner = $(spinner.el)
 
     router.option
       ignoregetvals: true
@@ -114,11 +123,15 @@ $ ->
 
     router.bind 'everyfetchstart', (page) ->
       $root.removeClass 'state-animenabled'
+      $loadingplacer.show()
+      attachSpinner()
       wait(0).done ->
         $root.css 'opacity', 0.3
         scrollDefer = $.tinyscroller.scrollTo(0); # first, back to top
 
     router.bind 'everyfetchsuccess', (page) ->
+      $spinner.remove()
+      $loadingplacer.hide()
       ($.when scrollDefer).done ->
         $root.css 'opacity', 0
         wait(0).done ->
@@ -131,6 +144,7 @@ $ ->
     router.bind 'everypageready', ->
       $body.disableCurrentLinks()
       ($root.find '.highlight').handleCodeHighlight()
+      @
 
     router.routeTransparents [
       {

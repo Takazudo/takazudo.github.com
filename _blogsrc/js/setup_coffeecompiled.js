@@ -61,8 +61,8 @@
       return function($el) {
         if (!gplusoneLoaded) {
           return init();
-        } else {
-          if (gapi) return gapi.plusone.go();
+        } else if (gapi) {
+          return gapi.plusone.go();
         }
       };
     })();
@@ -101,10 +101,22 @@
       });
     };
     return $.LazyJaxDavis(function(router) {
-      var $body, $root, scrollDefer;
+      var $body, $loadingplacer, $root, $spinner, attachSpinner, scrollDefer;
+      $loadingplacer = $('#loadingplacer');
       $root = $('#lazyjaxdavisroot');
       $body = $('body');
       scrollDefer = null;
+      $spinner = null;
+      attachSpinner = function() {
+        var spinner, spinner_options;
+        spinner_options = {
+          color: '#878C8C',
+          length: 20,
+          radius: 30
+        };
+        spinner = (new Spinner(spinner_options)).spin($loadingplacer[0]);
+        return $spinner = $(spinner.el);
+      };
       router.option({
         ignoregetvals: true,
         anchorhandler: function(hash) {
@@ -113,12 +125,16 @@
       });
       router.bind('everyfetchstart', function(page) {
         $root.removeClass('state-animenabled');
+        $loadingplacer.show();
+        attachSpinner();
         return wait(0).done(function() {
           $root.css('opacity', 0.3);
           return scrollDefer = $.tinyscroller.scrollTo(0);
         });
       });
       router.bind('everyfetchsuccess', function(page) {
+        $spinner.remove();
+        $loadingplacer.hide();
         return ($.when(scrollDefer)).done(function() {
           $root.css('opacity', 0);
           return wait(0).done(function() {
@@ -132,7 +148,8 @@
       });
       router.bind('everypageready', function() {
         $body.disableCurrentLinks();
-        return ($root.find('.highlight')).handleCodeHighlight();
+        ($root.find('.highlight')).handleCodeHighlight();
+        return this;
       });
       return router.routeTransparents([
         {

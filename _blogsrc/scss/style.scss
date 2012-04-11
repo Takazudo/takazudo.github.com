@@ -28,6 +28,13 @@ $color_typo_a_disabled: shade($color_typo_base, 35%);
 $color_typo_input_focus: #eee;
 $color_border_base: #404040;
 
+// ============================================================
+// module extensions
+// ============================================================
+
+.ex-lazytransition {
+	@include transition (all, .4s, ease-in-out-sine);
+}
 
 // ============================================================
 // base
@@ -80,6 +87,7 @@ body {
 	font-family:$sans;
 	line-height:1.55;
 	font-size:.9em;
+	@extend .ex-lazytransition;
 	.mod-allinner {
 		margin:0 auto;
 	}
@@ -118,10 +126,10 @@ body {
 				margin:0 0 0 8px;
 				width:48px;
 				height:48px;
-				@include transition (all 1s ease-in-out);
+				@extend .ex-lazytransition;
 				img {
 					@include border-radius(5px);
-					@include transition (all 1s ease-in-out);
+					@extend .ex-lazytransition;
 					float:left;
 					width:48px;
 					height:48px;
@@ -217,6 +225,17 @@ body {
 .mod-main {
 	text-align:left;
 	padding:15px 0 15px;
+	.mod-main-inner {
+		position:relative;
+		.mod-main-loadingplacer {
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			height:150px;
+			display:none;
+		}
+	}
 	@media only screen and (min-width: 840px) {
 		padding-top:30px;
 		float:left;
@@ -224,6 +243,9 @@ body {
 		margin:0 -260px 0 0;
 		.mod-main-inner {
 			margin:0 260px 0 0;
+			.mod-main-loadingplacer {
+				height:300px;
+			}
 		}
 	}
 }
@@ -295,6 +317,7 @@ body {
 	font-size:1.8em;
 	line-height:1.1;
 	font-family:$serif;
+	@extend .ex-lazytransition;
 	@media only screen and (min-width: 840px) {
 		font-size:2.4em;
 	}
@@ -303,6 +326,7 @@ body {
 	font-size:1.8em;
 	line-height:1.3;
 	font-family:$serif;
+	@extend .ex-lazytransition;
 	@media only screen and (min-width: 840px) {
 		font-size:2.2em;
 	}
@@ -333,7 +357,6 @@ body {
 		padding:0 0 8px;
 	}
 }
-
 
 .mod-sidenavblocks {
 	.mod-sidenavblocks-group {
@@ -564,7 +587,7 @@ body {
 
 #lazyjaxdavisroot {
 	&.state-animenabled {
-		@include transition (all, .4s, ease-in-out);
+		@extend .ex-lazytransition;
 	}
 }
 
