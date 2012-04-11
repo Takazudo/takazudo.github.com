@@ -1,4 +1,13 @@
 (function() {
+  var wait;
+
+  wait = function(time) {
+    return $.Deferred(function(defer) {
+      return setTimeout(function() {
+        return defer.resolve();
+      }, time);
+    });
+  };
 
   $.tinyscroller.option({
     changehash: false
@@ -103,16 +112,19 @@
         }
       });
       router.bind('everyfetchstart', function(page) {
-        $root.css('opacity', 0.6);
-        return scrollDefer = $.tinyscroller.scrollTo(0);
+        $root.removeClass('state-animenabled');
+        return wait(0).done(function() {
+          $root.css('opacity', 0.3);
+          return scrollDefer = $.tinyscroller.scrollTo(0);
+        });
       });
       router.bind('everyfetchsuccess', function(page) {
-        $root.css('opacity', 1);
         return ($.when(scrollDefer)).done(function() {
-          var $content;
-          $content = $(page.rip('content')).hide();
-          $root.empty().append($content);
-          return ($.when($content.fadeIn())).done(function() {
+          $root.css('opacity', 0);
+          return wait(0).done(function() {
+            $root.addClass('state-animenabled');
+            $root.html(page.rip('content'));
+            $root.css('opacity', 1);
             page.trigger('pageready');
             return scrollDefer = null;
           });

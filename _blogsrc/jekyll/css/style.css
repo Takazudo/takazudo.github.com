@@ -822,6 +822,28 @@ body {
       left: -6em;
       top: 0; }
 
+#lazyjaxdavisroot.state-animenabled {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  -o-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  -ms-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -ms-transition-delay: 0;
+  -o-transition-delay: 0;
+  transition-delay: 0; }
+
 code {
   font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace; }
   p code, li code {

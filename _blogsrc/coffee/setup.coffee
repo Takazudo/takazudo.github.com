@@ -1,3 +1,13 @@
+# setTimeout
+
+wait = (time) ->
+  $.Deferred (defer) ->
+    setTimeout ->
+      defer.resolve()
+    , time
+
+# smooth scroll
+
 $.tinyscroller.option changehash: false
 $.tinyscroller.live()
 
@@ -89,7 +99,7 @@ $ ->
       ($table.find 'td').append $pre
       $el.append $table
 
-  # main
+  # LazyJaxDavis
 
   $.LazyJaxDavis (router) ->
 
@@ -103,15 +113,18 @@ $ ->
         $.tinyscroller.scrollTo(hash); # invoke scrolling
 
     router.bind 'everyfetchstart', (page) ->
-      $root.css 'opacity', 0.6
-      scrollDefer = $.tinyscroller.scrollTo(0); # first, back to top
+      $root.removeClass 'state-animenabled'
+      wait(0).done ->
+        $root.css 'opacity', 0.3
+        scrollDefer = $.tinyscroller.scrollTo(0); # first, back to top
 
     router.bind 'everyfetchsuccess', (page) ->
-      $root.css 'opacity', 1
       ($.when scrollDefer).done ->
-        $content = $(page.rip('content')).hide()
-        $root.empty().append $content
-        ($.when $content.fadeIn()).done ->
+        $root.css 'opacity', 0
+        wait(0).done ->
+          $root.addClass 'state-animenabled'
+          $root.html page.rip('content')
+          $root.css 'opacity', 1
           page.trigger 'pageready'
           scrollDefer = null
 
