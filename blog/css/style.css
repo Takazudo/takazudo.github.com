@@ -394,16 +394,33 @@ body {
         float: left;
         margin: 0 0 0 8px;
         width: 48px;
-        height: 48px; }
+        height: 48px;
+        -webkit-transition-property: all, 1s, ease-in-out;
+        -moz-transition-property: all, 1s, ease-in-out;
+        -ms-transition-property: all, 1s, ease-in-out;
+        -o-transition-property: all, 1s, ease-in-out;
+        transition-property: all, 1s, ease-in-out;
+        -webkit-transition-duration: 0.15s;
+        -moz-transition-duration: 0.15s;
+        -ms-transition-duration: 0.15s;
+        -o-transition-duration: 0.15s;
+        transition-duration: 0.15s;
+        -webkit-transition-timing-function: ease-out;
+        -moz-transition-timing-function: ease-out;
+        -ms-transition-timing-function: ease-out;
+        -o-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+        -webkit-transition-delay: 0;
+        -moz-transition-delay: 0;
+        -ms-transition-delay: 0;
+        -o-transition-delay: 0;
+        transition-delay: 0; }
         .mod-header hgroup .mod-header-icons a img {
           -webkit-border-radius: 5px;
           -moz-border-radius: 5px;
           -ms-border-radius: 5px;
           -o-border-radius: 5px;
           border-radius: 5px;
-          float: left;
-          width: 48px;
-          height: 48px;
           -webkit-transition-property: all, 1s, ease-in-out;
           -moz-transition-property: all, 1s, ease-in-out;
           -ms-transition-property: all, 1s, ease-in-out;
@@ -423,11 +440,14 @@ body {
           -moz-transition-delay: 0;
           -ms-transition-delay: 0;
           -o-transition-delay: 0;
-          transition-delay: 0; }
-          @media only screen and (max-width: 540px) {
-            .mod-header hgroup .mod-header-icons a img {
-              width: 0;
-              height: 0; } }
+          transition-delay: 0;
+          float: left;
+          width: 48px;
+          height: 48px; }
+        @media only screen and (max-width: 540px) {
+          .mod-header hgroup .mod-header-icons a, .mod-header hgroup .mod-header-icons a img {
+            width: 0;
+            height: 0; } }
   @media only screen and (max-width: 540px) {
     .mod-header {
       font-size: .8em; } }
