@@ -247,15 +247,14 @@ body {
 	text-align:center;
 	line-height:20px;
 	a {
-		background: $color_border_base;
+		border-top:1px solid $color_border_base;
 		color:#000;
 		padding:0 20px;
-		font-size:10px;
+		font-size:12px;
 		text-decoration:none;
 		vertical-align:top;
 		color: $color_typo_base;
-		@include inline-block;
-		@include border-radius(3px 3px 0 0);
+		display:block;
 	}
 }
 .mod-footer {
@@ -377,12 +376,13 @@ body {
 		text-align:center;
 		border-top:1px solid $color_border_base;
 		padding:15px 0 0;
+		font-family:$serif;
 		&:before {
-			content: 'ー';
+			content: '〜';
 			font-size:.8em;
 		}
 		&:after {
-			content: 'ー';
+			content: '〜';
 			font-size:.8em;
 		}
 	}

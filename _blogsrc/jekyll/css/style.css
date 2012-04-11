@@ -565,25 +565,14 @@ body {
   text-align: center;
   line-height: 20px; }
   .mod-footback a {
-    background: #404040;
+    border-top: 1px solid #404040;
     color: #000;
     padding: 0 20px;
-    font-size: 10px;
+    font-size: 12px;
     text-decoration: none;
     vertical-align: top;
     color: #8b8c8c;
-    display: -moz-inline-box;
-    -moz-box-orient: vertical;
-    display: inline-block;
-    vertical-align: baseline;
-    zoom: 1;
-    *display: inline;
-    *vertical-align: auto;
-    -webkit-border-radius: 3px 3px 0 0;
-    -moz-border-radius: 3px 3px 0 0;
-    -ms-border-radius: 3px 3px 0 0;
-    -o-border-radius: 3px 3px 0 0;
-    border-radius: 3px 3px 0 0; }
+    display: block; }
 
 .mod-footer {
   border-top: 1px solid #404040;
@@ -684,12 +673,13 @@ body {
   font-size: 1.5em;
   text-align: center;
   border-top: 1px solid #404040;
-  padding: 15px 0 0; }
+  padding: 15px 0 0;
+  font-family: "PT Serif", Georgia, Times, "Times New Roman", serif; }
   .mod-topentrylist .mod-topentrylist-ft:before {
-    content: 'ー';
+    content: '〜';
     font-size: .8em; }
   .mod-topentrylist .mod-topentrylist-ft:after {
-    content: 'ー';
+    content: '〜';
     font-size: .8em; }
 
 .mod-archivelist {
