@@ -1,5 +1,5 @@
 (function() {
-  var wait;
+  var ganaTrack, socialutil_disqus, socialutil_fblike, socialutil_gplus, socialutil_twitter, wait;
 
   wait = function(time) {
     return $.Deferred(function(defer) {
@@ -15,93 +15,103 @@
 
   $.tinyscroller.live();
 
-  $(function() {
-    var socialutil_disqus, socialutil_fblike, socialutil_gplus, socialutil_twitter;
-    socialutil_disqus = function() {
-      window.disqus_shortname = 'takazudolog';
-      window.disqus_identifier = location.href;
-      window.disqus_url = location.href;
-      window.disqus_script = 'embed.js';
-      try {
-        return (function () {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }());;
-      } catch (_error) {}
+  ganaTrack = function(path) {
+    path = path || location.href;
+    return window._gaq.push(['_trackPageview', path]);
+  };
+
+  socialutil_disqus = function() {
+    window.disqus_shortname = 'takazudolog';
+    window.disqus_identifier = location.href;
+    window.disqus_url = location.href;
+    window.disqus_script = 'embed.js';
+    try {
+      return (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());;
+    } catch (_error) {}
+  };
+
+  socialutil_fblike = (function() {
+    var fbLoaded, init;
+    fbLoaded = false;
+    init = function() {
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));;      return fbLoaded = true;
     };
-    socialutil_fblike = (function() {
-      var fbLoaded, init;
-      fbLoaded = false;
-      init = function() {
-        (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));;        return fbLoaded = true;
-      };
-      return function($el) {
-        if (!fbLoaded) {
-          return init();
+    return function($el) {
+      if (!fbLoaded) {
+        return init();
+      } else {
+        return FB.XFBML.parse($el[0]);
+      }
+    };
+  })();
+
+  socialutil_gplus = (function() {
+    var gplusoneLoaded, init;
+    gplusoneLoaded = false;
+    window.___gcfg = {
+      lang: 'en'
+    };
+    init = function() {
+      $.getScript("https://apis.google.com/js/plusone.js");
+      return gplusoneLoaded = true;
+    };
+    return function($el) {
+      if (!gplusoneLoaded) {
+        return init();
+      } else if (gapi) {
+        return gapi.plusone.go();
+      }
+    };
+  })();
+
+  socialutil_twitter = function() {
+    return $.getScript('https://platform.twitter.com/widgets.js');
+  };
+
+  $.fn.disableCurrentLinks = function() {
+    var className;
+    className = 'state-disabled';
+    return this.each(function() {
+      return $('a', this).each(function() {
+        var $a;
+        $a = $(this);
+        if (($a.attr('href')) === location.pathname) {
+          return $a.addClass(className);
         } else {
-          return FB.XFBML.parse($el[0]);
+          return $a.removeClass(className);
         }
-      };
-    })();
-    socialutil_gplus = (function() {
-      var gplusoneLoaded, init;
-      gplusoneLoaded = false;
-      window.___gcfg = {
-        lang: 'en'
-      };
-      init = function() {
-        $.getScript("https://apis.google.com/js/plusone.js");
-        return gplusoneLoaded = true;
-      };
-      return function($el) {
-        if (!gplusoneLoaded) {
-          return init();
-        } else if (gapi) {
-          return gapi.plusone.go();
-        }
-      };
-    })();
-    socialutil_twitter = function() {
-      return $.getScript('https://platform.twitter.com/widgets.js');
-    };
-    $.fn.disableCurrentLinks = function() {
-      var className;
-      className = 'state-disabled';
-      return this.each(function() {
-        return $('a', this).each(function() {
-          var $a;
-          $a = $(this);
-          if (($a.attr('href')) === location.pathname) {
-            return $a.addClass(className);
-          } else {
-            return $a.removeClass(className);
-          }
-        });
       });
-    };
-    $.fn.handleCodeHighlight = function() {
-      return this.each(function() {
-        var $el, $pre, $table, html, lines;
-        $el = $(this);
-        $pre = $('pre', $el);
-        html = $pre.html();
-        lines = html.split(/\n\r?/);
-        lines = $.map(lines, function(line) {
-          return "<div class='line'>" + (line || ' ') + "</div>";
-        });
-        $pre.html(lines.join(''));
-        $table = $('<table><tr><td></td></tr></table>');
-        ($table.find('td')).append($pre);
-        return $el.append($table);
+    });
+  };
+
+  $.fn.handleCodeHighlight = function() {
+    return this.each(function() {
+      var $el, $pre, $table, html, lines;
+      $el = $(this);
+      $pre = $('pre', $el);
+      html = $pre.html();
+      lines = html.split(/\n\r?/);
+      lines = $.map(lines, function(line) {
+        return "<div class='line'>" + (line || ' ') + "</div>";
       });
-    };
+      $pre.html(lines.join(''));
+      $table = $('<table><tr><td></td></tr></table>');
+      ($table.find('td')).append($pre);
+      return $el.append($table);
+    });
+  };
+
+  $(function() {
     return $.LazyJaxDavis(function(router) {
       var $body, $loadingplacer, $root, $spinner, attachSpinner, scrollDefer;
       $loadingplacer = $('#loadingplacer');
@@ -135,6 +145,7 @@
         });
       });
       router.bind('everyfetchsuccess', function(page) {
+        ganaTrack();
         return ($.when(scrollDefer)).done(function() {
           $spinner.remove();
           $loadingplacer.hide();
