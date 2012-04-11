@@ -130,9 +130,9 @@ $ ->
         scrollDefer = $.tinyscroller.scrollTo(0); # first, back to top
 
     router.bind 'everyfetchsuccess', (page) ->
-      $spinner.remove()
-      $loadingplacer.hide()
       ($.when scrollDefer).done ->
+        $spinner.remove()
+        $loadingplacer.hide()
         $root.css 'opacity', 0
         wait(0).done ->
           $root.addClass 'state-animenabled'

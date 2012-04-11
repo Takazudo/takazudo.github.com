@@ -133,9 +133,9 @@
         });
       });
       router.bind('everyfetchsuccess', function(page) {
-        $spinner.remove();
-        $loadingplacer.hide();
         return ($.when(scrollDefer)).done(function() {
+          $spinner.remove();
+          $loadingplacer.hide();
           $root.css('opacity', 0);
           return wait(0).done(function() {
             $root.addClass('state-animenabled');
