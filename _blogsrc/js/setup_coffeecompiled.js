@@ -107,7 +107,8 @@
       $pre.html(lines.join(''));
       $table = $('<table><tr><td></td></tr></table>');
       ($table.find('td')).append($pre);
-      return $el.append($table);
+      $el.append($table);
+      return $el.after('<div style="height:0;"></div>');
     });
   };
 

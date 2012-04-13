@@ -493,8 +493,8 @@ body {
 		padding:0 0 10px;
 		h2 {
 			@extend .mod-h2;
-			margin:20px 0 0;
-			padding:0 0 10px;
+			margin:40px 0 0;
+			padding:0 0 15px;
 		}
 		h3 {
 			@extend .mod-h3;
@@ -551,6 +551,7 @@ body {
 		border-top:1px dashed $color_border_base;
 		border-bottom:1px dashed $color_border_base;
 		padding:20px 0 18px;
+		margin-top:40px;
 		.fb-likewrap {
 			max-width:100%;
 		}

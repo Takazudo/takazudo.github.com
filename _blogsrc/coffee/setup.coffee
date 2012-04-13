@@ -117,6 +117,7 @@ $.fn.handleCodeHighlight = ->
     $table = $('<table><tr><td></td></tr></table>')
     ($table.find 'td').append $pre
     $el.append $table
+    $el.after('<div style="height:0;"></div>')
 
 
 # =======================================================

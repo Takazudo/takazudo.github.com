@@ -747,8 +747,8 @@ body {
   .mod-entry .mod-entry-body {
     padding: 0 0 10px; }
     .mod-entry .mod-entry-body h2 {
-      margin: 20px 0 0;
-      padding: 0 0 10px; }
+      margin: 40px 0 0;
+      padding: 0 0 15px; }
     .mod-entry .mod-entry-body h3 {
       margin: 10px 0 0;
       padding: 0 0 10px; }
@@ -789,7 +789,8 @@ body {
   .mod-entry .mod-entry-share {
     border-top: 1px dashed #404040;
     border-bottom: 1px dashed #404040;
-    padding: 20px 0 18px; }
+    padding: 20px 0 18px;
+    margin-top: 40px; }
     .mod-entry .mod-entry-share .fb-likewrap {
       max-width: 100%; }
   .mod-entry .mod-entry-comments {

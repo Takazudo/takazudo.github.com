@@ -1,0 +1,391 @@
+<!doctype html>
+<html class="no-js" lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:og="http://ogp.me/ns#"
+	xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Takazudolog - Compiling CoffeeScript with grunt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/blog/css/style.min.css">
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<meta property="fb:admins" content="1166983159">
+<meta property="og:site_name" content="Takazudolog">
+<meta property="og:title" content="Takazudolog">
+<meta property="og:image" content="http://takazudo.github.com/blog/img/octocat.png">
+<meta property="og:description" content="Takazudo's dev notes.">
+<meta property="og:url" content="http://takazudo.github.com/blog/">
+<meta property="og:type" content="article">
+<script src="/blog/js/modernizr.min.js"></script>
+<script>if(!Modernizr.mq()) Modernizr.load('/blog/js/respond.min.js');</script>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-183024-7']);
+_gaq.push(['_trackPageview']);
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</head>
+
+<body><div class="mod-all" id="top"><div class="mod-allinner">
+
+	<header class="mod-header"><hgroup>
+	<h1><a href="/blog/">Takazudolog</a></h1>
+	<h2>Takazudo's blog on GitHub</h2>
+	<div class="mod-header-icons">
+		<a class="apply-nolazy" href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><img src="/blog/img/rss.png" alt="RSS"></a>
+		<a href="https://twitter.com/Takazudo"><img src="http://www.gravatar.com/avatar/a88cc23988f41bba5503dd0bd8ff7750.png?s=48" alt="Takazudo"></a>
+	</div>
+</hgroup></header>
+
+	<nav class="mod-headnavbar"><div class="mod-headnavbar-inner">
+	<ul class="mod-headnavbar-mainnav">
+		<li><a href="/blog/">Top</a></li>
+		<li><a href="/blog/archives.html">Archives</a></li>
+		<li><a href="/blog/about.html">About</a></li>
+	</ul>
+	<form class="mod-headnavbar-search" action="http://google.com/search" method="get">
+		<fieldset role="search">
+			<input type="hidden" name="q" value="site:Takazudo.github.com/blog" />
+			<input class="mod-headnavbar-search-input" type="text" name="q" results="0" placeholder="Search"/>
+		</fieldset>
+	</form>
+</div></nav>
+
+	<div class="mod-body"><div class="mod-body-inner">
+		<div class="mod-main"><div class="mod-main-inner">
+			<div id="lazyjaxdavisroot">
+				<!-- LazyJaxDavis start -->
+					<article class="mod-entry">
+	<header class="mod-entry-header">
+		<h1>Compiling CoffeeScript with grunt</h1>
+		<p><time>14 Apr 2012</time> | <a href="#postcomments">Comments</a></p>
+		
+			<ul>
+				
+					<li>[ JavaScript ]</li>
+				
+					<li>[ CoffeeScript ]</li>
+				
+					<li>[ grunt ]</li>
+				
+					<li>[ build ]</li>
+				
+			</ul>
+		
+	</header>
+	<div class="mod-entry-body">
+		<p><a href='http://coffeescript.org/'>CoffeeScript</a> is sweat.<br />It provides easy watch and has no problem about compiling without any other tools. But in concrete projects, we sometimes need more complicated compiling strategy. <a href='https://github.com/cowboy/grunt'>Grunt</a> provides nice APIs for automated builds for sass, less, stylus, CoffeeScript or something like that. In this article, I&#8217;ll introduce my grunt file for CoffeeScript.</p>
+<p><span id="more"></span></p>
+<p>Note: This article is for grunt version 0.3.8. APIs may be changed in the future.</p>
+
+<h2 id='installing_grunt'>Installing grunt</h2>
+
+<p>To use grunt, install node and npm. Grunt needs to be installed as global with <code>-g</code>.</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>npm install -g grunt
+</code></pre>
+</div>
+<p>I skip grunt&#8217;s basics here. You can see some examples on <a href='https://github.com/cowboy/grunt'>grunt</a>&#8217;s repository. Or check <a href='https://github.com/Takazudo/gruntExamples'>my repository</a> for grunt examples. Basically, create <code>grunt.js</code> to your directory. Then write build codes there. Then you can run the builds with the command like below.</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>grunt
+</code></pre>
+</div><div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>grunt watch
+</code></pre>
+</div>
+<p>If you have not used grunt yet. Just try to work something with grunt. It has standard features for JavaScript development. ex: jslint, concat, banner.</p>
+
+<h2 id='how_to_compile_coffeescript_files_on_command_line'>How to compile CoffeeScript files on command line</h2>
+
+<p>It&#8217;s listed on <a href='http://coffeescript.org/'>CoffeeScript&#8217; website</a>. Here&#8217;s what I want to use.</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>coffee --compile --output .js/ .coffee/
+</code></pre>
+</div>
+<p>With this, coffee compiles all <code>*.coffee</code> files in <code>coffee</code> directory. The compiled JavaScript files will be put into <code>js</code> directory.</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>coffee --join compiled.js --compile 1.coffee 2.coffee
+</code></pre>
+</div>
+<p>With this, coffee concatenate <code>1.coffee</code> and <code>2.coffee</code> first. Then it compiles concanated sources to <code>compiled.js</code>.</p>
+
+<p>CoffeeScript has also &#8211;watch option. But it&#8217;s better to automate these with build utilities. Rake or Make also seems good. But if you are familiar to JavaScript, grunt is better for you, I guess.</p>
+
+<h2 id='helper_utility_tasks'>Helper, utility tasks</h2>
+
+<p>Grunt doesn&#8217;t have the feature to compile CoffeeScript as default. So you need to write your own task for coffee compiling. First, let&#8217;s prepare helper functions / tasks for it. Here&#8217;s what I wrote.</p>
+<div class='highlight'><pre><code class='javascript'><span class='cm'>/* grunt common utilities */</span>
+
+<span class='nx'>module</span><span class='p'>.</span><span class='nx'>exports</span> <span class='o'>=</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>grunt</span><span class='p'>){</span>
+  
+  <span class='kd'>var</span> <span class='nx'>exec</span> <span class='o'>=</span> <span class='nx'>require</span><span class='p'>(</span><span class='s1'>&#39;child_process&#39;</span><span class='p'>).</span><span class='nx'>exec</span><span class='p'>;</span>
+
+  <span class='c1'>// child_process.exec bridge</span>
+  <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>registerHelper</span><span class='p'>(</span><span class='s1'>&#39;exec&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>opts</span><span class='p'>,</span> <span class='nx'>done</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='kd'>var</span> <span class='nx'>command</span> <span class='o'>=</span> <span class='nx'>opts</span><span class='p'>.</span><span class='nx'>cmd</span> <span class='o'>+</span> <span class='s1'>&#39; &#39;</span> <span class='o'>+</span> <span class='nx'>opts</span><span class='p'>.</span><span class='nx'>args</span><span class='p'>.</span><span class='nx'>join</span><span class='p'>(</span><span class='s1'>&#39; &#39;</span><span class='p'>);</span>
+    <span class='nx'>exec</span><span class='p'>(</span><span class='nx'>command</span><span class='p'>,</span> <span class='nx'>opts</span><span class='p'>.</span><span class='nx'>opts</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>code</span><span class='p'>,</span> <span class='nx'>stdout</span><span class='p'>,</span> <span class='nx'>stderr</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='k'>if</span><span class='p'>(</span><span class='o'>!</span><span class='nx'>done</span><span class='p'>){</span>
+        <span class='k'>return</span><span class='p'>;</span>
+      <span class='p'>}</span>
+      <span class='k'>if</span><span class='p'>(</span><span class='nx'>code</span> <span class='o'>===</span> <span class='mi'>0</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>done</span><span class='p'>(</span><span class='kc'>null</span><span class='p'>,</span> <span class='nx'>stdout</span><span class='p'>,</span> <span class='nx'>code</span><span class='p'>);</span>
+      <span class='p'>}</span> <span class='k'>else</span> <span class='p'>{</span>
+        <span class='nx'>done</span><span class='p'>(</span><span class='nx'>code</span><span class='p'>,</span> <span class='nx'>stderr</span><span class='p'>,</span> <span class='nx'>code</span><span class='p'>);</span>
+      <span class='p'>}</span>
+    <span class='p'>});</span>
+  <span class='p'>});</span>
+
+  <span class='c1'>// growl: Ex. grunt.helper(&#39;growl&#39;, &#39;foo&#39;, &#39;bar&#39;);</span>
+  <span class='c1'>// http://growl.info/extras.php#growlnotify</span>
+  <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>registerHelper</span><span class='p'>(</span><span class='s1'>&#39;growl&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>title</span><span class='p'>,</span> <span class='nx'>msg</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>helper</span><span class='p'>(</span><span class='s1'>&#39;exec&#39;</span><span class='p'>,</span> <span class='p'>{</span>
+      <span class='nx'>cmd</span><span class='o'>:</span> <span class='s1'>&#39;growlnotify&#39;</span><span class='p'>,</span>
+      <span class='nx'>args</span><span class='o'>:</span> <span class='p'>[</span>
+        <span class='s1'>&#39;-t&#39;</span><span class='p'>,</span> <span class='s2'>&quot;&#39;&quot;</span> <span class='o'>+</span> <span class='nx'>title</span> <span class='o'>+</span> <span class='s2'>&quot;&#39;&quot;</span><span class='p'>,</span>
+        <span class='s1'>&#39;-m&#39;</span><span class='p'>,</span> <span class='s2'>&quot;&#39;&quot;</span> <span class='o'>+</span> <span class='nx'>msg</span> <span class='o'>+</span> <span class='s2'>&quot;&#39;&quot;</span>
+      <span class='p'>]</span>
+    <span class='p'>});</span>
+  <span class='p'>});</span>
+
+  <span class='c1'>// ok: use this for notify everything are allright.</span>
+  <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>registerTask</span><span class='p'>(</span><span class='s1'>&#39;ok&#39;</span><span class='p'>,</span> <span class='s1'>&#39;done!&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(){</span>
+    <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>helper</span><span class='p'>(</span><span class='s1'>&#39;growl&#39;</span><span class='p'>,</span> <span class='s1'>&#39;grunt.js&#39;</span><span class='p'>,</span> <span class='s1'>&#39;＼(^o^)／&#39;</span><span class='p'>);</span>
+  <span class='p'>});</span>
+
+<span class='p'>};</span>
+</code></pre>
+</div>
+<p>In the code above, first, I created <code>child_process.exec</code> wrapper. With this helper, you can pass the commands to <code>child_process.exec</code> easily. I&#8217;ll call this &#8220;exec&#8221; helper.</p>
+
+<p>Next, I created &#8220;growl&#8221; helper. <a href='http://growl.info/extras.php#growlnotify'>Growl</a> is a great application for Mac (though if you use Mac, you may already know. And sorry for non-Mac users.). This notifies you something. I&#8217;ll use this to notify whether CoffeeScript&#8217;s compiling was successed or not. Install growlnotify extension if you&#8217;ve not installed it yet. You can see how I used &#8220;exec&#8221; helper here.</p>
+
+<p>The last part of the code above is &#8220;ok&#8221; task. I&#8217;ll call this task when everythings was done without error. You can see how I used &#8220;growl&#8221; helper here.</p>
+
+<p>&#8220;Helper&#8221; is like a function shared in &#8220;grunt&#8221; namespace. I&#8217;ll use &#8220;exec&#8221; helper more next.</p>
+
+<h2 id='coffeescript_compiling_tasks'>CoffeeScript compiling tasks</h2>
+
+<p>So let&#8217;s compile CoffeeScripts with this.</p>
+<div class='highlight'><pre><code class='javascript'><span class='cm'>/**</span>
+<span class='cm'> * coffee compiling tasks</span>
+<span class='cm'> * CoffeeScript: http://coffeescript.org/</span>
+<span class='cm'> */</span>
+<span class='nx'>module</span><span class='p'>.</span><span class='nx'>exports</span> <span class='o'>=</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>grunt</span><span class='p'>){</span>
+  
+  <span class='kd'>var</span> <span class='nx'>log</span> <span class='o'>=</span> <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>;</span>
+
+  <span class='kd'>function</span> <span class='nx'>handleResult</span><span class='p'>(</span><span class='nx'>from</span><span class='p'>,</span> <span class='nx'>dest</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>,</span> <span class='nx'>stdout</span><span class='p'>,</span> <span class='nx'>code</span><span class='p'>,</span> <span class='nx'>done</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='k'>if</span><span class='p'>(</span><span class='nx'>err</span><span class='p'>){</span>
+      <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>helper</span><span class='p'>(</span><span class='s1'>&#39;growl&#39;</span><span class='p'>,</span> <span class='s1'>&#39;COFFEE COMPILING GOT ERROR&#39;</span><span class='p'>,</span> <span class='nx'>stdout</span><span class='p'>);</span>
+      <span class='nx'>log</span><span class='p'>.</span><span class='nx'>writeln</span><span class='p'>(</span><span class='nx'>from</span> <span class='o'>+</span> <span class='s1'>&#39;: failed to compile to &#39;</span> <span class='o'>+</span> <span class='nx'>dest</span> <span class='o'>+</span> <span class='s1'>&#39;.&#39;</span><span class='p'>);</span>
+      <span class='nx'>log</span><span class='p'>.</span><span class='nx'>writeln</span><span class='p'>(</span><span class='nx'>stdout</span><span class='p'>);</span>
+      <span class='nx'>done</span><span class='p'>(</span><span class='kc'>false</span><span class='p'>);</span>
+    <span class='p'>}</span><span class='k'>else</span><span class='p'>{</span>
+      <span class='nx'>log</span><span class='p'>.</span><span class='nx'>writeln</span><span class='p'>(</span><span class='nx'>from</span> <span class='o'>+</span> <span class='s1'>&#39;: compiled to &#39;</span> <span class='o'>+</span> <span class='nx'>dest</span> <span class='o'>+</span> <span class='s1'>&#39;.&#39;</span><span class='p'>);</span>
+      <span class='nx'>done</span><span class='p'>(</span><span class='kc'>true</span><span class='p'>);</span>
+    <span class='p'>}</span>
+  <span class='p'>}</span>
+
+  <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>registerHelper</span><span class='p'>(</span><span class='s1'>&#39;coffee_dir_to_dir&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>fromdir</span><span class='p'>,</span> <span class='nx'>dest</span><span class='p'>,</span> <span class='nx'>done</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='kd'>var</span> <span class='nx'>args</span> <span class='o'>=</span> <span class='p'>{</span>
+      <span class='nx'>cmd</span><span class='o'>:</span> <span class='s1'>&#39;coffee&#39;</span><span class='p'>,</span>
+      <span class='nx'>args</span><span class='o'>:</span> <span class='p'>[</span> <span class='s1'>&#39;--compile&#39;</span><span class='p'>,</span> <span class='s1'>&#39;--output&#39;</span><span class='p'>,</span> <span class='nx'>dest</span><span class='p'>,</span> <span class='nx'>fromdir</span> <span class='p'>]</span>
+    <span class='p'>};</span>
+    <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>helper</span><span class='p'>(</span><span class='s1'>&#39;exec&#39;</span><span class='p'>,</span> <span class='nx'>args</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>err</span><span class='p'>,</span> <span class='nx'>stdout</span><span class='p'>,</span> <span class='nx'>code</span><span class='p'>){</span>
+      <span class='nx'>handleResult</span><span class='p'>(</span><span class='nx'>fromdir</span><span class='p'>,</span> <span class='nx'>dest</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>,</span> <span class='nx'>stdout</span><span class='p'>,</span> <span class='nx'>code</span><span class='p'>,</span> <span class='nx'>done</span><span class='p'>);</span>
+    <span class='p'>});</span>
+  <span class='p'>});</span>
+
+  <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>registerHelper</span><span class='p'>(</span><span class='s1'>&#39;coffee_multi_to_one&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>srcs</span><span class='p'>,</span> <span class='nx'>dest</span><span class='p'>,</span> <span class='nx'>done</span><span class='p'>)</span> <span class='p'>{</span>
+    <span class='nx'>srcs</span> <span class='o'>=</span> <span class='nx'>srcs</span><span class='p'>.</span><span class='nx'>join</span><span class='p'>(</span><span class='s1'>&#39; &#39;</span><span class='p'>);</span>
+    <span class='kd'>var</span> <span class='nx'>args</span> <span class='o'>=</span> <span class='p'>{</span>
+      <span class='nx'>cmd</span><span class='o'>:</span> <span class='s1'>&#39;coffee&#39;</span><span class='p'>,</span>
+      <span class='nx'>args</span><span class='o'>:</span> <span class='p'>[</span> <span class='s1'>&#39;--join&#39;</span><span class='p'>,</span> <span class='nx'>dest</span><span class='p'>,</span> <span class='s1'>&#39;--compile&#39;</span><span class='p'>,</span> <span class='nx'>srcs</span> <span class='p'>]</span>
+    <span class='p'>};</span>
+    <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>helper</span><span class='p'>(</span><span class='s1'>&#39;exec&#39;</span><span class='p'>,</span> <span class='nx'>args</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>err</span><span class='p'>,</span> <span class='nx'>stdout</span><span class='p'>,</span> <span class='nx'>code</span><span class='p'>){</span>
+      <span class='nx'>handleResult</span><span class='p'>(</span><span class='nx'>srcs</span><span class='p'>,</span> <span class='nx'>dest</span><span class='p'>,</span> <span class='nx'>err</span><span class='p'>,</span> <span class='nx'>stdout</span><span class='p'>,</span> <span class='nx'>code</span><span class='p'>,</span> <span class='nx'>done</span><span class='p'>);</span>
+    <span class='p'>});</span>
+  <span class='p'>});</span>
+
+  <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>registerMultiTask</span><span class='p'>(</span><span class='s1'>&#39;coffee&#39;</span><span class='p'>,</span> <span class='s1'>&#39;compile CoffeeScripts&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>()</span> <span class='p'>{</span>
+
+    <span class='kd'>var</span> <span class='nx'>done</span> <span class='o'>=</span> <span class='k'>this</span><span class='p'>.</span><span class='nx'>async</span><span class='p'>();</span>
+    <span class='kd'>var</span> <span class='nx'>files</span> <span class='o'>=</span> <span class='k'>this</span><span class='p'>.</span><span class='nx'>data</span><span class='p'>.</span><span class='nx'>files</span><span class='p'>;</span>
+    <span class='kd'>var</span> <span class='nx'>dir</span> <span class='o'>=</span> <span class='k'>this</span><span class='p'>.</span><span class='nx'>data</span><span class='p'>.</span><span class='nx'>dir</span><span class='p'>;</span>
+    <span class='kd'>var</span> <span class='nx'>dest</span> <span class='o'>=</span> <span class='k'>this</span><span class='p'>.</span><span class='nx'>data</span><span class='p'>.</span><span class='nx'>dest</span><span class='p'>;</span>
+
+    <span class='c1'>// ex: ./coffee -&gt; ./js</span>
+    <span class='k'>if</span><span class='p'>(</span><span class='nx'>dir</span><span class='p'>)</span> <span class='p'>{</span>
+      
+      <span class='c1'>// if destination was not defined, compile to same dir</span>
+      <span class='k'>if</span><span class='p'>(</span><span class='o'>!</span><span class='nx'>dest</span><span class='p'>)</span> <span class='p'>{</span>
+        <span class='nx'>dest</span> <span class='o'>=</span> <span class='nx'>dir</span><span class='p'>;</span>
+      <span class='p'>}</span>
+
+      <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>helper</span><span class='p'>(</span><span class='s1'>&#39;coffee_dir_to_dir&#39;</span><span class='p'>,</span> <span class='nx'>dir</span><span class='p'>,</span> <span class='nx'>dest</span><span class='p'>,</span> <span class='nx'>done</span><span class='p'>);</span>
+      <span class='k'>return</span><span class='p'>;</span>
+    <span class='p'>}</span>
+
+    <span class='c1'>// ex: [ &#39;1.coffee&#39;, &#39;2.coffee&#39; ] -&gt; foo.js</span>
+    <span class='k'>if</span><span class='p'>(</span><span class='nx'>files</span><span class='p'>)</span> <span class='p'>{</span>
+      <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>helper</span><span class='p'>(</span><span class='s1'>&#39;coffee_multi_to_one&#39;</span><span class='p'>,</span> <span class='nx'>files</span><span class='p'>,</span> <span class='nx'>dest</span><span class='p'>,</span> <span class='nx'>done</span><span class='p'>);</span>
+      <span class='k'>return</span><span class='p'>;</span>
+    <span class='p'>}</span>
+
+  <span class='p'>});</span>
+
+<span class='p'>};</span>
+</code></pre>
+</div>
+<p>First, I created two helpers - <code>coffee_dir_to_dir</code> and <code>coffee_multi_to_one</code>. These are helpers which invoke coffee commands I wrote above. &#8220;Directory to directory&#8221; or &#8220;multiple files to one&#8221;. You can see how I used &#8220;exec&#8221; helper here ,too. The comiled results will be passed to <code>handleResult</code>. In <code>handleResult</code>, it shows growl if compiling got error. If not, it logs that compiling was done.</p>
+
+<p>The last part of the code above defines <code>coffee</code> multiTask. In this task, grunt calls the helpers what I craeted from config values. Overall, this multiTasks is the surface of this task file. Let&#8217;s see how this works with concrete <code>grunt.js</code> file.</p>
+
+<h2 id='grunt_file'>Grunt file</h2>
+
+<p>Here&#8217;s how to use the tasks above.</p>
+<div class='highlight'><pre><code class='javascript'><span class='cm'>/**</span>
+<span class='cm'> * grunt</span>
+<span class='cm'> * CoffeeScript example</span>
+<span class='cm'> *</span>
+<span class='cm'> * grunt: https://github.com/cowboy/grunt</span>
+<span class='cm'> * CoffeeScript: http://coffeescript.org/</span>
+<span class='cm'> */</span>
+<span class='nx'>module</span><span class='p'>.</span><span class='nx'>exports</span> <span class='o'>=</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>grunt</span><span class='p'>){</span>
+
+  <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>initConfig</span><span class='p'>({</span>
+    <span class='nx'>coffee</span><span class='o'>:</span> <span class='p'>{</span>
+      <span class='c1'>// Example1: compile multiple coffees to one js with &quot;--join&quot;.</span>
+      <span class='nx'>dist1</span><span class='o'>:</span> <span class='p'>{</span>
+        <span class='nx'>files</span><span class='o'>:</span> <span class='p'>[</span> <span class='s1'>&#39;coffee/1.coffee&#39;</span><span class='p'>,</span> <span class='s1'>&#39;coffee/2.coffee&#39;</span> <span class='p'>],</span>
+        <span class='nx'>dest</span><span class='o'>:</span> <span class='s1'>&#39;js/12.js&#39;</span>
+      <span class='p'>},</span>
+      <span class='c1'>// Example2: compile one coffee to one js.</span>
+      <span class='nx'>dist2</span><span class='o'>:</span> <span class='p'>{</span>
+        <span class='nx'>files</span><span class='o'>:</span> <span class='p'>[</span> <span class='s1'>&#39;coffee/3.coffee&#39;</span> <span class='p'>],</span>
+        <span class='nx'>dest</span><span class='o'>:</span> <span class='s1'>&#39;js/3.js&#39;</span>
+      <span class='p'>},</span>
+      <span class='c1'>// Example3: compiled files are put in another dir.</span>
+      <span class='nx'>dist3</span><span class='o'>:</span> <span class='p'>{</span>
+        <span class='nx'>dir</span><span class='o'>:</span> <span class='s1'>&#39;coffee/45/&#39;</span><span class='p'>,</span>
+        <span class='nx'>dest</span><span class='o'>:</span> <span class='s1'>&#39;js/&#39;</span>
+      <span class='p'>},</span>
+      <span class='c1'>// Example4: compiled files are put in the same dir.</span>
+      <span class='nx'>dist4</span><span class='o'>:</span> <span class='p'>{</span>
+        <span class='nx'>dir</span><span class='o'>:</span> <span class='s1'>&#39;insamedir/&#39;</span>
+      <span class='p'>}</span>
+    <span class='p'>},</span>
+    <span class='nx'>watch</span><span class='o'>:</span> <span class='p'>{</span>
+      <span class='nx'>dist1</span><span class='o'>:</span> <span class='p'>{</span>
+        <span class='nx'>files</span><span class='o'>:</span> <span class='s1'>&#39;&lt;config:coffee.dist1.files&gt;&#39;</span><span class='p'>,</span>
+        <span class='nx'>tasks</span><span class='o'>:</span> <span class='s1'>&#39;coffee:dist1 ok&#39;</span>
+      <span class='p'>},</span>
+      <span class='nx'>dist2</span><span class='o'>:</span> <span class='p'>{</span>
+        <span class='nx'>files</span><span class='o'>:</span> <span class='s1'>&#39;&lt;config:coffee.dist2.files&gt;&#39;</span><span class='p'>,</span>
+        <span class='nx'>tasks</span><span class='o'>:</span> <span class='s1'>&#39;coffee:dist2 ok&#39;</span>
+      <span class='p'>},</span>
+      <span class='nx'>dist3</span><span class='o'>:</span> <span class='p'>{</span>
+        <span class='nx'>files</span><span class='o'>:</span> <span class='s1'>&#39;coffee/45/*.coffee&#39;</span><span class='p'>,</span>
+        <span class='nx'>tasks</span><span class='o'>:</span> <span class='s1'>&#39;coffee:dist3 ok&#39;</span>
+      <span class='p'>},</span>
+      <span class='nx'>dist4</span><span class='o'>:</span> <span class='p'>{</span>
+        <span class='nx'>files</span><span class='o'>:</span> <span class='s1'>&#39;insamedir/*.coffee&#39;</span><span class='p'>,</span>
+        <span class='nx'>tasks</span><span class='o'>:</span> <span class='s1'>&#39;coffee:dist4 ok&#39;</span>
+      <span class='p'>}</span>
+    <span class='p'>}</span>
+  <span class='p'>});</span>
+
+  <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>loadTasks</span><span class='p'>(</span><span class='s1'>&#39;tasks&#39;</span><span class='p'>);</span>
+  <span class='nx'>grunt</span><span class='p'>.</span><span class='nx'>registerTask</span><span class='p'>(</span><span class='s1'>&#39;default&#39;</span><span class='p'>,</span> <span class='s1'>&#39;coffee ok&#39;</span><span class='p'>);</span>
+
+<span class='p'>};</span>
+</code></pre>
+</div>
+<p>If files were passed, grunt handles those with <code>coffee --join</code>. Else if directory was passed, grunt handles those as &#8220;directory to directory&#8221; compiling. With these task files, you can handle complicated compilings easily.</p>
+
+<p>These are also useful for other pre processors like <a href='http://sass-lang.com/'>sass</a>, <a href='http://lesscss.org/'>less</a> or <a href='http://learnboost.github.com/stylus/'>stylus</a>. I put the code I explained here on GitHub. Use these if it&#8217;s useful for you.</p>
+
+<ul>
+<li><a href='https://github.com/Takazudo/gruntExamples'>Takazudo/gruntExamples</a></li>
+
+<li><a href='https://github.com/Takazudo/gruntExamples/tree/master/coffee-all-in-one'>Takazudo/gruntExamples - Coffee all in one</a></li>
+</ul>
+	</div>
+	<div class="mod-entry-share">
+		<a href="http://twitter.com/share"
+			class="twitter-share-button"
+			data-url="http://takazudo.github.com/entry/2012-04-14-grunt-coffee.html"
+			data-via="Takazudo"
+			data-counturl="http://takazudo.github.com/entry/2012-04-14-grunt-coffee.html"
+		>Tweet</a>
+		<div class="g-plusone" data-size="medium"></div>
+		<div class="fb-likewrap"><div class="fb-like" data-send="false" data-width="450" data-show-faces="true" data-colorscheme="dark"></div></div>
+	</div>
+	<section class="mod-entry-comments" id="postcomments">
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+	</section>
+</article>
+
+<ul class="mod-postpager">
+	
+	
+		<li><span>Older post:</span> <a href="/blog/entry/2012-04-11-firstpost.html">This blog is powered by Jekyll</a></li>
+	
+</ul>
+
+
+				<!-- LazyJaxDavis end -->
+			</div>
+			<div class="mod-main-loadingplacer" id="loadingplacer"></div>
+		</div></div>
+		<aside class="mod-side">
+	<div class="mod-sidenavblocks">
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>Recent Posts</h1>
+				<ul>
+					
+						<li><a href="/blog/entry/2012-04-14-grunt-coffee.html">Compiling CoffeeScript with grunt</a></li>
+					
+						<li><a href="/blog/entry/2012-04-11-firstpost.html">This blog is powered by Jekyll</a></li>
+					
+				</ul>
+			</section>
+		</div>
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>GitHub Repos</h1>
+				<ul>
+					<li><a href="https://github.com/Takazudo/jQuery.LazyJaxDavis">jQuery.LazyJaxDavis</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ui.domwindow">jQuery.ui.domwindow</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ImgLoader">jQuery.ImgLoader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.tinyscroller">jQuery.tinyscroller</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.PresetPreloader">jQuery.PresetPreloader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.TmplDeck">jQuery.TmplDeck</a></li>
+					<li><a href="https://github.com/Takazudo/BackboneTwitterExample">BackboneTwitterExample</a></li>
+					<li><a href="https://github.com/Takazudo/gruntExamples">gruntExamples</a></li>
+					<li><a href="https://github.com/Takazudo">@Takazudo</a> on GitHub</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+</aside>
+
+	</div></div>
+	<div class="mod-footback"><a href="#top">∧</a></div>
+<footer class="mod-footer"><div class="mod-footer-inner">
+	<small>Copyright &copy; 2012 - "Takazudo" Takeshi Takatsudo.</small>
+	<span>Powered by <a href="http://jekyllrb.com/">Jekyll</a></span>
+</div></footer>
+
+
+	<div id="fb-root"></div>
+
+</div></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="/blog/js/all.js"></script>
+</body>
+</html>
