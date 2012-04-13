@@ -29,7 +29,7 @@ $ grunt
 $ grunt watch
 {% endhighlight %}
 
-If you have not used grunt yet. Just try to work something with grunt. It has standard features for JavaScript development. ex: jslint, concat, banner.
+If you have not used grunt yet. Just try to work something with grunt. It has standard features for JavaScript development. ex: jslint, concat, minify, test.
 
 ## How to compile CoffeeScript files on command line
 
@@ -47,7 +47,7 @@ $ coffee --join compiled.js --compile 1.coffee 2.coffee
 
 With this, coffee concatenate `1.coffee` and `2.coffee` first. Then it compiles concanated sources to `compiled.js`.
 
-CoffeeScript has also --watch option. But it's better to automate these with build utilities. Rake or Make also seems good. But if you are familiar to JavaScript, grunt is better for you, I guess.
+CoffeeScript has also `--watch` option. But it's better to automate these with build utilities. Rake, Make or something like that also seem good. But if you are familiar to JavaScript, grunt is better for you, I guess.
 
 ## Helper, utility tasks
 
@@ -179,7 +179,7 @@ module.exports = function(grunt){
 };
 {% endhighlight %}
 
-First, I created two helpers - `coffee_dir_to_dir` and `coffee_multi_to_one`. These are helpers which invoke coffee commands I wrote above. "Directory to directory" or "multiple files to one". You can see how I used "exec" helper here ,too. The comiled results will be passed to `handleResult`. In `handleResult`, it shows growl if compiling got error. If not, it logs that compiling was done.
+First, I created two helpers - `coffee_dir_to_dir` and `coffee_multi_to_one`. These are helpers which invoke coffee commands I wrote above. "Directory to directory" or "multiple files to one". You can see how I used "exec" helper here ,too. The compiled results will be passed to `handleResult`. In `handleResult`, it shows growl if compiling got error. If not, it logs that compiling was done.
 
 The last part of the code above defines `coffee` multiTask. In this task, grunt calls the helpers what I craeted from config values. Overall, this multiTasks is the surface of this task file. Let's see how this works with concrete `grunt.js` file.
 
@@ -245,12 +245,12 @@ module.exports = function(grunt){
 };
 {% endhighlight %}
 
-If files were passed, grunt handles those with `coffee --join`. Else if directory was passed, grunt handles those as "directory to directory" compiling. With these task files, you can handle complicated compilings easily.
+If files were passed, grunt compiles those with `--join`. Else if directory was passed, grunt compiles those as "directory to directory" compiling. With these task files, you can handle complicated compilings easily. And of course, you can minify or concat those files with other files.
 
-These are also useful for other pre processors like [sass][sass], [less][less] or [stylus][stylus]. I put the code I explained here on GitHub. Use these if it's useful for you.
+These are also useful for other pre processors like [sass][sass], [less][less], [stylus][stylus] or something like that. I put the code I explained here on GitHub. Use these if it's useful for you.
 
-* [Takazudo/gruntExamples](https://github.com/Takazudo/gruntExamples)
 * [Takazudo/gruntExamples - Coffee all in one](https://github.com/Takazudo/gruntExamples/tree/master/coffee-all-in-one)
+* [Takazudo/gruntExamples](https://github.com/Takazudo/gruntExamples)
 
 
 

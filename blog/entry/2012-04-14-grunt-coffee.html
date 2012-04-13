@@ -100,7 +100,7 @@ _gaq.push(['_trackPageview']);
 </div><div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>grunt watch
 </code></pre>
 </div>
-<p>If you have not used grunt yet. Just try to work something with grunt. It has standard features for JavaScript development. ex: jslint, concat, banner.</p>
+<p>If you have not used grunt yet. Just try to work something with grunt. It has standard features for JavaScript development. ex: jslint, concat, minify, test.</p>
 
 <h2 id='how_to_compile_coffeescript_files_on_command_line'>How to compile CoffeeScript files on command line</h2>
 
@@ -114,7 +114,7 @@ _gaq.push(['_trackPageview']);
 </div>
 <p>With this, coffee concatenate <code>1.coffee</code> and <code>2.coffee</code> first. Then it compiles concanated sources to <code>compiled.js</code>.</p>
 
-<p>CoffeeScript has also &#8211;watch option. But it&#8217;s better to automate these with build utilities. Rake or Make also seems good. But if you are familiar to JavaScript, grunt is better for you, I guess.</p>
+<p>CoffeeScript has also <code>--watch</code> option. But it&#8217;s better to automate these with build utilities. Rake, Make or something like that also seem good. But if you are familiar to JavaScript, grunt is better for you, I guess.</p>
 
 <h2 id='helper_utility_tasks'>Helper, utility tasks</h2>
 
@@ -242,7 +242,7 @@ _gaq.push(['_trackPageview']);
 <span class='p'>};</span>
 </code></pre>
 </div>
-<p>First, I created two helpers - <code>coffee_dir_to_dir</code> and <code>coffee_multi_to_one</code>. These are helpers which invoke coffee commands I wrote above. &#8220;Directory to directory&#8221; or &#8220;multiple files to one&#8221;. You can see how I used &#8220;exec&#8221; helper here ,too. The comiled results will be passed to <code>handleResult</code>. In <code>handleResult</code>, it shows growl if compiling got error. If not, it logs that compiling was done.</p>
+<p>First, I created two helpers - <code>coffee_dir_to_dir</code> and <code>coffee_multi_to_one</code>. These are helpers which invoke coffee commands I wrote above. &#8220;Directory to directory&#8221; or &#8220;multiple files to one&#8221;. You can see how I used &#8220;exec&#8221; helper here ,too. The compiled results will be passed to <code>handleResult</code>. In <code>handleResult</code>, it shows growl if compiling got error. If not, it logs that compiling was done.</p>
 
 <p>The last part of the code above defines <code>coffee</code> multiTask. In this task, grunt calls the helpers what I craeted from config values. Overall, this multiTasks is the surface of this task file. Let&#8217;s see how this works with concrete <code>grunt.js</code> file.</p>
 
@@ -306,14 +306,14 @@ _gaq.push(['_trackPageview']);
 <span class='p'>};</span>
 </code></pre>
 </div>
-<p>If files were passed, grunt handles those with <code>coffee --join</code>. Else if directory was passed, grunt handles those as &#8220;directory to directory&#8221; compiling. With these task files, you can handle complicated compilings easily.</p>
+<p>If files were passed, grunt compiles those with <code>--join</code>. Else if directory was passed, grunt compiles those as &#8220;directory to directory&#8221; compiling. With these task files, you can handle complicated compilings easily. And of course, you can minify or concat those files with other files.</p>
 
-<p>These are also useful for other pre processors like <a href='http://sass-lang.com/'>sass</a>, <a href='http://lesscss.org/'>less</a> or <a href='http://learnboost.github.com/stylus/'>stylus</a>. I put the code I explained here on GitHub. Use these if it&#8217;s useful for you.</p>
+<p>These are also useful for other pre processors like <a href='http://sass-lang.com/'>sass</a>, <a href='http://lesscss.org/'>less</a>, <a href='http://learnboost.github.com/stylus/'>stylus</a> or something like that. I put the code I explained here on GitHub. Use these if it&#8217;s useful for you.</p>
 
 <ul>
-<li><a href='https://github.com/Takazudo/gruntExamples'>Takazudo/gruntExamples</a></li>
-
 <li><a href='https://github.com/Takazudo/gruntExamples/tree/master/coffee-all-in-one'>Takazudo/gruntExamples - Coffee all in one</a></li>
+
+<li><a href='https://github.com/Takazudo/gruntExamples'>Takazudo/gruntExamples</a></li>
 </ul>
 	</div>
 	<div class="mod-entry-share">

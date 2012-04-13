@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2012-04-14T07:28:33+09:00</updated>
+  <updated>2012-04-14T08:01:09+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -37,7 +37,7 @@
 &lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;&lt;span class='nv'&gt;$ &lt;/span&gt;grunt watch
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;If you have not used grunt yet. Just try to work something with grunt. It has standard features for JavaScript development. ex: jslint, concat, banner.&lt;/p&gt;
+&lt;p&gt;If you have not used grunt yet. Just try to work something with grunt. It has standard features for JavaScript development. ex: jslint, concat, minify, test.&lt;/p&gt;
 
 &lt;h2 id='how_to_compile_coffeescript_files_on_command_line'&gt;How to compile CoffeeScript files on command line&lt;/h2&gt;
 
@@ -51,7 +51,7 @@
 &lt;/div&gt;
 &lt;p&gt;With this, coffee concatenate &lt;code&gt;1.coffee&lt;/code&gt; and &lt;code&gt;2.coffee&lt;/code&gt; first. Then it compiles concanated sources to &lt;code&gt;compiled.js&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;CoffeeScript has also &amp;#8211;watch option. But it&amp;#8217;s better to automate these with build utilities. Rake or Make also seems good. But if you are familiar to JavaScript, grunt is better for you, I guess.&lt;/p&gt;
+&lt;p&gt;CoffeeScript has also &lt;code&gt;--watch&lt;/code&gt; option. But it&amp;#8217;s better to automate these with build utilities. Rake, Make or something like that also seem good. But if you are familiar to JavaScript, grunt is better for you, I guess.&lt;/p&gt;
 
 &lt;h2 id='helper_utility_tasks'&gt;Helper, utility tasks&lt;/h2&gt;
 
@@ -179,7 +179,7 @@
 &lt;span class='p'&gt;};&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;First, I created two helpers - &lt;code&gt;coffee_dir_to_dir&lt;/code&gt; and &lt;code&gt;coffee_multi_to_one&lt;/code&gt;. These are helpers which invoke coffee commands I wrote above. &amp;#8220;Directory to directory&amp;#8221; or &amp;#8220;multiple files to one&amp;#8221;. You can see how I used &amp;#8220;exec&amp;#8221; helper here ,too. The comiled results will be passed to &lt;code&gt;handleResult&lt;/code&gt;. In &lt;code&gt;handleResult&lt;/code&gt;, it shows growl if compiling got error. If not, it logs that compiling was done.&lt;/p&gt;
+&lt;p&gt;First, I created two helpers - &lt;code&gt;coffee_dir_to_dir&lt;/code&gt; and &lt;code&gt;coffee_multi_to_one&lt;/code&gt;. These are helpers which invoke coffee commands I wrote above. &amp;#8220;Directory to directory&amp;#8221; or &amp;#8220;multiple files to one&amp;#8221;. You can see how I used &amp;#8220;exec&amp;#8221; helper here ,too. The compiled results will be passed to &lt;code&gt;handleResult&lt;/code&gt;. In &lt;code&gt;handleResult&lt;/code&gt;, it shows growl if compiling got error. If not, it logs that compiling was done.&lt;/p&gt;
 
 &lt;p&gt;The last part of the code above defines &lt;code&gt;coffee&lt;/code&gt; multiTask. In this task, grunt calls the helpers what I craeted from config values. Overall, this multiTasks is the surface of this task file. Let&amp;#8217;s see how this works with concrete &lt;code&gt;grunt.js&lt;/code&gt; file.&lt;/p&gt;
 
@@ -243,14 +243,14 @@
 &lt;span class='p'&gt;};&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;If files were passed, grunt handles those with &lt;code&gt;coffee --join&lt;/code&gt;. Else if directory was passed, grunt handles those as &amp;#8220;directory to directory&amp;#8221; compiling. With these task files, you can handle complicated compilings easily.&lt;/p&gt;
+&lt;p&gt;If files were passed, grunt compiles those with &lt;code&gt;--join&lt;/code&gt;. Else if directory was passed, grunt compiles those as &amp;#8220;directory to directory&amp;#8221; compiling. With these task files, you can handle complicated compilings easily. And of course, you can minify or concat those files with other files.&lt;/p&gt;
 
-&lt;p&gt;These are also useful for other pre processors like &lt;a href='http://sass-lang.com/'&gt;sass&lt;/a&gt;, &lt;a href='http://lesscss.org/'&gt;less&lt;/a&gt; or &lt;a href='http://learnboost.github.com/stylus/'&gt;stylus&lt;/a&gt;. I put the code I explained here on GitHub. Use these if it&amp;#8217;s useful for you.&lt;/p&gt;
+&lt;p&gt;These are also useful for other pre processors like &lt;a href='http://sass-lang.com/'&gt;sass&lt;/a&gt;, &lt;a href='http://lesscss.org/'&gt;less&lt;/a&gt;, &lt;a href='http://learnboost.github.com/stylus/'&gt;stylus&lt;/a&gt; or something like that. I put the code I explained here on GitHub. Use these if it&amp;#8217;s useful for you.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href='https://github.com/Takazudo/gruntExamples'&gt;Takazudo/gruntExamples&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href='https://github.com/Takazudo/gruntExamples/tree/master/coffee-all-in-one'&gt;Takazudo/gruntExamples - Coffee all in one&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='https://github.com/Takazudo/gruntExamples'&gt;Takazudo/gruntExamples&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content>
   </entry>
   
