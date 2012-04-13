@@ -14,9 +14,30 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <meta property="fb:admins" content="1166983159">
 <meta property="og:site_name" content="Takazudolog">
-<meta property="og:title" content="Takazudolog">
+<meta property="og:title" content="Takazudolog - Blog Archives">
 <meta property="og:image" content="http://takazudo.github.com/blog/img/octocat.png">
-<meta property="og:description" content="Takazudo's dev notes.">
+<meta property="og:description" content="<section class="mod-archivelist">
+	<h1>{{ page.title }}</h1>
+	<div class="mod-archivelist-bd">
+		{% for post in site.posts %}
+			<div class="mod-archivelist-item">
+				<time>{{ post.date | date_to_string }}</time>
+				<div>
+					<a href="{{ site.basedir }}{{ post.url }}">{{ post.title }}</a>
+					{% if post.categories %}
+						<ul>
+							{% for category in post.categories %}
+								<li>[ {{ category }} ]</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	</ul>
+</section>
+
+">
 <meta property="og:url" content="http://takazudo.github.com/blog/">
 <meta property="og:type" content="article">
 <script src="/blog/js/modernizr.min.js"></script>
