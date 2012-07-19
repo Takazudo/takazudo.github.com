@@ -1,7 +1,7 @@
 desc 'build files'
 task 'build' do
   sh 'grunt'
-  sh 'jekyll'
+  sh 'jekyll --pygments'
 end
 
 desc 'watch files'

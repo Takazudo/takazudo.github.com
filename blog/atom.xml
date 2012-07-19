@@ -4,13 +4,159 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2012-04-14T08:01:09+09:00</updated>
+  <updated>2012-07-20T02:17:10+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
 		<email>takazudo@gmail.com</email>
   </author>
 
+  
+  <entry>
+		<id>http://takazudo.github.com/blog/entry/2012-07-20-grunt-loadnpmtasks.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/blog/entry/2012-07-20-grunt-loadnpmtasks.html"/>
+    <title>grunt loadNpmTasks</title>
+    <updated>2012-07-20T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/blog</uri>
+    </author>
+    <content type="html">&lt;p&gt;Basically, with grunt, you need to code your own tasks.&lt;br /&gt;But you can also use tasks on npm. Here&amp;#8217;s howto.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2 id='growl'&gt;growl&lt;/h2&gt;
+
+&lt;p&gt;Easy growling using &lt;a href='https://github.com/alextucker/grunt-growl'&gt;grunt-growl&lt;/a&gt;.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;module&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;exports&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+  
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;loadNpmTasks&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;grunt-growl&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;initConfig&lt;/span&gt;&lt;span class='p'&gt;({&lt;/span&gt;
+    &lt;span class='nx'&gt;growl&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;test1&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;message&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;OMG!!!&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='nx'&gt;title&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;WOOOOT!!&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='p'&gt;});&lt;/span&gt;
+
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;registerTask&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;growl&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='p'&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='coffeescript'&gt;CoffeeScript&lt;/h2&gt;
+
+&lt;p&gt;Easy CoffeeScript compiling using &lt;a href='https://github.com/avalade/grunt-coffee'&gt;grunt-coffee&lt;/a&gt;.&lt;br /&gt;I want to be notified by growl, too.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;module&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;exports&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+  
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;loadNpmTasks&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;grunt-growl&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;loadNpmTasks&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;grunt-coffee&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;initConfig&lt;/span&gt;&lt;span class='p'&gt;({&lt;/span&gt;
+    &lt;span class='nx'&gt;growl&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;done&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;title&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;grunt&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='nx'&gt;message&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;SUCCESSED!!&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;},&lt;/span&gt;
+    &lt;span class='nx'&gt;coffee&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;src&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;
+          &lt;span class='s1'&gt;&amp;#39;coffee/1.coffee&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+          &lt;span class='s1'&gt;&amp;#39;coffee/2.coffee&amp;#39;&lt;/span&gt;
+        &lt;span class='p'&gt;],&lt;/span&gt;
+        &lt;span class='nx'&gt;dest&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;js&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;},&lt;/span&gt;
+    &lt;span class='nx'&gt;watch&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;files&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;&amp;lt;config:coffee.app.src&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='nx'&gt;tasks&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;coffee:app growl&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='p'&gt;});&lt;/span&gt;
+
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;registerTask&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;coffee growl&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='p'&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='sass'&gt;Sass&lt;/h2&gt;
+
+&lt;p&gt;Sass compiling using &lt;a href='https://github.com/sindresorhus/grunt-sass'&gt;grunt-sass&lt;/a&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;module&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;exports&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+  
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;loadNpmTasks&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;grunt-growl&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;loadNpmTasks&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;grunt-sass&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;initConfig&lt;/span&gt;&lt;span class='p'&gt;({&lt;/span&gt;
+    &lt;span class='nx'&gt;growl&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;done&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;title&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;grunt&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='nx'&gt;message&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;SUCCESSED!!&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;},&lt;/span&gt;
+    &lt;span class='nx'&gt;sass&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;src&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;scss/style.scss&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='nx'&gt;dest&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;css/style.css&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;},&lt;/span&gt;
+    &lt;span class='nx'&gt;watch&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;files&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;scss/*&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='nx'&gt;tasks&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;sass:app growl:done&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='p'&gt;});&lt;/span&gt;
+
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;registerTask&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;sass growl:done&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='p'&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='compass'&gt;Compass&lt;/h2&gt;
+
+&lt;p&gt;Compiling compass scss files using &lt;a href='https://github.com/kahlil/grunt-compass'&gt;grunt-compass&lt;/a&gt;.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='javascript'&gt;&lt;span class='nx'&gt;module&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;exports&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kd'&gt;function&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;){&lt;/span&gt;
+  
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;loadNpmTasks&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;grunt-growl&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;loadNpmTasks&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;grunt-compass&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;initConfig&lt;/span&gt;&lt;span class='p'&gt;({&lt;/span&gt;
+    &lt;span class='nx'&gt;growl&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;done&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;title&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;grunt&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='nx'&gt;message&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;SUCCESSED!!&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;},&lt;/span&gt;
+    &lt;span class='nx'&gt;compass&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;src&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;scss/&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='nx'&gt;dest&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;css/&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;},&lt;/span&gt;
+    &lt;span class='nx'&gt;watch&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+      &lt;span class='nx'&gt;app&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+        &lt;span class='nx'&gt;files&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;scss/*&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;
+        &lt;span class='nx'&gt;tasks&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;compass:app growl:done&amp;#39;&lt;/span&gt;
+      &lt;span class='p'&gt;}&lt;/span&gt;
+    &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='p'&gt;});&lt;/span&gt;
+
+  &lt;span class='nx'&gt;grunt&lt;/span&gt;&lt;span class='p'&gt;.&lt;/span&gt;&lt;span class='nx'&gt;registerTask&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;compass growl:done&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;);&lt;/span&gt;
+
+&lt;span class='p'&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id='notice'&gt;Notice&lt;/h2&gt;
+
+&lt;p&gt;Before using there npm tasks, you need to do &lt;code&gt;npm install grunt-coffee&lt;/code&gt; in the directory which &lt;code&gt;grunt.js&lt;/code&gt; exists.&lt;/p&gt;
+
+&lt;p&gt;Npm tasks are mostly well coded. But you need to know that they are not always perfect. Report bugs or send pull request to authors if they didn&amp;#8217;t work. Or you need to code tasks by yourself.&lt;/p&gt;
+
+&lt;p&gt;You can check my grunt examples on &lt;a href='https://github.com/Takazudo/gruntExamples'&gt;Takazudo/gruntExamples&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
 		<id>http://takazudo.github.com/blog/entry/2012-04-14-grunt-coffee.html</id>

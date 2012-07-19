@@ -1,30 +1,40 @@
 /**
- * sass
+ * sass compiling tasks
  * sass: http://sass-lang.com/
  */
 module.exports = function(grunt){
   
   var log = grunt.log;
 
-  // Nodejs libs.
-  var proc = require('child_process');
+  function handleResult(from, dest, err, stdout, code, done) {
+    if(err){
+      grunt.helper('growl', 'SASS COMPILING GOT ERROR', stdout);
+      log.writeln(from + ': failed to compile to ' + dest + '.');
+      log.writeln(stdout);
+      done(false);
+    }else{
+      log.writeln(from + ': compiled to ' + dest + '.');
+      done(true);
+    }
+  }
 
-  grunt.registerMultiTask('sass', 'sass compile', function() {
-    var done = this.async();
-    var src = this.file.src;
-    var dest = this.file.dest;
-    //var command = 'sass ' + src + ' ' + dest;
-    var command = 'sass -r ./scss/bourbon/lib/bourbon.rb ' + src + ' ' + dest;
-    proc.exec(command, function(err, sout, serr){
-      if(err || serr){
-        proc.exec("growlnotify -t 'SASS COMPILE ERROR!!!' -m '" + serr + "'");
-        log.writeln('File ' + dest + ' failed.');
-        done(false);
-      }else{
-        log.writeln('File ' + dest + ' created.');
-        done(true);
-      }
+  grunt.registerHelper('sass', function(src, dest, done) {
+    var args = {
+      cmd: 'sass',
+      args: [ src, dest ]
+    };
+    grunt.helper('exec', args, function(err, stdout, code){
+      handleResult(src, dest, err, stdout, code, done);
     });
+    return true;
+  });
+
+  grunt.registerMultiTask('sass', 'compile sass', function() {
+    var done = this.async();
+    var src = this.data.src;
+    var dest = this.data.dest;
+    grunt.helper('sass', src, dest, done);
+    return true;
   });
 
 };

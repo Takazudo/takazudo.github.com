@@ -10,42 +10,65 @@ module.exports = function(grunt){
         files: [
           'coffee/*.coffee'
         ],
-        tasks: 'coffee uglify concat notifyOK'
+        tasks: 'coffee uglify concat copy ok'
       },
       sass: {
         files: [
           'scss/*.scss'
         ],
-        tasks: 'sass cssmin concat notifyOK'
+        tasks: 'sass cssmin concat copy ok'
+      }
+    },
+    copy: {
+      css: {
+        from: 'css/style.css',
+        to: 'jekyll/css/style.css'
+      },
+      cssmin: {
+        from: 'css/style.min.css',
+        to: 'jekyll/css/style.min.css'
       }
     },
     concat: {
-      'jekyll/js/all.js': [
-        'js/jquery.tinyscroller.min.js',
-        'js/spin.min.js',
-        'js/davis.min.js',
-        'js/jquery.lazyjaxdavis.min.js',
-        'js/setup.js',
-        'js/setup_coffeecompiled.min.js'
-      ],
-      'jekyll/css/style.css': [ 'css/style.css' ],
-      'jekyll/css/style.min.css': [ 'css/style.min.css' ]
+      js: {
+        src: [
+          'js/jquery.tinyscroller.min.js',
+          'js/spin.min.js',
+          'js/davis.min.js',
+          'js/jquery.lazyjaxdavis.min.js',
+          'js/setup.js',
+          'js/setup_coffeecompiled.min.js'
+        ],
+        dest: 'jekyll/js/all.js'
+      }
     },
     uglify: {
-      'js/setup_coffeecompiled.min.js': 'js/setup_coffeecompiled.js'
+      coffee: {
+        src: 'js/setup_coffeecompiled.js',
+        dest: 'js/setup_coffeecompiled.min.js'
+      }
     },
     coffee: {
-      'js/setup_coffeecompiled.js': [ 'coffee/setup.coffee' ]
+      all: {
+        files: [ 'coffee/setup.coffee' ],
+        dest: 'js/setup_coffeecompiled.js'
+      }
     },
     sass: {
-      'css/style.css': 'scss/style.scss'
+      all: {
+        src: 'scss/style.scss',
+        dest: 'css/style.css'
+      }
     },
     cssmin: {
-      'css/style.min.css': 'css/style.css'
+      all: {
+        src: 'css/style.css',
+        dest: 'css/style.min.css'
+      }
     }
   });
 
   grunt.loadTasks('gruntTasks');
-  grunt.registerTask('default', 'coffee uglify concat sass cssmin notifyOK');
+  grunt.registerTask('default', 'coffee uglify concat copy sass cssmin ok');
 
 };
