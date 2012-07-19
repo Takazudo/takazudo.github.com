@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2012-07-20T02:17:10+09:00</updated>
+  <updated>2012-07-20T02:33:59+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -155,7 +155,7 @@
 
 &lt;p&gt;Npm tasks are mostly well coded. But you need to know that they are not always perfect. Report bugs or send pull request to authors if they didn&amp;#8217;t work. Or you need to code tasks by yourself.&lt;/p&gt;
 
-&lt;p&gt;You can check my grunt examples on &lt;a href='https://github.com/Takazudo/gruntExamples'&gt;Takazudo/gruntExamples&lt;/a&gt;.&lt;/p&gt;</content>
+&lt;p&gt;You can check my grunt examples on &lt;a href='https://github.com/Takazudo/gruntExamples'&gt;Takazudo/gruntExamples&lt;/a&gt;. All examples here are in this repository too.&lt;/p&gt;</content>
   </entry>
   
   <entry>

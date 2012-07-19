@@ -150,4 +150,4 @@ Before using there npm tasks, you need to do `npm install grunt-coffee` in the d
 
 Npm tasks are mostly well coded. But you need to know that they are not always perfect. Report bugs or send pull request to authors if they didn't work. Or you need to code tasks by yourself.
 
-You can check my grunt examples on [Takazudo/gruntExamples](https://github.com/Takazudo/gruntExamples).
+You can check my grunt examples on [Takazudo/gruntExamples](https://github.com/Takazudo/gruntExamples). All examples here are in this repository too.
