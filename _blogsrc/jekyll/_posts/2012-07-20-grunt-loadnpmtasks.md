@@ -35,7 +35,7 @@ module.exports = function(grunt){
 ## CoffeeScript
 
 Easy CoffeeScript compiling using [grunt-coffee](https://github.com/avalade/grunt-coffee).  
-I want to be notified by growl, too.
+I want to be notified when the compiling successed, too.
 
 {% highlight javascript %}
 module.exports = function(grunt){
@@ -74,7 +74,7 @@ module.exports = function(grunt){
 
 ## Sass
 
-Sass compiling using [grunt-sass](https://github.com/sindresorhus/grunt-sass)
+Sass compiling using [grunt-sass](https://github.com/sindresorhus/grunt-sass).
 
 {% highlight javascript %}
 module.exports = function(grunt){
@@ -150,4 +150,5 @@ Before using there npm tasks, you need to do `npm install grunt-coffee` in the d
 
 Npm tasks are mostly well coded. But you need to know that they are not always perfect. Report bugs or send pull request to authors if they didn't work. Or you need to code tasks by yourself.
 
-You can check my grunt examples on [Takazudo/gruntExamples](https://github.com/Takazudo/gruntExamples). All examples here are in this repository too.
+You can check my grunt examples on [Takazudo/gruntExamples](https://github.com/Takazudo/gruntExamples).  
+All examples here are in this repository too.
