@@ -1,0 +1,30 @@
+<aside class="mod-side">
+	<div class="mod-sidenavblocks">
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>Recent Posts</h1>
+				<ul>
+					{% for post in site.posts limit:10 %}
+						<li><a href="{{ site.basedir }}{{ post.url }}">{{ post.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</section>
+		</div>
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>GitHub Repos</h1>
+				<ul>
+					<li><a href="https://github.com/Takazudo/jQuery.LazyJaxDavis">jQuery.LazyJaxDavis</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ui.domwindow">jQuery.ui.domwindow</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ImgLoader">jQuery.ImgLoader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.tinyscroller">jQuery.tinyscroller</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.PresetPreloader">jQuery.PresetPreloader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.TmplDeck">jQuery.TmplDeck</a></li>
+					<li><a href="https://github.com/Takazudo/BackboneTwitterExample">BackboneTwitterExample</a></li>
+					<li><a href="https://github.com/Takazudo/gruntExamples">gruntExamples</a></li>
+					<li><a href="https://github.com/Takazudo">@Takazudo</a> on GitHub</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+</aside>

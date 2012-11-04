@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+	<title>Zudozakki</title>
+	<link href="http://takazudo.github.com/zakki"/>
+	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/zakki/atom.xml"/>
+  <updated>2012-11-04T22:20:03+09:00</updated>
+  <id>http://takazudo.github.com/zakki</id>
+  <author>
+		<name>"Takazudo" Takeshi Takatsudo</name>
+		<email>takazudo@gmail.com</email>
+  </author>
+
+  
+  <entry>
+		<id>http://takazudo.github.com/zakki/entry/2012-11-04-firstpost.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/zakki/entry/2012-11-04-firstpost.html"/>
+    <title>テスト</title>
+    <updated>2012-11-04T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/zakki</uri>
+    </author>
+    <content type="html">&lt;p&gt;どうでもいいことをなんか書くブログ&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;たぶん。&lt;/p&gt;</content>
+  </entry>
+  
+ 
+</feed>

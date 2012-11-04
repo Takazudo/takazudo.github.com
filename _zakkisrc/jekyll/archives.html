@@ -1,0 +1,27 @@
+---
+layout: base
+title: Blog Archives
+excerpt: 記事一覧
+---
+
+<section class="mod-archivelist">
+	<h1>{{ page.title }}</h1>
+	<div class="mod-archivelist-bd">
+		{% for post in site.posts %}
+			<div class="mod-archivelist-item">
+				<time>{{ post.date | date_to_string }}</time>
+				<div>
+					<a href="{{ site.basedir }}{{ post.url }}">{{ post.title }}</a>
+					{% if post.categories %}
+						<ul>
+							{% for category in post.categories %}
+								<li>[ {{ category }} ]</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	</ul>
+</section>
+
