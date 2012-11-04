@@ -173,7 +173,7 @@ $ ->
 
     router.routeTransparents [
       {
-        path: /^\/blog\/entry\/.+/
+        path: /^\/zakki\/entry\/.+/
         pageready: ->
           socialutil_twitter()
           socialutil_gplus()
