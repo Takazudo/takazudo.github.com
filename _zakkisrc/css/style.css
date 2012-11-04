@@ -460,7 +460,7 @@ body {
       .mod-headnavbar .mod-headnavbar-inner .mod-headnavbar-mainnav li {
         float: left;
         padding: 0 15px 0 15px;
-        border-left: 2px solid #f0b772; }
+        border-left: 1px solid #f0b772; }
         .mod-headnavbar .mod-headnavbar-inner .mod-headnavbar-mainnav li:first-child {
           border-left: none;
           padding-left: 0; }
@@ -597,22 +597,22 @@ body {
         white-space: nowrap; } }
 
 .mod-h, .mod-archivelist h1, .mod-entry .mod-entry-header h1 {
-  font-size: 1.8em;
+  font-size: 1.3em;
   line-height: 1.1;
   color: #b58900;
   font-family: "PT Serif", Georgia, Times, "Times New Roman", serif; }
   @media only screen and (min-width: 840px) {
     .mod-h, .mod-archivelist h1, .mod-entry .mod-entry-header h1 {
-      font-size: 2.4em; } }
+      font-size: 1.5em; } }
 
 .mod-h2, .mod-entry .mod-entry-body h2, .mod-entry .mod-entry-comments h1 {
-  font-size: 1.7em;
+  font-size: 1.1em;
   line-height: 1.3;
   font-family: "PT Serif", Georgia, Times, "Times New Roman", serif;
   color: #b58900; }
   @media only screen and (min-width: 840px) {
     .mod-h2, .mod-entry .mod-entry-body h2, .mod-entry .mod-entry-comments h1 {
-      font-size: 2.2em; } }
+      font-size: 1em; } }
 
 .mod-h3, .mod-entry .mod-entry-body h3 {
   font-size: 1.5em;
@@ -759,6 +759,9 @@ body {
     .mod-entry .mod-entry-body h4 {
       margin: 10px 0 0;
       padding: 0 0 10px; }
+    .mod-entry .mod-entry-body p img {
+      display: block;
+      max-width: 100%; }
     .mod-entry .mod-entry-body .highlight {
       margin: 0 -30px 20px;
       background: #fdf6e3;
