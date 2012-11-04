@@ -4,13 +4,29 @@
 	<title>Zudozakki</title>
 	<link href="http://takazudo.github.com/zakki"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/zakki/atom.xml"/>
-  <updated>2012-11-04T22:32:38+09:00</updated>
+  <updated>2012-11-05T00:27:45+09:00</updated>
   <id>http://takazudo.github.com/zakki</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
 		<email>takazudo@gmail.com</email>
   </author>
 
+  
+  <entry>
+		<id>http://takazudo.github.com/zakki/entry/2012-11-04-pazfiremachine.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/zakki/entry/2012-11-04-pazfiremachine.html"/>
+    <title>焔の機械龍（テクニカル）地獄級</title>
+    <updated>2012-11-04T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/zakki</uri>
+    </author>
+    <content type="html">&lt;p&gt;焔の機械龍（テクニカル）地獄級&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/3e9f7836a89d7a3b204b3866e6ce73b2612654a6/107.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;1〜4戦目で1ターンぶん余分に貯め&lt;br /&gt;5戦目で全変換してキマイラ一撃&lt;br /&gt;9戦目水ドロップ無かったら1個変換して一撃&lt;br /&gt;10戦目で威嚇して適当に変換&lt;/p&gt;</content>
+  </entry>
   
   <entry>
 		<id>http://takazudo.github.com/zakki/entry/2012-11-04-firstpost.html</id>
