@@ -169,7 +169,7 @@
       });
       return router.routeTransparents([
         {
-          path: /^\/blog\/entry\/.+/,
+          path: /^\/zakki\/entry\/.+/,
           pageready: function() {
             socialutil_twitter();
             socialutil_gplus();

@@ -4,7 +4,7 @@
 	<title>Zudozakki</title>
 	<link href="http://takazudo.github.com/zakki"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/zakki/atom.xml"/>
-  <updated>2012-11-04T22:26:45+09:00</updated>
+  <updated>2012-11-04T22:32:38+09:00</updated>
   <id>http://takazudo.github.com/zakki</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -23,6 +23,8 @@
     </author>
     <content type="html">&lt;p&gt;どうでもいいことをなんか書くブログ&lt;/p&gt;
 &lt;!--more--&gt;
+&lt;p&gt;&lt;img alt='ore' src='http://cdn.dropmark.com/2008/bad1c4ec8e9cf8afeb98b6faa1dcc3eadb677273/angry.jpg' /&gt;&lt;/p&gt;
+
 &lt;p&gt;たぶん。&lt;/p&gt;</content>
   </entry>
   
