@@ -8,7 +8,8 @@ categories: [パズドラ]
 
 <!--more-->
 
-![](http://cdn.dropmark.com/2008/3e9f7836a89d7a3b204b3866e6ce73b2612654a6/107.png)
+* [焔の機械龍 地獄級 ゼウス×ゼウス - YouTube](http://www.youtube.com/watch?v=gpuXOPZcEgg)
+
 
 1〜4戦目で1ターンぶん余分に貯め  
 5戦目で全変換してキマイラ一撃  
