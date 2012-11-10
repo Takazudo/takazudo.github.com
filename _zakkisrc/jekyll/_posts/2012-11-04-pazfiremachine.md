@@ -8,6 +8,13 @@ categories: [パズドラ]
 
 <!--more-->
 
+ゼウス  
+フェンリルナイト・カムイ  
+ジークフリート  
+セイレーン  
+エキドナ  
+ゼウス
+
 * [焔の機械龍 地獄級 ゼウス×ゼウス - YouTube](http://www.youtube.com/watch?v=gpuXOPZcEgg)
 
 
