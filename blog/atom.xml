@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2012-12-03T03:21:11+09:00</updated>
+  <updated>2012-12-03T03:45:42+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -26,7 +26,7 @@
 &lt;p&gt;Here&amp;#8217;s the demo.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href='http://takazudo.github.com/jQuery.ImgLoader/demo2/example.html'&gt;demo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href='/jQuery.ImgLoader/demo2/example.html'&gt;demo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;It&amp;#8217;s easy to use &lt;code&gt;progress&lt;/code&gt; event.&lt;/p&gt;

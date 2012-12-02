@@ -11,7 +11,7 @@ It preloads imgs using XHR2, so now you can bind `progress` event to the loader.
 
 Here's the demo.
 
-* [demo](http://takazudo.github.com/jQuery.ImgLoader/demo2/example.html)
+* [demo](/jQuery.ImgLoader/demo2/example.html)
 
 It's easy to use `progress` event.
 
