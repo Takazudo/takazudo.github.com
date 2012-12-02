@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Takazudolog</title>
+<title>Takazudolog - jQuery.ImgLoader has XHR2 feature now</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/blog/css/style.min.css">
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -14,11 +14,14 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <meta property="fb:admins" content="1166983159">
 <meta property="og:site_name" content="Takazudolog">
-<meta property="og:title" content="Takazudolog">
+<meta property="og:title" content="Takazudolog - jQuery.ImgLoader has XHR2 feature now">
 <meta property="og:image" content="http://takazudo.github.com/blog/img/octocat.png">
-<meta property="og:description" content="">
-<meta property="og:url" content="http://takazudo.github.com/blog/">
-<meta property="og:type" content="blog">
+<meta property="og:description" content="I just updated my library [jQuery.ImgLoader](https://github.com/Takazudo/jQuery.ImgLoader).  
+It preloads imgs using XHR2, so now you can bind `progress` event to the loader.
+
+">
+<meta property="og:url" content="http://takazudo.github.com/blog/entry/2012-12-03-imgloader.html">
+<meta property="og:type" content="article">
 <script src="/blog/js/modernizr.min.js"></script>
 <script>if(!Modernizr.mq()) Modernizr.load('/blog/js/respond.min.js');</script>
 <script>
@@ -62,110 +65,72 @@ _gaq.push(['_trackPageview']);
 		<div class="mod-main"><div class="mod-main-inner">
 			<div id="lazyjaxdavisroot">
 				<!-- LazyJaxDavis start -->
-					<div class="mod-topentrylist">
-	<div class="mod-topentrylist-bd">
+					<article class="mod-entry">
+	<header class="mod-entry-header">
+		<h1>jQuery.ImgLoader has XHR2 feature now</h1>
+		<p><time>03 Dec 2012</time> | <a href="#postcomments">Comments</a></p>
 		
-			<article class="mod-entry">
-				<header class="mod-entry-header">
-					<h1><a href="/blog/entry/2012-12-03-imgloader.html">jQuery.ImgLoader has XHR2 feature now</a></h1>
-					<p><time>03 Dec 2012</time> | <a href="/blog/entry/2012-12-03-imgloader.html#postcomments">Comments</a></p>
-					
-						<ul>
-							
-								<li>[ JavaScript ]</li>
-							
-						</ul>
-					
-				</header>
-				<div class="mod-entry-body">
-					
-						<p>I just updated my library <a href='https://github.com/Takazudo/jQuery.ImgLoader'>jQuery.ImgLoader</a>.<br />It preloads imgs using XHR2, so now you can bind <code>progress</code> event to the loader.</p>
+			<ul>
+				
+					<li>[ JavaScript ]</li>
+				
+			</ul>
+		
+	</header>
+	<div class="mod-entry-body">
+		<p>I just updated my library <a href='https://github.com/Takazudo/jQuery.ImgLoader'>jQuery.ImgLoader</a>.<br />It preloads imgs using XHR2, so now you can bind <code>progress</code> event to the loader.</p>
+<p><span id="more"></span></p>
+<p>Here&#8217;s the demo.</p>
 
-						<p><a href="/blog/entry/2012-12-03-imgloader.html#more">Read the rest of this entry »</a></p>
-					
-				</div>
-			</article>
-		
-			<article class="mod-entry">
-				<header class="mod-entry-header">
-					<h1><a href="/blog/entry/2012-07-20-grunt-loadnpmtasks.html">grunt loadNpmTasks</a></h1>
-					<p><time>20 Jul 2012</time> | <a href="/blog/entry/2012-07-20-grunt-loadnpmtasks.html#postcomments">Comments</a></p>
-					
-						<ul>
-							
-								<li>[ JavaScript ]</li>
-							
-								<li>[ CoffeeScript ]</li>
-							
-								<li>[ grunt ]</li>
-							
-								<li>[ build ]</li>
-							
-						</ul>
-					
-				</header>
-				<div class="mod-entry-body">
-					
-						<p>Basically, with grunt, you need to code your own tasks.<br />But you can also use tasks on npm. Here&#8217;s howto.</p>
+<ul>
+<li><a href='http://takazudo.github.com/jQuery.ImgLoader/demo2/example.html'>demo</a></li>
+</ul>
 
-						<p><a href="/blog/entry/2012-07-20-grunt-loadnpmtasks.html#more">Read the rest of this entry »</a></p>
-					
-				</div>
-			</article>
-		
-			<article class="mod-entry">
-				<header class="mod-entry-header">
-					<h1><a href="/blog/entry/2012-04-14-grunt-coffee.html">Compiling CoffeeScript with grunt</a></h1>
-					<p><time>14 Apr 2012</time> | <a href="/blog/entry/2012-04-14-grunt-coffee.html#postcomments">Comments</a></p>
-					
-						<ul>
-							
-								<li>[ JavaScript ]</li>
-							
-								<li>[ CoffeeScript ]</li>
-							
-								<li>[ grunt ]</li>
-							
-								<li>[ build ]</li>
-							
-						</ul>
-					
-				</header>
-				<div class="mod-entry-body">
-					
-						<p><a href='http://coffeescript.org/'>CoffeeScript</a> is sweat.<br />It provides easy watch and has no problem about compiling without any other tools. But in concrete projects, we sometimes need more complicated compiling strategy. <a href='https://github.com/cowboy/grunt'>Grunt</a> provides nice APIs for automated builds for sass, less, stylus, CoffeeScript or something like that. In this article, I&#8217;ll introduce my grunt file for CoffeeScript.</p>
-
-						<p><a href="/blog/entry/2012-04-14-grunt-coffee.html#more">Read the rest of this entry »</a></p>
-					
-				</div>
-			</article>
-		
-			<article class="mod-entry">
-				<header class="mod-entry-header">
-					<h1><a href="/blog/entry/2012-04-11-firstpost.html">This blog is powered by Jekyll</a></h1>
-					<p><time>11 Apr 2012</time> | <a href="/blog/entry/2012-04-11-firstpost.html#postcomments">Comments</a></p>
-					
-						<ul>
-							
-								<li>[ misc ]</li>
-							
-						</ul>
-					
-				</header>
-				<div class="mod-entry-body">
-					
-						<p>This is the test post! yey! Jekyll is cool!<br />This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost. This is the test of this blogpost.</p>
-
-						<p><a href="/blog/entry/2012-04-11-firstpost.html#more">Read the rest of this entry »</a></p>
-					
-				</div>
-			</article>
-		
-	</div>
-	<div class="mod-topentrylist-ft">
-		<a href="/blog/archives.html">Blog Archives</a>
-	</div>
+<p>It&#8217;s easy to use <code>progress</code> event.</p>
+<div class='highlight'><pre><code class='javascript'><span class='kd'>var</span> <span class='nx'>loader</span> <span class='o'>=</span> <span class='nx'>$</span><span class='p'>.</span><span class='nx'>ImgLoader</span><span class='p'>({</span>
+  <span class='nx'>srcs</span><span class='o'>:</span> <span class='p'>[</span> <span class='s1'>&#39;img1.jpg&#39;</span><span class='p'>,</span> <span class='s1'>&#39;img2.jpg&#39;</span><span class='p'>,</span> <span class='s1'>&#39;img3.jpg&#39;</span><span class='p'>,</span> <span class='s1'>&#39;img4.jpg&#39;</span> <span class='p'>]</span>
+<span class='p'>});</span>
+<span class='nx'>loader</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;progress&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>progressInfo</span><span class='p'>){</span>
+  <span class='nx'>console</span><span class='p'>.</span><span class='nx'>log</span><span class='p'>(</span><span class='nx'>progressInfo</span><span class='p'>.</span><span class='nx'>loadedRatio</span><span class='p'>);</span> <span class='c1'>// 0.45 woot!</span>
+<span class='p'>});</span>
+<span class='nx'>loader</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;itemload&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>$img</span><span class='p'>){</span>
+  <span class='nx'>$</span><span class='p'>(</span><span class='s1'>&#39;#somewhere&#39;</span><span class='p'>).</span><span class='nx'>append</span><span class='p'>(</span><span class='nx'>$img</span><span class='p'>);</span>
+<span class='p'>});</span>
+<span class='nx'>loader</span><span class='p'>.</span><span class='nx'>on</span><span class='p'>(</span><span class='s1'>&#39;allload&#39;</span><span class='p'>,</span> <span class='kd'>function</span><span class='p'>(</span><span class='nx'>$img</span><span class='p'>){</span>
+  <span class='nx'>alert</span><span class='p'>(</span><span class='s1'>&#39;everything loaded!&#39;</span><span class='p'>);</span>
+<span class='p'>});</span>
+<span class='nx'>loader</span><span class='p'>.</span><span class='nx'>load</span><span class='p'>();</span>
+</code></pre>
 </div>
+<p>In the lib, it send XHR2 request before it creates img tag if the browser can use XHR2.</p>
+
+<ul>
+<li><a href='https://github.com/Takazudo/jQuery.ImgLoader'>jQuery.ImgLoader</a></li>
+</ul>
+	</div>
+	<div class="mod-entry-share">
+		<a href="http://twitter.com/share"
+			class="twitter-share-button"
+			data-url="http://takazudo.github.com/entry/2012-12-03-imgloader.html"
+			data-via="Takazudo"
+			data-counturl="http://takazudo.github.com/entry/2012-12-03-imgloader.html"
+		>Tweet</a>
+		<div class="g-plusone" data-size="medium"></div>
+		<div class="fb-likewrap"><div class="fb-like" data-send="false" data-width="450" data-show-faces="true" data-colorscheme="dark"></div></div>
+	</div>
+	<section class="mod-entry-comments" id="postcomments">
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+	</section>
+</article>
+
+<ul class="mod-postpager">
+	
+	
+		<li><span>Older post:</span> <a href="/blog/entry/2012-07-20-grunt-loadnpmtasks.html">grunt loadNpmTasks</a></li>
+	
+</ul>
+
 
 				<!-- LazyJaxDavis end -->
 			</div>
