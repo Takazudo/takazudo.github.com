@@ -314,7 +314,7 @@ body {
 // ============================================================
 
 .mod-h {
-	font-size:1.8em;
+	font-size:2em;
 	line-height:1.1;
 	font-family:$serif;
 	@extend .ex-lazytransition;
@@ -323,21 +323,21 @@ body {
 	}
 }
 .mod-h2 {
-	font-size:1.7em;
+	font-size:1.5em;
 	line-height:1.3;
 	font-family:$serif;
 	@extend .ex-lazytransition;
 	@media only screen and (min-width: 840px) {
-		font-size:2.2em;
+		font-size:1.7em;
 	}
 }
 .mod-h3 {
-	font-size:1.5em;
+	font-size:1.3em;
 	line-height:1.4;
 	font-family:$serif;
 }
 .mod-h4 {
-	font-size:1.2em;
+	font-size:1em;
 	line-height:1.4;
 	font-family:$serif;
 }
@@ -506,7 +506,13 @@ body {
 			margin:10px 0 0;
 			padding:0 0 10px;
 		}
-		p { @extend .mod-p; }
+		p {
+			@extend .mod-p;
+			img {
+				display:block;
+				max-width:100%;
+			}
+		}
 		ul { @extend .mod-ul; }
 		ol { @extend .mod-ol; }
 		.highlight{

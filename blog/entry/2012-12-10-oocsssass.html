@@ -1,0 +1,387 @@
+<!doctype html>
+<html class="no-js" lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:og="http://ogp.me/ns#"
+	xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Takazudolog - OOCSSとSass</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/blog/css/style.min.css">
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<meta property="fb:admins" content="1166983159">
+<meta property="og:site_name" content="Takazudolog">
+<meta property="og:title" content="Takazudolog - OOCSSとSass">
+<meta property="og:image" content="http://takazudo.github.com/blog/img/octocat.png">
+<meta property="og:description" content="[CSS Preprocessor Advent Calendar 2012](http://www.adventar.org/calendars/1)の10日目、[@Takazudo](http://twitter.com/Takazudo)です。
+
+僕はSassが好きです。なぜならSassには`extend`があるからです。その理由を、社内勉強会で発表した、以下のスライドで話したことを補足しつつ、書きます。
+
+
+OOCSS + Sass
+
+
+">
+<meta property="og:url" content="http://takazudo.github.com/blog/entry/2012-12-10-oocsssass.html">
+<meta property="og:type" content="article">
+<script src="/blog/js/modernizr.min.js"></script>
+<script>if(!Modernizr.mq()) Modernizr.load('/blog/js/respond.min.js');</script>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-183024-7']);
+_gaq.push(['_trackPageview']);
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</head>
+
+<body><div class="mod-all" id="top"><div class="mod-allinner">
+
+	<header class="mod-header"><hgroup>
+	<h1><a href="/blog/">Takazudolog</a></h1>
+	<h2>Takazudo's blog on GitHub</h2>
+	<div class="mod-header-icons">
+		<a class="apply-nolazy" href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><img src="/blog/img/rss.png" alt="RSS"></a>
+		<a href="https://twitter.com/Takazudo"><img src="http://www.gravatar.com/avatar/a88cc23988f41bba5503dd0bd8ff7750.png?s=48" alt="Takazudo"></a>
+	</div>
+</hgroup></header>
+
+	<nav class="mod-headnavbar"><div class="mod-headnavbar-inner">
+	<ul class="mod-headnavbar-mainnav">
+		<li><a href="/blog/">Top</a></li>
+		<li><a href="/blog/archives.html">Archives</a></li>
+		<li><a href="/blog/about.html">About</a></li>
+	</ul>
+	<form class="mod-headnavbar-search" action="http://google.com/search" method="get">
+		<fieldset role="search">
+			<input type="hidden" name="q" value="site:Takazudo.github.com/blog" />
+			<input class="mod-headnavbar-search-input" type="text" name="q" results="0" placeholder="Search"/>
+		</fieldset>
+	</form>
+</div></nav>
+
+	<div class="mod-body"><div class="mod-body-inner">
+		<div class="mod-main"><div class="mod-main-inner">
+			<div id="lazyjaxdavisroot">
+				<!-- LazyJaxDavis start -->
+					<article class="mod-entry">
+	<header class="mod-entry-header">
+		<h1>OOCSSとSass</h1>
+		<p><time>10 Dec 2012</time> | <a href="#postcomments">Comments</a></p>
+		
+			<ul>
+				
+					<li>[ CSS ]</li>
+				
+					<li>[ Sass ]</li>
+				
+					<li>[ OOCSS ]</li>
+				
+			</ul>
+		
+	</header>
+	<div class="mod-entry-body">
+		<p><a href='http://www.adventar.org/calendars/1'>CSS Preprocessor Advent Calendar 2012</a>の10日目、<a href='http://twitter.com/Takazudo'>@Takazudo</a>です。</p>
+
+<p>僕はSassが好きです。なぜならSassには<code>extend</code>があるからです。その理由を、社内勉強会で発表した、以下のスライドで話したことを補足しつつ、書きます。</p>
+<ul>
+<li><a class='apply-nolazy' href='/presentation-oocss-sass/#/'>OOCSS + Sass</a></li>
+</ul><p><span id="more"></span></p>
+<h2 id='oocss'>OOCSSってなんぞ</h2>
+
+<p>まず、Sassの<code>extend</code>が素敵な点を紹介する前に、OOCSSについて簡単に紹介します。</p>
+
+<p>OOCSSというのは、Nicole Sullivanという人が言い出した考え方です。そのプレゼン資料やビデオなどは、本人が発表したものが、slideshare等にアップされています。</p>
+
+<ul>
+<li><a href='http://oocss.org/'>Object-oriented CSS</a></li>
+
+<li><a href='http://fronteers.nl/congres/2009/sessions/object-oriented-css'>Object Oriented CSS by Nicole Sullivan · Fronteers</a></li>
+
+<li><a href='http://www.slideshare.net/stubbornella/the-cascade-grids-headings-and-selectors-from-an-oocss-perspective-ajax-experience-2009'>The Cascade, Grids, Headings, and Selectors from an OOCSS Perspecti&#8230;</a></li>
+</ul>
+
+<p>OOCSSのサイトの例えば<a href='http://oocss.org/grids_docs.html'>このページ</a>を見ると、divのclass属性に<code>size1of3</code>だと<code>size2of3</code>だとかいうのが使われているのがわかります。さっとだけOOCSSのことを見た人の中には、「あーOOCSSって、そういう便利系クラスをいっぱい付けてやるスタイルのことなのね。知ってるわーそれ２年前からやってわー知ってたわー」という人が、なぜか多いのですが、OOCSSというのはそういうことじゃーないんです。</p>
+
+<p>OOCSSとは、ページの部品を「モジュール」という単位で分けて考えることで、サイトのメンテナンス性とパフォーマンスを上げる考え方の一つです。そして、複雑な部品については、このモジュールについて、他のプログラミング言語における、クラス（HTMLのclass属性とは異なる、プログラムにおける雛形の意）の継承の考え方を利用し、効率的に拡張していく&#8230;というのが、OOCSSのキモとなる部分であると、僕は捉えています。その実現の方法として、class属性に複数のクラスを当てる手法をとる&#8230; ということになります。</p>
+
+<p>それを、簡単なモジュールを作りつつ、見ていくことにします。</p>
+
+<h2 id='id154'>黒か白か</h2>
+
+<p>まず、TwitterとFacebookのボタンを作ってみます。<br />Twitterボタンは赤、Facebookボタンは青&#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/381bdd5da7799866ab3d7557e1ba8e450b4e55b2/Picture%2010.png' /></p>
+
+<p>m9(^Д^)ﾌﾟｷﾞｬｰ と言われてしまいそうですが、これは、よく非難されるような、典型的なダメなクラス名の付け方&#8230;あの時のオレはどうかしちまってたんだ&#8230; とも言えるようなクラス名です。これは、柔軟性はありますよね。うん&#8230; でもCSSって、一体何なんだろうね&#8230;</p>
+
+<p>ちなみに、このサンプルでは、ただの赤青のボタンですが、これは、同じような見栄えを持つ、めちゃくちゃリッチなボタン&#8230; しかし、その２つの装飾は異なる&#8230;であると、応用をきかせて、想像してください。イマジネーションの側面が重要です。</p>
+
+<p>そんなダメダメなコードをdisりまくる、セマンティック野郎の書いたコードがこれです。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/0f23e9c2eda9bdfe9d0cef44e63badc5abd36594/Picture%204.png' /></p>
+
+<p>オーセマンティックデスネー<br />ではそのCSSを見てみましょう。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/ce1c88b8b3b8b89c8a1d3c044922b89f4ac9be56/Picture%2011.png' /></p>
+
+<p>ハハハ・・・セマンティック最高だよね・・・<br />同じCSSをコピペして使うなんてさ・・・<br />おいおい、でもセマンティックは重要だろ？<br />クラス名には意味をもたせるべきだろ？<br />いやいやしかしこのCSSは無いでしょ。<br />ほかにも似たようなgoogle plusボタンができたらまたあんた同じCSSコピペするつもりでしょ？<br />じゃあどうすればいいっていうのさ！</p>
+
+<p>ということになってしまいますよね。<br />この２つのコードは、言ってみれば、黒か白かという両極端なコードです。柔軟性を追求すれば、前者はまぁそりゃ柔軟であることには違いないですが、それ、CSSの意味ってなんなんですか？ってなりますし、後者はHTMLとしては理想ですが、CSSの中は大変なことになってしまいます。</p>
+
+<p>あーほんとHTMLとCSSってなんでこう面倒くさいんでしょうね。</p>
+
+<p>&#8230;こえますか？&#8230;聞こえますか？&#8230;僕はいま、あなたの脳内に直接語りかけています！OOCSSを使うのです！YES！</p>
+
+<h2 id='oocss'>OOCSSっぽい書き方</h2>
+
+<p>と、そんなコードを、OOCSSでは以下のように書きます。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/c55635236d2e963416aad56e4cd07e6ac5d6f4ca/Picture%201.png' /></p>
+
+<p>OOCSSではーベースのモジュールに、スキンを適用する&#8230;というふうに書くのです。複数のクラス名を利用して。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/105c2b7dfb373d89e02b3a38093585c519c782cd/Picture%202.png' /></p>
+
+<p>ここでのベースのモジュールというのは、クラス、<code>btnbase</code>が表現するもの。ここには、ボタンの共通スタイルが適用されています。その上で更に具体的なバリエーションは、<code>twitter</code>、<code>facebook</code>といったような、スキンとしてのクラスで適用するという形です。</p>
+
+<p>これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、<code>btnbase googleplus</code>っていうクラスをあててスタイルが適用されるように作ればいいんですから&#8230;！</p>
+
+<h2 id='id155'>オイオイその冗談みたいなクラス名は何だ</h2>
+
+<p>でもちょっとまってください。</p>
+
+<p>「このクラス名のどこらへんがセマンティックっていうんだよ？え？<code>btnbase</code>だって？ふざけてんのかね。そんなのは<code>blackborder</code>がちょっとマシになったようなもんじゃないんですか？」</p>
+
+<p>とセマンティック野郎が言いそうです。そのストリクトで真っ直ぐな精神は買いましょう。しかし、クラスをよりセマンティックにすれば、CSSはどんどん複雑に&#8230;。どうすれば&#8230;！という問に対しては、OOCSSは、「そんへんはある程度妥協して諦めろ」と答えます。OOCSSの考え方を用いれば、この<code>btnbase</code>のようなクラス名を作り、それをHTMLのclass属性に書くことになります。これはセマンティックなクラス名とは言いがたい&#8230;しかし！これがパフォーマンスとメンテナンス性を考慮した、最適解である&#8230;というのが、OOCSSの考え方です。なので、ただ単に便利なクラス名をポコポコ作って組み合わせれば素敵でしょ？っていうわけじゃないのです。</p>
+
+<p>それにしたってそんな変なクラスを付けるなんて、中途半端な感じがしませんか？そうかも知れません。しかし、「CSS is too fragile」。CSSはあまりにも壊れやすい。CSSの機能は、はっきり言ってショボイ。プログラミング言語であれば、複雑さに対処する方法は色々と用意されています。しかし、CSSにはそのようなものがないと言ってしまっていいでしょう。とてつもなく長いCSSファイル - 赤の他人が書いたものを、すらすらと解読することができるでしょうか？ それは、やっている人なら分かると思いますが、なかなかにしんどい作業です。</p>
+
+<p>なんどでも言いたいこと、「CSSはショボイ」。しかしそれゆえに、その壊れやすいCSSを、丁寧に考えて書く必要があるのです。</p>
+
+<h2 id='__'>枠 + モジュール</h2>
+
+<p>OOCSSは、このようなモジュール＋スキンの考えに加え、枠組みを作って、その中にモジュールを突っ込んで使えるようにしろというような考え方もあります。このアンチパターンが、例えば以下の様なコードです。</p>
+<div class='highlight'><pre><code class='css'><span class='nc'>.sidebar</span> <span class='p'>{</span>
+  <span class='o'>...</span>
+<span class='p'>}</span>
+  <span class='nc'>.sidebar</span> <span class='nt'>h1</span> <span class='p'>{</span>
+    <span class='o'>...</span>
+  <span class='p'>}</span>
+  <span class='nc'>.sidebar</span> <span class='nt'>ul</span> <span class='p'>{</span>
+    <span class='o'>...</span>
+  <span class='p'>}</span>
+  <span class='nc'>.sidebar</span> <span class='nc'>.banners</span> <span class='p'>{</span>
+    <span class='o'>...</span>
+  <span class='p'>}</span>
+  <span class='nc'>.sidebar</span> <span class='nc'>.primarynav</span> <span class='p'>{</span>
+    <span class='o'>...</span>
+  <span class='p'>}</span>
+  <span class='nc'>.sidebar</span> <span class='nc'>.secondarynav</span> <span class='p'>{</span>
+    <span class='o'>...</span>
+  <span class='p'>}</span>
+</code></pre>
+</div>
+<p>サイドバーというのは、色々なモジュールが入る可能性がある、「大きなもの」です。上のコードは、OOCSS的に言えば、そのサイドバーを「大きなモジュール」として捉えてしまっている書き方であると考えることができます。実際、上のコードでは<code>...</code>で済ませていますが、その中には<code>span</code>なり<code>li</code>なり別の要素がボンボン入り、ネストは深く深くなっていくはずです。そうなれば、サイドバーという大きなモジュールに対応するCSSは、どんどん長く、深くなっていってしまいます。</p>
+
+<p>これは、「粒度が大きすぎる」状態です。もっと細かく、再利用可能な適切な単位のHTML+CSSの塊を「モジュール」として考えましょう。そうすれば、メンテナンス性もアップでしょ？この例だったら、例えば以下のように細かく、一つずつを小さな「モジュール」として捉えるのです。</p>
+<div class='highlight'><pre><code class='css'><span class='nc'>.sidebar</span> <span class='p'>{</span>
+  <span class='o'>...</span>
+<span class='p'>}</span>
+<span class='nc'>.sidebarHeading</span> <span class='p'>{</span>
+  <span class='o'>...</span>
+<span class='p'>}</span>
+<span class='nc'>.sidebarList</span> <span class='p'>{</span>
+  <span class='o'>...</span>
+<span class='p'>}</span>
+<span class='nc'>.sidebarBanners</span> <span class='p'>{</span>
+  <span class='o'>...</span>
+<span class='p'>}</span>
+<span class='nc'>.sidebarPrimarynav</span> <span class='p'>{</span>
+  <span class='o'>...</span>
+<span class='p'>}</span>
+<span class='nc'>.sidebarSecondarynav</span> <span class='p'>{</span>
+  <span class='o'>...</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
+<p>そうすれば、一つのモジュールが複雑になった時でも、見ればいいのはそのモジュールの部分だけですので、後からの変更も比較的容易です。ページを構成するUIを、適切な大きさの、小さなモジュールの集まりと考えることで、コードを整理するのです。</p>
+
+<p>ついでに言うと、弊社<a href='http://www.pxgrid.com/'>ピクセルグリッド</a>では、コーディングする際、そのようなモジュール一覧を作ってから具体的なページを起こすようにしていますよ。例えば<a href='http://cdn.dropmark.com/2008/08dc7cea3fdde7aea49c8ffc17e82b8c6d06da63/modules1.png'>こんなふう</a>に。そして、モジュールの一番外側の要素には、クラス名として<code>mod-モジュール名</code>をつけているんです。そうすれば、クラス名が被るっていうこともかなり少なくなるでしょう？ついでに<a href='http://www.codegrid.net/'>CodeGrid</a>というサービスで記事を書いていたりもするので気になる方はチェックしてみてね&#8230;！</p>
+
+<p>&#8230;と話がそれました。<br />そんな風に、モジュールで考えるのがOOCSSの基本的な考え方なのです。そのために、ある程度セマンティックでないクラス名は致し方なし。だって「The world is not always perfect」だからです。ある程度の抽象さをもったクラス名を使うという感じですね。繰り返しになりますが、<code>borderred</code>とかいうクラス名を付けることがOOCSSじゃないんですよ。</p>
+
+<p>ページを構成するUIを、モジュール単位で整理して考えることが重要なんです。</p>
+
+<h2 id='mixin__include'>mixin + include</h2>
+
+<p>そんなこんなで、要素のclass属性を利用し、モジュールモジュールした組み方がOOCSSなのですが、Sassを使えば、そんなことをしなくても、セマンティック野郎の野望を実現します。それも、CSSの管理性も確保した上で&#8230;！そんな素敵なSassでこのボタンを書いた例がこれです。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/29804bd5211aa79748eaf5f849a5a114c199b1d8/Picture%205.png' /></p>
+
+<p>HTMLには<code>twitterbtn</code>、<code>facebookbtn</code>という、コンテンツそのものを表現するようなクラス名を、そして、Sassファイルの中では、これらのクラスセレクタに対し、ベースとなる、今OOCSSで<code>.btnbase</code>として定義してたスタイル - これを<code>mixin</code>として定義しておき、これをまるっと<code>include</code>します。</p>
+
+<p>こうすれば、先ほど問題になっていた問題が解決されているのが分かるでしょうか？ クラス名はセマンティックで、CSSの管理性も確保されているのです&#8230;！ドヤーーというのがSassの素晴らしいところです。</p>
+
+<h2 id='extend'>extend</h2>
+
+<p>ですが、実は、このようにOOCSS的なことをSassでやるのには、<code>extend</code>の方が優れています。<code>extend</code>を使うと、以下の様なコードになります。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/77abda73288a4561c0fde5e086a9c0f4a25b10f7/Picture%206.png' /></p>
+
+<p><code>.btnbase</code>に当てられたスタイル群をもってきますよーという感じです。</p>
+
+<p>なぜ<code>extend</code>のほうがいいかというのは、出力結果のCSSを見てみるとわかります。左が、先の<code>mixin</code>の例が出力したCSS、右が今回の<code>extend</code>の例が出力したCSSです。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/3da06708835cba80f1759f7ad658b3cb07148d5a/Picture%207.png' /></p>
+
+<p><code>mixin</code>を<code>include</code>した場合は、同じコードが2箇所に出力されてしまいます。それに対し、<code>extend</code>の場合は、同じスタイルらを、セレクタをまとめて出力してくれるのです。</p>
+
+<p>HTML+CSSではできないことを平然とやってのけた&#8230;！痺れるし憧れますね。個人的には、これこそがSassのもたらす最大のメリットだなーと感じます。<code>extend</code>は、そんな風に素晴らしい構造性をCSSにもたらしてくれます。</p>
+
+<p>このような書き方を、OOSassと呼ぶ人もいるようです。</p>
+
+<h2 id='placeholder_selector'>placeholder selector</h2>
+
+<p>ついでに言っておくと、Sass3.2からは、<code>placeholder selector</code>というものが追加されました。これを使うと、今出した<code>extend</code>の例が出力する<code>.btnbase</code>というモジュールのベースとなる、抽象的なクラスを、出力させないようにすることができます。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/9eeb09a81c43f0e04926590396b28560c59c2b7e/Picture%208.png' /></p>
+
+<p>これの出力結果が、以下の右。左は、先のように、普通に<code>.btnbase</code>で<code>extend</code>した場合の出力です。<code>.btnbase</code>で<code>extend</code>した時と比べると、<code>%btnbase</code>で<code>extend</code>した方には、赤文字で書かれたクラスセレクタが存在していないことがわかります。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/efdd48766c34b140183a8e388d30459687ba6c64/Picture%209.png' /></p>
+
+<p>我々は、Sassを利用することで、他のプログラミング言語に用意されている、「抽象クラス」のようなことを、実現できることとなります。おお、ブラボー・・・</p>
+
+<h2 id='sassextend'>Sassのextendが素敵まとめ</h2>
+
+<p>そんなSassの<code>extend</code>が素晴らしすぎるよねということを図にまとめると、以下のようになります。</p>
+
+<p><img alt='' src='http://cdn.dropmark.com/2008/35da381d8cad4caec755596c54a466810d602cba/extending.png' /></p>
+
+<p>OOCSSでは、CSSでベースとなるモジュールを作り、スキンを作り、そのスキン適用を、HTMLのclass属性上出やるしかありませんでした。しかし、Sassを使えば、それは全てSCSSファイルの中で完結します。モジュールにスキン適用&#8230;ここまでを全てSass任せにできるのです。</p>
+
+<p>これで、はじめに出たセマンティックな人も柔軟性重視な人もニッコリというわけですね。いやーSassって素晴らしいなー。</p>
+
+<h2 id='oocss'>でもやっぱOOCSSか？</h2>
+
+<p>なー、Sassって素晴らしいなー&#8230; 完全無欠だなー&#8230; と思ってたんですよ。以下の記事を読むまでは。</p>
+
+<ul>
+<li><a href='http://oliverash.me/2012/09/07/methods-for-modifying-objects-in-oocss.html'>Methods for Modifying Objects in OOCSS (Extends: A Fool’s Gold) – Oliver Joseph Ash</a></li>
+</ul>
+
+<p>この記事が言っているのは、「OOCSS的なことをSassでやるのは確かに素晴らしいさ。でも、そんな風に<code>extend</code>しまくると、出力結果のCSSで、超大量のセレクタが並ぶことになり、結果的にCSSの容量がふえまくっちゃうことになるんだよ？」ということです。</p>
+
+<p>これは、先程の<code>extend</code>の結果に並ぶ、</p>
+<div class='highlight'><pre><code class='css'><span class='nc'>.btnbase</span><span class='o'>,</span> <span class='nc'>.twitterbtn</span><span class='o'>,</span> <span class='nc'>.facebookbtn</span> <span class='p'>{</span>
+  <span class='o'>...</span>
+<span class='p'>}</span>
+</code></pre>
+</div>
+<p>の部分ことを言っています。この例ですと、具体的なボタンのスキンは2つだけだからまだ良いです。しかし、この「具体的なボタン」というものが、100個ぐらいあったらどうでしょう。100このクラスセレクタがここに並ぶことになるんですよ。さらに、この例だと単純だからいいものの、実際には中にspanだの別の要素が並ぶことになります。そうなると、もう大量のセレクタがCSSに書きだされてしまう&#8230;！ということになってしまうんですよね。</p>
+
+<p>これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&#8230; と、悩みはつきません。</p>
+
+<h2 id='id156'>まとめ</h2>
+
+<p>HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。</p>
+
+<p>複雑な<code>extend</code>が容量の大きいCSSを作ってしまう&#8230; これは確かに問題ではありますが、かなりモジュールの数が増え、複雑になりすぎてしまった時にしか問題にならなそうではあります。</p>
+
+<p>結局のところ、CSSプリプロセッサを使ったところで、「CSS is too fragile」の根本的な問題が解決されたわけではありません。その部分を解決するのは、やはりモジュール感を意識した無駄のない設計と言えるのではないでしょうか。</p>
+
+<p>あなたはどのようにCSSを書いていますか？ この記事を読むことで、少しでもCSSの設計に対する思慮が深まっていただけたら幸いです。</p>
+
+<p><a href='http://www.adventar.org/calendars/1'>CSS Preprocessor Advent Calendar 2012</a>、次はコバさんです。</p>
+
+<p>お読みいただき、ありがとうございました。</p>
+	</div>
+	<div class="mod-entry-share">
+		<a href="http://twitter.com/share"
+			class="twitter-share-button"
+			data-url="http://takazudo.github.com/entry/2012-12-10-oocsssass.html"
+			data-via="Takazudo"
+			data-counturl="http://takazudo.github.com/entry/2012-12-10-oocsssass.html"
+		>Tweet</a>
+		<div class="g-plusone" data-size="medium"></div>
+		<div class="fb-likewrap"><div class="fb-like" data-send="false" data-width="450" data-show-faces="true" data-colorscheme="dark"></div></div>
+	</div>
+	<section class="mod-entry-comments" id="postcomments">
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+	</section>
+</article>
+
+<ul class="mod-postpager">
+	
+	
+		<li><span>Older post:</span> <a href="/blog/entry/2012-12-03-imgloader.html">jQuery.ImgLoader has XHR2 feature now</a></li>
+	
+</ul>
+
+
+				<!-- LazyJaxDavis end -->
+			</div>
+			<div class="mod-main-loadingplacer" id="loadingplacer"></div>
+		</div></div>
+		<aside class="mod-side">
+	<div class="mod-sidenavblocks">
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>Recent Posts</h1>
+				<ul>
+					
+						<li><a href="/blog/entry/2012-12-10-oocsssass.html">OOCSSとSass</a></li>
+					
+						<li><a href="/blog/entry/2012-12-03-imgloader.html">jQuery.ImgLoader has XHR2 feature now</a></li>
+					
+						<li><a href="/blog/entry/2012-07-20-grunt-loadnpmtasks.html">grunt loadNpmTasks</a></li>
+					
+						<li><a href="/blog/entry/2012-04-14-grunt-coffee.html">Compiling CoffeeScript with grunt</a></li>
+					
+						<li><a href="/blog/entry/2012-04-11-firstpost.html">This blog is powered by Jekyll</a></li>
+					
+				</ul>
+			</section>
+		</div>
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>GitHub Repos</h1>
+				<ul>
+					<li><a href="https://github.com/Takazudo/jQuery.LazyJaxDavis">jQuery.LazyJaxDavis</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ui.domwindow">jQuery.ui.domwindow</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ImgLoader">jQuery.ImgLoader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.tinyscroller">jQuery.tinyscroller</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.PresetPreloader">jQuery.PresetPreloader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.TmplDeck">jQuery.TmplDeck</a></li>
+					<li><a href="https://github.com/Takazudo/BackboneTwitterExample">BackboneTwitterExample</a></li>
+					<li><a href="https://github.com/Takazudo/gruntExamples">gruntExamples</a></li>
+					<li><a href="https://github.com/Takazudo">@Takazudo</a> on GitHub</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+</aside>
+
+	</div></div>
+	<div class="mod-footback"><a href="#top">∧</a></div>
+<footer class="mod-footer"><div class="mod-footer-inner">
+	<small>Copyright &copy; 2012 - "Takazudo" Takeshi Takatsudo.</small>
+	<span>Powered by <a href="http://jekyllrb.com/">Jekyll</a></span>
+</div></footer>
+
+
+	<div id="fb-root"></div>
+
+</div></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/blog/js/all.js"></script>
+</body>
+</html>

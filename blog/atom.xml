@@ -4,13 +4,239 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2012-12-03T03:45:42+09:00</updated>
+  <updated>2012-12-10T05:28:00+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
 		<email>takazudo@gmail.com</email>
   </author>
 
+  
+  <entry>
+		<id>http://takazudo.github.com/blog/entry/2012-12-10-oocsssass.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/blog/entry/2012-12-10-oocsssass.html"/>
+    <title>OOCSSとSass</title>
+    <updated>2012-12-10T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/blog</uri>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href='http://www.adventar.org/calendars/1'&gt;CSS Preprocessor Advent Calendar 2012&lt;/a&gt;の10日目、&lt;a href='http://twitter.com/Takazudo'&gt;@Takazudo&lt;/a&gt;です。&lt;/p&gt;
+
+&lt;p&gt;僕はSassが好きです。なぜならSassには&lt;code&gt;extend&lt;/code&gt;があるからです。その理由を、社内勉強会で発表した、以下のスライドで話したことを補足しつつ、書きます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class='apply-nolazy' href='/presentation-oocss-sass/#/'&gt;OOCSS + Sass&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;!--more--&gt;
+&lt;h2 id='oocss'&gt;OOCSSってなんぞ&lt;/h2&gt;
+
+&lt;p&gt;まず、Sassの&lt;code&gt;extend&lt;/code&gt;が素敵な点を紹介する前に、OOCSSについて簡単に紹介します。&lt;/p&gt;
+
+&lt;p&gt;OOCSSというのは、Nicole Sullivanという人が言い出した考え方です。そのプレゼン資料やビデオなどは、本人が発表したものが、slideshare等にアップされています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://oocss.org/'&gt;Object-oriented CSS&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://fronteers.nl/congres/2009/sessions/object-oriented-css'&gt;Object Oriented CSS by Nicole Sullivan · Fronteers&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.slideshare.net/stubbornella/the-cascade-grids-headings-and-selectors-from-an-oocss-perspective-ajax-experience-2009'&gt;The Cascade, Grids, Headings, and Selectors from an OOCSS Perspecti&amp;#8230;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;OOCSSのサイトの例えば&lt;a href='http://oocss.org/grids_docs.html'&gt;このページ&lt;/a&gt;を見ると、divのclass属性に&lt;code&gt;size1of3&lt;/code&gt;だと&lt;code&gt;size2of3&lt;/code&gt;だとかいうのが使われているのがわかります。さっとだけOOCSSのことを見た人の中には、「あーOOCSSって、そういう便利系クラスをいっぱい付けてやるスタイルのことなのね。知ってるわーそれ２年前からやってわー知ってたわー」という人が、なぜか多いのですが、OOCSSというのはそういうことじゃーないんです。&lt;/p&gt;
+
+&lt;p&gt;OOCSSとは、ページの部品を「モジュール」という単位で分けて考えることで、サイトのメンテナンス性とパフォーマンスを上げる考え方の一つです。そして、複雑な部品については、このモジュールについて、他のプログラミング言語における、クラス（HTMLのclass属性とは異なる、プログラムにおける雛形の意）の継承の考え方を利用し、効率的に拡張していく&amp;#8230;というのが、OOCSSのキモとなる部分であると、僕は捉えています。その実現の方法として、class属性に複数のクラスを当てる手法をとる&amp;#8230; ということになります。&lt;/p&gt;
+
+&lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
+
+&lt;h2 id='id154'&gt;黒か白か&lt;/h2&gt;
+
+&lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/381bdd5da7799866ab3d7557e1ba8e450b4e55b2/Picture%2010.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;m9(^Д^)ﾌﾟｷﾞｬｰ と言われてしまいそうですが、これは、よく非難されるような、典型的なダメなクラス名の付け方&amp;#8230;あの時のオレはどうかしちまってたんだ&amp;#8230; とも言えるようなクラス名です。これは、柔軟性はありますよね。うん&amp;#8230; でもCSSって、一体何なんだろうね&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;ちなみに、このサンプルでは、ただの赤青のボタンですが、これは、同じような見栄えを持つ、めちゃくちゃリッチなボタン&amp;#8230; しかし、その２つの装飾は異なる&amp;#8230;であると、応用をきかせて、想像してください。イマジネーションの側面が重要です。&lt;/p&gt;
+
+&lt;p&gt;そんなダメダメなコードをdisりまくる、セマンティック野郎の書いたコードがこれです。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/0f23e9c2eda9bdfe9d0cef44e63badc5abd36594/Picture%204.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;オーセマンティックデスネー&lt;br /&gt;ではそのCSSを見てみましょう。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/ce1c88b8b3b8b89c8a1d3c044922b89f4ac9be56/Picture%2011.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;ハハハ・・・セマンティック最高だよね・・・&lt;br /&gt;同じCSSをコピペして使うなんてさ・・・&lt;br /&gt;おいおい、でもセマンティックは重要だろ？&lt;br /&gt;クラス名には意味をもたせるべきだろ？&lt;br /&gt;いやいやしかしこのCSSは無いでしょ。&lt;br /&gt;ほかにも似たようなgoogle plusボタンができたらまたあんた同じCSSコピペするつもりでしょ？&lt;br /&gt;じゃあどうすればいいっていうのさ！&lt;/p&gt;
+
+&lt;p&gt;ということになってしまいますよね。&lt;br /&gt;この２つのコードは、言ってみれば、黒か白かという両極端なコードです。柔軟性を追求すれば、前者はまぁそりゃ柔軟であることには違いないですが、それ、CSSの意味ってなんなんですか？ってなりますし、後者はHTMLとしては理想ですが、CSSの中は大変なことになってしまいます。&lt;/p&gt;
+
+&lt;p&gt;あーほんとHTMLとCSSってなんでこう面倒くさいんでしょうね。&lt;/p&gt;
+
+&lt;p&gt;&amp;#8230;こえますか？&amp;#8230;聞こえますか？&amp;#8230;僕はいま、あなたの脳内に直接語りかけています！OOCSSを使うのです！YES！&lt;/p&gt;
+
+&lt;h2 id='oocss'&gt;OOCSSっぽい書き方&lt;/h2&gt;
+
+&lt;p&gt;と、そんなコードを、OOCSSでは以下のように書きます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/c55635236d2e963416aad56e4cd07e6ac5d6f4ca/Picture%201.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;OOCSSではーベースのモジュールに、スキンを適用する&amp;#8230;というふうに書くのです。複数のクラス名を利用して。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/105c2b7dfb373d89e02b3a38093585c519c782cd/Picture%202.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;ここでのベースのモジュールというのは、クラス、&lt;code&gt;btnbase&lt;/code&gt;が表現するもの。ここには、ボタンの共通スタイルが適用されています。その上で更に具体的なバリエーションは、&lt;code&gt;twitter&lt;/code&gt;、&lt;code&gt;facebook&lt;/code&gt;といったような、スキンとしてのクラスで適用するという形です。&lt;/p&gt;
+
+&lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
+
+&lt;h2 id='id155'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+
+&lt;p&gt;でもちょっとまってください。&lt;/p&gt;
+
+&lt;p&gt;「このクラス名のどこらへんがセマンティックっていうんだよ？え？&lt;code&gt;btnbase&lt;/code&gt;だって？ふざけてんのかね。そんなのは&lt;code&gt;blackborder&lt;/code&gt;がちょっとマシになったようなもんじゃないんですか？」&lt;/p&gt;
+
+&lt;p&gt;とセマンティック野郎が言いそうです。そのストリクトで真っ直ぐな精神は買いましょう。しかし、クラスをよりセマンティックにすれば、CSSはどんどん複雑に&amp;#8230;。どうすれば&amp;#8230;！という問に対しては、OOCSSは、「そんへんはある程度妥協して諦めろ」と答えます。OOCSSの考え方を用いれば、この&lt;code&gt;btnbase&lt;/code&gt;のようなクラス名を作り、それをHTMLのclass属性に書くことになります。これはセマンティックなクラス名とは言いがたい&amp;#8230;しかし！これがパフォーマンスとメンテナンス性を考慮した、最適解である&amp;#8230;というのが、OOCSSの考え方です。なので、ただ単に便利なクラス名をポコポコ作って組み合わせれば素敵でしょ？っていうわけじゃないのです。&lt;/p&gt;
+
+&lt;p&gt;それにしたってそんな変なクラスを付けるなんて、中途半端な感じがしませんか？そうかも知れません。しかし、「CSS is too fragile」。CSSはあまりにも壊れやすい。CSSの機能は、はっきり言ってショボイ。プログラミング言語であれば、複雑さに対処する方法は色々と用意されています。しかし、CSSにはそのようなものがないと言ってしまっていいでしょう。とてつもなく長いCSSファイル - 赤の他人が書いたものを、すらすらと解読することができるでしょうか？ それは、やっている人なら分かると思いますが、なかなかにしんどい作業です。&lt;/p&gt;
+
+&lt;p&gt;なんどでも言いたいこと、「CSSはショボイ」。しかしそれゆえに、その壊れやすいCSSを、丁寧に考えて書く必要があるのです。&lt;/p&gt;
+
+&lt;h2 id='__'&gt;枠 + モジュール&lt;/h2&gt;
+
+&lt;p&gt;OOCSSは、このようなモジュール＋スキンの考えに加え、枠組みを作って、その中にモジュールを突っ込んで使えるようにしろというような考え方もあります。このアンチパターンが、例えば以下の様なコードです。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt;&lt;span class='nc'&gt;.sidebar&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='o'&gt;...&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='nc'&gt;.sidebar&lt;/span&gt; &lt;span class='nt'&gt;h1&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='o'&gt;...&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='nc'&gt;.sidebar&lt;/span&gt; &lt;span class='nt'&gt;ul&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='o'&gt;...&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='nc'&gt;.sidebar&lt;/span&gt; &lt;span class='nc'&gt;.banners&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='o'&gt;...&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='nc'&gt;.sidebar&lt;/span&gt; &lt;span class='nc'&gt;.primarynav&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='o'&gt;...&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+  &lt;span class='nc'&gt;.sidebar&lt;/span&gt; &lt;span class='nc'&gt;.secondarynav&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+    &lt;span class='o'&gt;...&lt;/span&gt;
+  &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;サイドバーというのは、色々なモジュールが入る可能性がある、「大きなもの」です。上のコードは、OOCSS的に言えば、そのサイドバーを「大きなモジュール」として捉えてしまっている書き方であると考えることができます。実際、上のコードでは&lt;code&gt;...&lt;/code&gt;で済ませていますが、その中には&lt;code&gt;span&lt;/code&gt;なり&lt;code&gt;li&lt;/code&gt;なり別の要素がボンボン入り、ネストは深く深くなっていくはずです。そうなれば、サイドバーという大きなモジュールに対応するCSSは、どんどん長く、深くなっていってしまいます。&lt;/p&gt;
+
+&lt;p&gt;これは、「粒度が大きすぎる」状態です。もっと細かく、再利用可能な適切な単位のHTML+CSSの塊を「モジュール」として考えましょう。そうすれば、メンテナンス性もアップでしょ？この例だったら、例えば以下のように細かく、一つずつを小さな「モジュール」として捉えるのです。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt;&lt;span class='nc'&gt;.sidebar&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='o'&gt;...&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='nc'&gt;.sidebarHeading&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='o'&gt;...&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='nc'&gt;.sidebarList&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='o'&gt;...&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='nc'&gt;.sidebarBanners&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='o'&gt;...&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='nc'&gt;.sidebarPrimarynav&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='o'&gt;...&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='nc'&gt;.sidebarSecondarynav&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='o'&gt;...&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;そうすれば、一つのモジュールが複雑になった時でも、見ればいいのはそのモジュールの部分だけですので、後からの変更も比較的容易です。ページを構成するUIを、適切な大きさの、小さなモジュールの集まりと考えることで、コードを整理するのです。&lt;/p&gt;
+
+&lt;p&gt;ついでに言うと、弊社&lt;a href='http://www.pxgrid.com/'&gt;ピクセルグリッド&lt;/a&gt;では、コーディングする際、そのようなモジュール一覧を作ってから具体的なページを起こすようにしていますよ。例えば&lt;a href='http://cdn.dropmark.com/2008/08dc7cea3fdde7aea49c8ffc17e82b8c6d06da63/modules1.png'&gt;こんなふう&lt;/a&gt;に。そして、モジュールの一番外側の要素には、クラス名として&lt;code&gt;mod-モジュール名&lt;/code&gt;をつけているんです。そうすれば、クラス名が被るっていうこともかなり少なくなるでしょう？ついでに&lt;a href='http://www.codegrid.net/'&gt;CodeGrid&lt;/a&gt;というサービスで記事を書いていたりもするので気になる方はチェックしてみてね&amp;#8230;！&lt;/p&gt;
+
+&lt;p&gt;&amp;#8230;と話がそれました。&lt;br /&gt;そんな風に、モジュールで考えるのがOOCSSの基本的な考え方なのです。そのために、ある程度セマンティックでないクラス名は致し方なし。だって「The world is not always perfect」だからです。ある程度の抽象さをもったクラス名を使うという感じですね。繰り返しになりますが、&lt;code&gt;borderred&lt;/code&gt;とかいうクラス名を付けることがOOCSSじゃないんですよ。&lt;/p&gt;
+
+&lt;p&gt;ページを構成するUIを、モジュール単位で整理して考えることが重要なんです。&lt;/p&gt;
+
+&lt;h2 id='mixin__include'&gt;mixin + include&lt;/h2&gt;
+
+&lt;p&gt;そんなこんなで、要素のclass属性を利用し、モジュールモジュールした組み方がOOCSSなのですが、Sassを使えば、そんなことをしなくても、セマンティック野郎の野望を実現します。それも、CSSの管理性も確保した上で&amp;#8230;！そんな素敵なSassでこのボタンを書いた例がこれです。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/29804bd5211aa79748eaf5f849a5a114c199b1d8/Picture%205.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;HTMLには&lt;code&gt;twitterbtn&lt;/code&gt;、&lt;code&gt;facebookbtn&lt;/code&gt;という、コンテンツそのものを表現するようなクラス名を、そして、Sassファイルの中では、これらのクラスセレクタに対し、ベースとなる、今OOCSSで&lt;code&gt;.btnbase&lt;/code&gt;として定義してたスタイル - これを&lt;code&gt;mixin&lt;/code&gt;として定義しておき、これをまるっと&lt;code&gt;include&lt;/code&gt;します。&lt;/p&gt;
+
+&lt;p&gt;こうすれば、先ほど問題になっていた問題が解決されているのが分かるでしょうか？ クラス名はセマンティックで、CSSの管理性も確保されているのです&amp;#8230;！ドヤーーというのがSassの素晴らしいところです。&lt;/p&gt;
+
+&lt;h2 id='extend'&gt;extend&lt;/h2&gt;
+
+&lt;p&gt;ですが、実は、このようにOOCSS的なことをSassでやるのには、&lt;code&gt;extend&lt;/code&gt;の方が優れています。&lt;code&gt;extend&lt;/code&gt;を使うと、以下の様なコードになります。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/77abda73288a4561c0fde5e086a9c0f4a25b10f7/Picture%206.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;.btnbase&lt;/code&gt;に当てられたスタイル群をもってきますよーという感じです。&lt;/p&gt;
+
+&lt;p&gt;なぜ&lt;code&gt;extend&lt;/code&gt;のほうがいいかというのは、出力結果のCSSを見てみるとわかります。左が、先の&lt;code&gt;mixin&lt;/code&gt;の例が出力したCSS、右が今回の&lt;code&gt;extend&lt;/code&gt;の例が出力したCSSです。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/3da06708835cba80f1759f7ad658b3cb07148d5a/Picture%207.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;mixin&lt;/code&gt;を&lt;code&gt;include&lt;/code&gt;した場合は、同じコードが2箇所に出力されてしまいます。それに対し、&lt;code&gt;extend&lt;/code&gt;の場合は、同じスタイルらを、セレクタをまとめて出力してくれるのです。&lt;/p&gt;
+
+&lt;p&gt;HTML+CSSではできないことを平然とやってのけた&amp;#8230;！痺れるし憧れますね。個人的には、これこそがSassのもたらす最大のメリットだなーと感じます。&lt;code&gt;extend&lt;/code&gt;は、そんな風に素晴らしい構造性をCSSにもたらしてくれます。&lt;/p&gt;
+
+&lt;p&gt;このような書き方を、OOSassと呼ぶ人もいるようです。&lt;/p&gt;
+
+&lt;h2 id='placeholder_selector'&gt;placeholder selector&lt;/h2&gt;
+
+&lt;p&gt;ついでに言っておくと、Sass3.2からは、&lt;code&gt;placeholder selector&lt;/code&gt;というものが追加されました。これを使うと、今出した&lt;code&gt;extend&lt;/code&gt;の例が出力する&lt;code&gt;.btnbase&lt;/code&gt;というモジュールのベースとなる、抽象的なクラスを、出力させないようにすることができます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/9eeb09a81c43f0e04926590396b28560c59c2b7e/Picture%208.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;これの出力結果が、以下の右。左は、先のように、普通に&lt;code&gt;.btnbase&lt;/code&gt;で&lt;code&gt;extend&lt;/code&gt;した場合の出力です。&lt;code&gt;.btnbase&lt;/code&gt;で&lt;code&gt;extend&lt;/code&gt;した時と比べると、&lt;code&gt;%btnbase&lt;/code&gt;で&lt;code&gt;extend&lt;/code&gt;した方には、赤文字で書かれたクラスセレクタが存在していないことがわかります。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/efdd48766c34b140183a8e388d30459687ba6c64/Picture%209.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;我々は、Sassを利用することで、他のプログラミング言語に用意されている、「抽象クラス」のようなことを、実現できることとなります。おお、ブラボー・・・&lt;/p&gt;
+
+&lt;h2 id='sassextend'&gt;Sassのextendが素敵まとめ&lt;/h2&gt;
+
+&lt;p&gt;そんなSassの&lt;code&gt;extend&lt;/code&gt;が素晴らしすぎるよねということを図にまとめると、以下のようになります。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='' src='http://cdn.dropmark.com/2008/35da381d8cad4caec755596c54a466810d602cba/extending.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;OOCSSでは、CSSでベースとなるモジュールを作り、スキンを作り、そのスキン適用を、HTMLのclass属性上出やるしかありませんでした。しかし、Sassを使えば、それは全てSCSSファイルの中で完結します。モジュールにスキン適用&amp;#8230;ここまでを全てSass任せにできるのです。&lt;/p&gt;
+
+&lt;p&gt;これで、はじめに出たセマンティックな人も柔軟性重視な人もニッコリというわけですね。いやーSassって素晴らしいなー。&lt;/p&gt;
+
+&lt;h2 id='oocss'&gt;でもやっぱOOCSSか？&lt;/h2&gt;
+
+&lt;p&gt;なー、Sassって素晴らしいなー&amp;#8230; 完全無欠だなー&amp;#8230; と思ってたんですよ。以下の記事を読むまでは。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://oliverash.me/2012/09/07/methods-for-modifying-objects-in-oocss.html'&gt;Methods for Modifying Objects in OOCSS (Extends: A Fool’s Gold) – Oliver Joseph Ash&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;この記事が言っているのは、「OOCSS的なことをSassでやるのは確かに素晴らしいさ。でも、そんな風に&lt;code&gt;extend&lt;/code&gt;しまくると、出力結果のCSSで、超大量のセレクタが並ぶことになり、結果的にCSSの容量がふえまくっちゃうことになるんだよ？」ということです。&lt;/p&gt;
+
+&lt;p&gt;これは、先程の&lt;code&gt;extend&lt;/code&gt;の結果に並ぶ、&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='css'&gt;&lt;span class='nc'&gt;.btnbase&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='nc'&gt;.twitterbtn&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='nc'&gt;.facebookbtn&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+  &lt;span class='o'&gt;...&lt;/span&gt;
+&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;の部分ことを言っています。この例ですと、具体的なボタンのスキンは2つだけだからまだ良いです。しかし、この「具体的なボタン」というものが、100個ぐらいあったらどうでしょう。100このクラスセレクタがここに並ぶことになるんですよ。さらに、この例だと単純だからいいものの、実際には中にspanだの別の要素が並ぶことになります。そうなると、もう大量のセレクタがCSSに書きだされてしまう&amp;#8230;！ということになってしまうんですよね。&lt;/p&gt;
+
+&lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
+
+&lt;h2 id='id156'&gt;まとめ&lt;/h2&gt;
+
+&lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
+
+&lt;p&gt;複雑な&lt;code&gt;extend&lt;/code&gt;が容量の大きいCSSを作ってしまう&amp;#8230; これは確かに問題ではありますが、かなりモジュールの数が増え、複雑になりすぎてしまった時にしか問題にならなそうではあります。&lt;/p&gt;
+
+&lt;p&gt;結局のところ、CSSプリプロセッサを使ったところで、「CSS is too fragile」の根本的な問題が解決されたわけではありません。その部分を解決するのは、やはりモジュール感を意識した無駄のない設計と言えるのではないでしょうか。&lt;/p&gt;
+
+&lt;p&gt;あなたはどのようにCSSを書いていますか？ この記事を読むことで、少しでもCSSの設計に対する思慮が深まっていただけたら幸いです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='http://www.adventar.org/calendars/1'&gt;CSS Preprocessor Advent Calendar 2012&lt;/a&gt;、次はコバさんです。&lt;/p&gt;
+
+&lt;p&gt;お読みいただき、ありがとうございました。&lt;/p&gt;</content>
+  </entry>
   
   <entry>
 		<id>http://takazudo.github.com/blog/entry/2012-12-03-imgloader.html</id>
