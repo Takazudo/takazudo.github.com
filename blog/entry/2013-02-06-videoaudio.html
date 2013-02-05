@@ -1,0 +1,295 @@
+<!doctype html>
+<html class="no-js" lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:og="http://ogp.me/ns#"
+	xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Takazudolog - 地獄のvideo／audio要素</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/blog/css/style.min.css">
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<meta property="fb:app_id" content="178201135654794">
+<meta property="og:site_name" content="Takazudolog">
+<meta property="og:title" content="Takazudolog - 地獄のvideo／audio要素">
+<meta property="og:image" content="http://takazudo.github.com/blog/img/octocat.png">
+<meta property="og:description" content="video／audioにハマりまくったメモ。  
+とりあえず以下の2ページを熟読せよ。
+
+* [プラグインは要らない！音声／動画対応したHTML5 - audio／video要素 | Think IT](http://thinkit.co.jp/story/2013/01/25/3935)
+* [Video - Dive Into HTML5](http://diveintohtml5.info/video.html)
+
+audioライブラリ試してうまくいったやつはこれ。
+
+* [SoundJS](http://www.createjs.com/#!/SoundJS)
+
+videoのライブラリ、使ってないけど良さげなのはこれ。自分の場合、こまいことしたかったので、これじゃなくてもろもろ自分で書いた。
+
+* [MediaElement.js](http://mediaelementjs.com/)
+
+">
+<meta property="og:url" content="http://takazudo.github.com/blog/entry/2013-02-06-videoaudio.html">
+<meta property="og:type" content="article">
+<script src="/blog/js/modernizr.min.js"></script>
+<script>if(!Modernizr.mq()) Modernizr.load('/blog/js/respond.min.js');</script>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-183024-7']);
+_gaq.push(['_trackPageview']);
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</head>
+
+<body><div class="mod-all" id="top"><div class="mod-allinner">
+
+	<header class="mod-header"><hgroup>
+	<h1><a href="/blog/">Takazudolog</a></h1>
+	<h2>Takazudo's blog on GitHub</h2>
+	<div class="mod-header-icons">
+		<a class="apply-nolazy" href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><img src="/blog/img/rss.png" alt="RSS"></a>
+		<a href="https://twitter.com/Takazudo"><img src="http://www.gravatar.com/avatar/a88cc23988f41bba5503dd0bd8ff7750.png?s=48" alt="Takazudo"></a>
+	</div>
+</hgroup></header>
+
+	<nav class="mod-headnavbar"><div class="mod-headnavbar-inner">
+	<ul class="mod-headnavbar-mainnav">
+		<li><a href="/blog/">Top</a></li>
+		<li><a href="/blog/archives.html">Archives</a></li>
+		<li><a href="/blog/about.html">About</a></li>
+	</ul>
+	<form class="mod-headnavbar-search" action="http://google.com/search" method="get">
+		<fieldset role="search">
+			<input type="hidden" name="q" value="site:Takazudo.github.com/blog" />
+			<input class="mod-headnavbar-search-input" type="text" name="q" results="0" placeholder="Search"/>
+		</fieldset>
+	</form>
+</div></nav>
+
+	<div class="mod-body"><div class="mod-body-inner">
+		<div class="mod-main"><div class="mod-main-inner">
+			<div id="lazyjaxdavisroot">
+				<!-- LazyJaxDavis start -->
+					<article class="mod-entry">
+	<header class="mod-entry-header">
+		<h1>地獄のvideo／audio要素</h1>
+		<p><time>06 Feb 2013</time> | <a href="#postcomments">Comments</a></p>
+		
+			<ul>
+				
+					<li>[ JavaScript ]</li>
+				
+					<li>[ video ]</li>
+				
+					<li>[ audio ]</li>
+				
+					<li>[ media ]</li>
+				
+			</ul>
+		
+	</header>
+	<div class="mod-entry-body">
+		<p>video／audioにハマりまくったメモ。<br />とりあえず以下の2ページを熟読せよ。</p>
+
+<ul>
+<li><a href='http://thinkit.co.jp/story/2013/01/25/3935'>プラグインは要らない！音声／動画対応したHTML5 - audio／video要素 | Think IT</a></li>
+
+<li><a href='http://diveintohtml5.info/video.html'>Video - Dive Into HTML5</a></li>
+</ul>
+
+<p>audioライブラリ試してうまくいったやつはこれ。</p>
+
+<ul>
+<li><a href='http://www.createjs.com/#!/SoundJS'>SoundJS</a></li>
+</ul>
+
+<p>videoのライブラリ、使ってないけど良さげなのはこれ。自分の場合、こまいことしたかったので、これじゃなくてもろもろ自分で書いた。</p>
+
+<ul>
+<li><a href='http://mediaelementjs.com/'>MediaElement.js</a></li>
+</ul>
+<p><span id="more"></span></p>
+<p>以下メモ。</p>
+<hr />
+<p>Q: <code>preload=&quot;auto&quot;</code>にして、コントロールバー見ると、途中までしかダウンロードされてないんだけど</p>
+
+<p>videoは全部をダウンロードしない。それが正常。</p>
+<hr />
+<p>Q: プリロードはできるの？</p>
+
+<p>たぶん完全にはできない。その代わり、このネットワーク速度なら再生がダウンロードを追い越さないというぐらいまでダウンロードが完了したら、<code>canplaythrough</code>イベントが発火する。実質これがプリロードで、上記の途中までしかダウンロードされないのもこのため。さっぱりダウンロードさせたくなかったらvideo要素にprealod=&#8221;none&#8221;を指定しておき、<code>element.load()</code>で読み込み開始。画像のプリロードみたいな風に単純には行かない。</p>
+<hr />
+<p>Q: 時間をすごい先にしたら全部プリロードできちゃったりするんじゃないの？</p>
+
+<p>できない。videoのレスポンスはPartial Contentで、よくわからんけどXHRみたいなもので、断片的に送られて来るらしい。なので、先まで時間すっ飛ばしたらその辺からダウンロードが開始される。</p>
+
+<p>ちなみに、XHRで全部とってきておけばキャッシュするだろとか、とってきてdataURIとしてsrcに指定すれば全部プリロードできるだろとか思ってやってみたらブラウザが落ちたのでそういうアプローチはだめげ</p>
+<hr />
+<p>Q: <code>canplaythrough</code>が発火しない</p>
+
+<p>FirefoxとOperaは<code>element.load()</code>しても読み込まない風。<code>element.play()</code> <code>element.muted = true</code>して、50ms後ぐらいに<code>element.pause()</code> <code>element.muted = false</code>すれば読み込みを開始する。ひどい。あと、<code>element.readyState</code>が4以上になるのも監視したほうがいい。（よくわかってない）</p>
+<hr />
+<p>Q: <code>element.pause()</code>とか<code>element.muted = true</code>とか<code>element.currentTime=0</code>とか失敗する。</p>
+
+<p><code>try</code>/<code>catch</code>せよ。IE9では<code>element.currentTime</code>をいじれるのは再生した後。ひどい。</p>
+<hr />
+<p>Q: <code>canplaythrough</code>って信じられるの？</p>
+
+<p>微妙。なぜか特定のネットワークだとバッファで止まったりしまくったことがあった。また、マシンスペックがへぼいと、回線速度が良好でも処理が追いつかなくて止まる事がある。ブラウザの実装次第。そんなこんなで、重すぎるコンテンツは低スペックPCだと無理になる。そしてマシンスペックを知る方法とかたぶん無い。</p>
+<hr />
+<p>Q: フォーマットって何用意すればいいの？</p>
+
+<p>webmとh264。Firefox、Opera、Chromeがwebm、IE9、IE10、iOS、Chromeがh264。(2013年2月時点）</p>
+<hr />
+<p>Q: エンコードって何ですればいいの？</p>
+
+<p>これが楽。<a href='http://www.mirovideoconverter.com/'>Miro Video Converter</a></p>
+<hr />
+<p>Q: webmの最後のフレームが静止状態で1秒ぐらい続いちゃうんだけど</p>
+
+<p>多くのエンコーダーではそのようになってしまう。気になるならこれでエンコードする。<a href='http://www.xmedia-recode.de/'>XMedia Recode</a></p>
+<hr />
+<p>Q: video要素をそのままHTMLに書いた方がいいの？オンザフライで作った方がいいの？</p>
+
+<p>状況によるけど、沢山のvideo要素を扱う場合は、必要な物だけオンザフライで作ったほうが良かった。videoにpreload=&#8221;none&#8221;を指定していても、IE9, 10ではそれを全部、はじめの部分だけ読みに行き、メモリ不足がどうとか言い出してエラー出しまくって最悪フリーズした。オンザフライで作る場合は、<code>Modernizr.video.webm</code>、<code>Modernizr.video.h264</code>で判別して対応するファイルへのパスをvideoのsrcに指定する。</p>
+<hr />
+<p>Q: 読込中にブラウザがフリーズします</p>
+
+<p>自前でキュー作って順番に処理せよ。</p>
+<hr />
+<p>Q: <code>elememtn.play()</code>しても0.5秒ぐらい再生が始まらない (IE10)</p>
+
+<p>マシンスペックによる。回避無理そう。</p>
+<hr />
+<p>Q: videoのプレイ進捗が知りたい</p>
+
+<p><code>element.currentTime</code>に現在の再生位置時間が入ってる。<code>timeupdate</code>イベントがプレイ中に起こり続ける。ただし、<code>timeupdate</code>は1秒間に1〜4回ぐらいしか発火しない。もっと細かく取りたかったらtimeupdate間でタイマー回して取る。</p>
+<hr />
+<p>Q: <code>ended</code>イベントが発火しない(IE10)</p>
+
+<p>低スペックPCで発生する。<code>element.play()</code>時に<code>new Date</code>して、タイマー回して、<code>element.duration</code>分経ったかを合わせてチェックする…</p>
+<hr />
+<p>Q: Safari5で<code>element.load()</code>が効かない</p>
+
+<p>Safari5のvideoの実装は不十分すぎでめちゃくちゃ微妙。<code>element.preload = &#39;auto&#39;</code>で読み込みを開始させる。</p>
+<hr />
+<p>Q: Safari5でブラウザがフリーズする</p>
+
+<p>複数のvideo要素を扱う時、Safari5でvideoのロード等の処理負荷が一定以上になると、ブラウザがフリーズする。まずは、video要素自体は<code>preload=&quot;none&quot;</code>で作っておき、一定の間隔を置いて一つずつ<code>preload=&quot;auto&quot;</code>にしていくとかして、慎重に扱わないとフリーズする。ひどい。ちなみにSafari6は優秀。</p>
+<hr />
+<p>Q: IE10が落ちる</p>
+
+<p>IE10はChromeの次ぐらいに優秀なんだけれども、処理性能はマシンスペック依存。でかすぎるvideoはIE10を落としたり不安定にするんで、控えめにvideo使わないとダメ。低スペックPCでも見れるコンテンツを安全に作りたかったら重いコンテンツはNG。</p>
+<hr />
+<p>Q: 読み込みに失敗するんだけど</p>
+
+<p><code>error</code>イベントをしっかり取ってエラーを出しましょう</p>
+<hr />
+<p>Q: 複数タブで同じページを表示すると片方でvideoを読み込まない</p>
+
+<p>たぶんブラウザが悪いけどなぜかそうなる。</p>
+<hr />
+<p>Q: 連続してSEみたいな短いaudioを鳴らせない</p>
+
+<p>5個ぐらい作って代わる代わるplayさせるといいんじゃない… 僕はそうしました…</p>
+<hr />
+<p>Q: Safariで短いaudioが鳴らない</p>
+
+<p>videoだのaudioだのと言っても、Safariにとってそれは、QuickTimeのAPIを内部的に呼んでいる風。QuickTime自体が短すぎるmp3を鳴らせない。無音部分を後ろに追加せよ…</p>
+<hr />
+<p>Q: canvasにvideoを取り込みたい</p>
+
+<p>context.drawImageすればいい</p>
+<hr />
+<p>たぶんまだ追加する…</p>
+	</div>
+	<div class="mod-entry-share">
+		<a href="http://twitter.com/share"
+			class="twitter-share-button"
+			data-url="http://takazudo.github.com/blog/entry/2013-02-06-videoaudio.html"
+			data-via="Takazudo"
+			data-counturl="http://takazudo.github.com/blog/entry/2013-02-06-videoaudio.html"
+		>Tweet</a>
+		<div class="g-plusone" data-size="medium"></div>
+		<div class="fb-likewrap"><div class="fb-like" data-send="false" data-width="450" data-show-faces="true" data-colorscheme="dark"></div></div>
+	</div>
+	<section class="mod-entry-comments" id="postcomments">
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+	</section>
+</article>
+
+<ul class="mod-postpager">
+	
+	
+		<li><span>Older post:</span> <a href="/blog/entry/2012-12-10-oocsssass.html">OOCSSとSass</a></li>
+	
+</ul>
+
+
+				<!-- LazyJaxDavis end -->
+			</div>
+			<div class="mod-main-loadingplacer" id="loadingplacer"></div>
+		</div></div>
+		<aside class="mod-side">
+	<div class="mod-sidenavblocks">
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>Recent Posts</h1>
+				<ul>
+					
+						<li><a href="/blog/entry/2013-02-06-videoaudio.html">地獄のvideo／audio要素</a></li>
+					
+						<li><a href="/blog/entry/2012-12-10-oocsssass.html">OOCSSとSass</a></li>
+					
+						<li><a href="/blog/entry/2012-12-03-imgloader.html">jQuery.ImgLoader has XHR2 feature now</a></li>
+					
+						<li><a href="/blog/entry/2012-07-20-grunt-loadnpmtasks.html">grunt loadNpmTasks</a></li>
+					
+						<li><a href="/blog/entry/2012-04-14-grunt-coffee.html">Compiling CoffeeScript with grunt</a></li>
+					
+						<li><a href="/blog/entry/2012-04-11-firstpost.html">This blog is powered by Jekyll</a></li>
+					
+				</ul>
+			</section>
+		</div>
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>GitHub Repos</h1>
+				<ul>
+					<li><a href="https://github.com/Takazudo/jQuery.LazyJaxDavis">jQuery.LazyJaxDavis</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ui.domwindow">jQuery.ui.domwindow</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ImgLoader">jQuery.ImgLoader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.tinyscroller">jQuery.tinyscroller</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.PresetPreloader">jQuery.PresetPreloader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.TmplDeck">jQuery.TmplDeck</a></li>
+					<li><a href="https://github.com/Takazudo/BackboneTwitterExample">BackboneTwitterExample</a></li>
+					<li><a href="https://github.com/Takazudo/gruntExamples">gruntExamples</a></li>
+					<li><a href="https://github.com/Takazudo">@Takazudo</a> on GitHub</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+</aside>
+
+	</div></div>
+	<div class="mod-footback"><a href="#top">∧</a></div>
+<footer class="mod-footer"><div class="mod-footer-inner">
+	<small>Copyright &copy; 2012 - "Takazudo" Takeshi Takatsudo.</small>
+	<span>Powered by <a href="http://jekyllrb.com/">Jekyll</a></span>
+</div></footer>
+
+
+	<div id="fb-root"></div>
+
+</div></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/blog/js/all.js"></script>
+</body>
+</html>

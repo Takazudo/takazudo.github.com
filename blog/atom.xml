@@ -4,13 +4,137 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2012-12-18T16:34:07+09:00</updated>
+  <updated>2013-02-06T07:33:20+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
 		<email>takazudo@gmail.com</email>
   </author>
 
+  
+  <entry>
+		<id>http://takazudo.github.com/blog/entry/2013-02-06-videoaudio.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/blog/entry/2013-02-06-videoaudio.html"/>
+    <title>地獄のvideo／audio要素</title>
+    <updated>2013-02-06T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/blog</uri>
+    </author>
+    <content type="html">&lt;p&gt;video／audioにハマりまくったメモ。&lt;br /&gt;とりあえず以下の2ページを熟読せよ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://thinkit.co.jp/story/2013/01/25/3935'&gt;プラグインは要らない！音声／動画対応したHTML5 - audio／video要素 | Think IT&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://diveintohtml5.info/video.html'&gt;Video - Dive Into HTML5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;audioライブラリ試してうまくいったやつはこれ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://www.createjs.com/#!/SoundJS'&gt;SoundJS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;videoのライブラリ、使ってないけど良さげなのはこれ。自分の場合、こまいことしたかったので、これじゃなくてもろもろ自分で書いた。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://mediaelementjs.com/'&gt;MediaElement.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--more--&gt;
+&lt;p&gt;以下メモ。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: &lt;code&gt;preload=&amp;quot;auto&amp;quot;&lt;/code&gt;にして、コントロールバー見ると、途中までしかダウンロードされてないんだけど&lt;/p&gt;
+
+&lt;p&gt;videoは全部をダウンロードしない。それが正常。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: プリロードはできるの？&lt;/p&gt;
+
+&lt;p&gt;たぶん完全にはできない。その代わり、このネットワーク速度なら再生がダウンロードを追い越さないというぐらいまでダウンロードが完了したら、&lt;code&gt;canplaythrough&lt;/code&gt;イベントが発火する。実質これがプリロードで、上記の途中までしかダウンロードされないのもこのため。さっぱりダウンロードさせたくなかったらvideo要素にprealod=&amp;#8221;none&amp;#8221;を指定しておき、&lt;code&gt;element.load()&lt;/code&gt;で読み込み開始。画像のプリロードみたいな風に単純には行かない。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: 時間をすごい先にしたら全部プリロードできちゃったりするんじゃないの？&lt;/p&gt;
+
+&lt;p&gt;できない。videoのレスポンスはPartial Contentで、よくわからんけどXHRみたいなもので、断片的に送られて来るらしい。なので、先まで時間すっ飛ばしたらその辺からダウンロードが開始される。&lt;/p&gt;
+
+&lt;p&gt;ちなみに、XHRで全部とってきておけばキャッシュするだろとか、とってきてdataURIとしてsrcに指定すれば全部プリロードできるだろとか思ってやってみたらブラウザが落ちたのでそういうアプローチはだめげ&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: &lt;code&gt;canplaythrough&lt;/code&gt;が発火しない&lt;/p&gt;
+
+&lt;p&gt;FirefoxとOperaは&lt;code&gt;element.load()&lt;/code&gt;しても読み込まない風。&lt;code&gt;element.play()&lt;/code&gt; &lt;code&gt;element.muted = true&lt;/code&gt;して、50ms後ぐらいに&lt;code&gt;element.pause()&lt;/code&gt; &lt;code&gt;element.muted = false&lt;/code&gt;すれば読み込みを開始する。ひどい。あと、&lt;code&gt;element.readyState&lt;/code&gt;が4以上になるのも監視したほうがいい。（よくわかってない）&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: &lt;code&gt;element.pause()&lt;/code&gt;とか&lt;code&gt;element.muted = true&lt;/code&gt;とか&lt;code&gt;element.currentTime=0&lt;/code&gt;とか失敗する。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;try&lt;/code&gt;/&lt;code&gt;catch&lt;/code&gt;せよ。IE9では&lt;code&gt;element.currentTime&lt;/code&gt;をいじれるのは再生した後。ひどい。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: &lt;code&gt;canplaythrough&lt;/code&gt;って信じられるの？&lt;/p&gt;
+
+&lt;p&gt;微妙。なぜか特定のネットワークだとバッファで止まったりしまくったことがあった。また、マシンスペックがへぼいと、回線速度が良好でも処理が追いつかなくて止まる事がある。ブラウザの実装次第。そんなこんなで、重すぎるコンテンツは低スペックPCだと無理になる。そしてマシンスペックを知る方法とかたぶん無い。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: フォーマットって何用意すればいいの？&lt;/p&gt;
+
+&lt;p&gt;webmとh264。Firefox、Opera、Chromeがwebm、IE9、IE10、iOS、Chromeがh264。(2013年2月時点）&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: エンコードって何ですればいいの？&lt;/p&gt;
+
+&lt;p&gt;これが楽。&lt;a href='http://www.mirovideoconverter.com/'&gt;Miro Video Converter&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: webmの最後のフレームが静止状態で1秒ぐらい続いちゃうんだけど&lt;/p&gt;
+
+&lt;p&gt;多くのエンコーダーではそのようになってしまう。気になるならこれでエンコードする。&lt;a href='http://www.xmedia-recode.de/'&gt;XMedia Recode&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: video要素をそのままHTMLに書いた方がいいの？オンザフライで作った方がいいの？&lt;/p&gt;
+
+&lt;p&gt;状況によるけど、沢山のvideo要素を扱う場合は、必要な物だけオンザフライで作ったほうが良かった。videoにpreload=&amp;#8221;none&amp;#8221;を指定していても、IE9, 10ではそれを全部、はじめの部分だけ読みに行き、メモリ不足がどうとか言い出してエラー出しまくって最悪フリーズした。オンザフライで作る場合は、&lt;code&gt;Modernizr.video.webm&lt;/code&gt;、&lt;code&gt;Modernizr.video.h264&lt;/code&gt;で判別して対応するファイルへのパスをvideoのsrcに指定する。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: 読込中にブラウザがフリーズします&lt;/p&gt;
+
+&lt;p&gt;自前でキュー作って順番に処理せよ。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: &lt;code&gt;elememtn.play()&lt;/code&gt;しても0.5秒ぐらい再生が始まらない (IE10)&lt;/p&gt;
+
+&lt;p&gt;マシンスペックによる。回避無理そう。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: videoのプレイ進捗が知りたい&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;element.currentTime&lt;/code&gt;に現在の再生位置時間が入ってる。&lt;code&gt;timeupdate&lt;/code&gt;イベントがプレイ中に起こり続ける。ただし、&lt;code&gt;timeupdate&lt;/code&gt;は1秒間に1〜4回ぐらいしか発火しない。もっと細かく取りたかったらtimeupdate間でタイマー回して取る。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: &lt;code&gt;ended&lt;/code&gt;イベントが発火しない(IE10)&lt;/p&gt;
+
+&lt;p&gt;低スペックPCで発生する。&lt;code&gt;element.play()&lt;/code&gt;時に&lt;code&gt;new Date&lt;/code&gt;して、タイマー回して、&lt;code&gt;element.duration&lt;/code&gt;分経ったかを合わせてチェックする…&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: Safari5で&lt;code&gt;element.load()&lt;/code&gt;が効かない&lt;/p&gt;
+
+&lt;p&gt;Safari5のvideoの実装は不十分すぎでめちゃくちゃ微妙。&lt;code&gt;element.preload = &amp;#39;auto&amp;#39;&lt;/code&gt;で読み込みを開始させる。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: Safari5でブラウザがフリーズする&lt;/p&gt;
+
+&lt;p&gt;複数のvideo要素を扱う時、Safari5でvideoのロード等の処理負荷が一定以上になると、ブラウザがフリーズする。まずは、video要素自体は&lt;code&gt;preload=&amp;quot;none&amp;quot;&lt;/code&gt;で作っておき、一定の間隔を置いて一つずつ&lt;code&gt;preload=&amp;quot;auto&amp;quot;&lt;/code&gt;にしていくとかして、慎重に扱わないとフリーズする。ひどい。ちなみにSafari6は優秀。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: IE10が落ちる&lt;/p&gt;
+
+&lt;p&gt;IE10はChromeの次ぐらいに優秀なんだけれども、処理性能はマシンスペック依存。でかすぎるvideoはIE10を落としたり不安定にするんで、控えめにvideo使わないとダメ。低スペックPCでも見れるコンテンツを安全に作りたかったら重いコンテンツはNG。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: 読み込みに失敗するんだけど&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;error&lt;/code&gt;イベントをしっかり取ってエラーを出しましょう&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: 複数タブで同じページを表示すると片方でvideoを読み込まない&lt;/p&gt;
+
+&lt;p&gt;たぶんブラウザが悪いけどなぜかそうなる。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: 連続してSEみたいな短いaudioを鳴らせない&lt;/p&gt;
+
+&lt;p&gt;5個ぐらい作って代わる代わるplayさせるといいんじゃない… 僕はそうしました…&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: Safariで短いaudioが鳴らない&lt;/p&gt;
+
+&lt;p&gt;videoだのaudioだのと言っても、Safariにとってそれは、QuickTimeのAPIを内部的に呼んでいる風。QuickTime自体が短すぎるmp3を鳴らせない。無音部分を後ろに追加せよ…&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: canvasにvideoを取り込みたい&lt;/p&gt;
+
+&lt;p&gt;context.drawImageすればいい&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;たぶんまだ追加する…&lt;/p&gt;</content>
+  </entry>
   
   <entry>
 		<id>http://takazudo.github.com/blog/entry/2012-12-10-oocsssass.html</id>
@@ -47,7 +171,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id1'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id64'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -87,7 +211,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id2'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id65'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -223,7 +347,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id3'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id66'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 
