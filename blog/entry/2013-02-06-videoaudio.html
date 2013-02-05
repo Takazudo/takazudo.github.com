@@ -145,7 +145,7 @@ _gaq.push(['_trackPageview']);
 <hr />
 <p>Q: フォーマットって何用意すればいいの？</p>
 
-<p>webmとh264。Firefox、Opera、Chromeがwebm、IE9、IE10、iOS、Chromeがh264。(2013年2月時点）</p>
+<p>video: webmとh264。audio: mp3とogg。Firefox、Opera、Chromeがwebm／ogg、IE9、IE10、iOS、Chromeがh264／mp3。(2013年2月時点）</p>
 <hr />
 <p>Q: エンコードって何ですればいいの？</p>
 
@@ -206,6 +206,14 @@ _gaq.push(['_trackPageview']);
 <p>Q: canvasにvideoを取り込みたい</p>
 
 <p>context.drawImageすればいい</p>
+<hr />
+<p>Q: <code>muted</code>属性がきかない</p>
+
+<p>たぶんブラウザの実装が不十分で効かないのがある。playさせてから<code>element.muted = true</code>なりなんなりしてやると効いたりする？</p>
+<hr />
+<p>Q: Safariで<code>display:none</code>にしたvideoの読み込みが開始されない</p>
+
+<p><code>display:block</code>にしたら読み込んだ気がした確か。</p>
 <hr />
 <p>たぶんまだ追加する…</p>
 	</div>

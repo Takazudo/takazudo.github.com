@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-06T07:33:20+09:00</updated>
+  <updated>2013-02-06T07:51:56+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -71,7 +71,7 @@
 &lt;hr /&gt;
 &lt;p&gt;Q: フォーマットって何用意すればいいの？&lt;/p&gt;
 
-&lt;p&gt;webmとh264。Firefox、Opera、Chromeがwebm、IE9、IE10、iOS、Chromeがh264。(2013年2月時点）&lt;/p&gt;
+&lt;p&gt;video: webmとh264。audio: mp3とogg。Firefox、Opera、Chromeがwebm／ogg、IE9、IE10、iOS、Chromeがh264／mp3。(2013年2月時点）&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: エンコードって何ですればいいの？&lt;/p&gt;
 
@@ -133,6 +133,14 @@
 
 &lt;p&gt;context.drawImageすればいい&lt;/p&gt;
 &lt;hr /&gt;
+&lt;p&gt;Q: &lt;code&gt;muted&lt;/code&gt;属性がきかない&lt;/p&gt;
+
+&lt;p&gt;たぶんブラウザの実装が不十分で効かないのがある。playさせてから&lt;code&gt;element.muted = true&lt;/code&gt;なりなんなりしてやると効いたりする？&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: Safariで&lt;code&gt;display:none&lt;/code&gt;にしたvideoの読み込みが開始されない&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;display:block&lt;/code&gt;にしたら読み込んだ気がした確か。&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;たぶんまだ追加する…&lt;/p&gt;</content>
   </entry>
   
@@ -171,7 +179,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id64'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id1'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -211,7 +219,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id65'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id2'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -347,7 +355,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id66'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id3'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 

@@ -64,7 +64,7 @@ Q: `canplaythrough`って信じられるの？
 
 Q: フォーマットって何用意すればいいの？
 
-webmとh264。Firefox、Opera、Chromeがwebm、IE9、IE10、iOS、Chromeがh264。(2013年2月時点）
+video: webmとh264。audio: mp3とogg。Firefox、Opera、Chromeがwebm／ogg、IE9、IE10、iOS、Chromeがh264／mp3。(2013年2月時点）
 
 ---
 
@@ -155,6 +155,18 @@ videoだのaudioだのと言っても、Safariにとってそれは、QuickTime�
 Q: canvasにvideoを取り込みたい
 
 context.drawImageすればいい
+
+---
+
+Q: `muted`属性がきかない
+
+たぶんブラウザの実装が不十分で効かないのがある。playさせてから`element.muted = true`なりなんなりしてやると効いたりする？
+
+---
+
+Q: Safariで`display:none`にしたvideoの読み込みが開始されない
+
+`display:block`にしたら読み込んだ気がした確か。
 
 ---
 
