@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-06T22:25:42+09:00</updated>
+  <updated>2013-02-06T22:29:07+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -153,7 +153,7 @@
 &lt;hr /&gt;
 &lt;p&gt;Q: モバイルで…&lt;/p&gt;
 
-&lt;p&gt;ただの動画再生ならYouTubeを使いましょう。もしくは無限に工数がかかることを覚悟して望まないとダメかも。iOSはそもそもvideoを再生すると全画面表示なってしまうので、それ以外の用途では無理。audioは最初に紹介したSoundJSがそこそこなんとかしてくれるっぽいけど、これもまた大変そうな感じ。Androidは…&lt;/p&gt;
+&lt;p&gt;ただの動画再生ならYouTubeを使いましょう。もしくはかなり工数がかかることを覚悟して望まないとダメかも。iOSはそもそもvideoを再生すると全画面表示なってしまうので、それ以外の用途では無理。audioは最初に紹介したSoundJSがそこそこなんとかしてくれるっぽいけど、これもまた大変そうな感じ。Androidは…&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: videoを使うのは大変なんでしょうか&lt;/p&gt;
 
@@ -197,7 +197,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id127'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id130'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -237,7 +237,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id128'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id131'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -373,7 +373,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id129'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id132'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 
