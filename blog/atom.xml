@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-08T06:06:31+09:00</updated>
+  <updated>2013-02-08T06:07:42+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -174,13 +174,11 @@
 &lt;p&gt;Q: モバイルでvideoやaudioを使いたい&lt;/p&gt;
 
 &lt;p&gt;ただの動画再生ならYouTubeを使いましょう。もしくはかなり工数がかかることを覚悟して望まないとダメかも。iOSはそもそもvideoを再生すると全画面表示なってしまうので、それ以外の用途では無理。audioは最初に紹介したSoundJSがそこそこなんとかしてくれるっぽいけど、これもまた大変そうな感じ。よく聞かれるのが、スマホ向けにも動画を見せたいとか言うやつなんだけれども、その問いに対する自分の答えはだいたい&lt;/p&gt;
-
-&lt;p&gt;YouTube使え&lt;/p&gt;
-
-&lt;p&gt;h264とwebm用意して見れないやつはあきらめたほうがいい&lt;/p&gt;
-
-&lt;p&gt;無限に工数と予算が増えることを許可してくれるならやりますけど動作は保証できないんでほとんどコストに見合わないと思う&lt;/p&gt;
-&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li&gt;YouTube使え&lt;/li&gt;
+&lt;li&gt;h264とwebm用意して見れないやつはあきらめたほうがいい&lt;/li&gt;
+&lt;li&gt;無限に工数と予算が増えることを許可してくれるならやりますけど動作は保証できないんでほとんどコストに見合わないと思う&lt;/li&gt;
+&lt;/ol&gt;&lt;hr /&gt;
 &lt;p&gt;Q: videoを使うのは大変なんでしょうか&lt;/p&gt;
 
 &lt;p&gt;ただの再生ならそこまでではないけども、APIやイベントを使って色々したいのであれば、かなり大変という印象。まだまだこれからっていう感じ。Chromeだけならとても楽しく利用できる…。canvasと組み合わせたりするとかなり夢広がる。2012年2月時点での自分の感想は、Chrome以外全部微妙で不具合がある。&lt;/p&gt;
@@ -225,7 +223,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id307'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id310'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -265,7 +263,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id308'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id311'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -401,7 +399,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id309'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id312'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 
