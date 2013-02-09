@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-08T06:07:42+09:00</updated>
+  <updated>2013-02-10T03:25:05+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -69,7 +69,11 @@
 &lt;hr /&gt;
 &lt;p&gt;Q: &lt;code&gt;canplaythrough&lt;/code&gt;が発火しない&lt;/p&gt;
 
-&lt;p&gt;FirefoxとOperaは&lt;code&gt;element.load()&lt;/code&gt;しても読み込まない風。&lt;code&gt;element.play()&lt;/code&gt; &lt;code&gt;element.muted = true&lt;/code&gt;して、50ms後ぐらいに&lt;code&gt;element.pause()&lt;/code&gt; &lt;code&gt;element.muted = false&lt;/code&gt;すれば読み込みを開始する。ひどい。あと、&lt;code&gt;element.readyState&lt;/code&gt;が4以上になるのも監視したほうがいい。（よくわかってない）&lt;/p&gt;
+&lt;p&gt;FirefoxとOperaは&lt;code&gt;element.load()&lt;/code&gt;しても読み込まない風。一度ビデオを再生させなければならない。&lt;code&gt;element.play()&lt;/code&gt; &lt;code&gt;element.muted = true&lt;/code&gt;して、50ms後ぐらいに&lt;code&gt;element.pause()&lt;/code&gt; &lt;code&gt;element.muted = false&lt;/code&gt;すれば読み込みを開始する。ひどい。あと、&lt;code&gt;element.readyState&lt;/code&gt;が4以上になるのも監視したほうがいい。（よくわかってない。canplaythroughはreadyStateのラッパ？）&lt;/p&gt;
+
+&lt;p&gt;そして、上記をやり、再生し、すぐストップさせるっていうのをやるわけだけど、ここでまたOperaが&lt;code&gt;pause()&lt;/code&gt;、&lt;code&gt;muted=true&lt;/code&gt;を失敗し、プリロード中にvideoの音が垂れ流されるという現象が発生する。これはスペックにも依存するのだけれども、videoのプリロードは1つずつ行ったほうが良さそう。こんなこともあるため、ビデオの初め2秒ぐらいは無音状態にしておいたほうがいい。&lt;/p&gt;
+
+&lt;p&gt;また、このプレイポーズのプリロードキックは、非常に処理負荷の高い動作。そして、FirefoxとOperaでしか必要のないことなので、ブラウザ判別して、この2つのブラウザだけにこれを行ったほうがいい。具体的にはこれを全ブラウザに対してやると、IE9やら10が落ちる。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: &lt;code&gt;element.pause()&lt;/code&gt;とか&lt;code&gt;element.muted = true&lt;/code&gt;とか&lt;code&gt;element.currentTime=0&lt;/code&gt;とか失敗する。&lt;/p&gt;
 
@@ -167,6 +171,10 @@
 
 &lt;p&gt;videoがHTML内にある時点で、ブラウザは何かしら処理を始めちゃうって思ったほうがいい。&lt;code&gt;document.createElement(&amp;#39;video&amp;#39;)&lt;/code&gt;からオンザフライで色々してください&lt;/p&gt;
 &lt;hr /&gt;
+&lt;p&gt;Q: ビデオの再生がダウンロードに追っつかなくなった時に何かしたい&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;stalled&lt;/code&gt;というイベントがあるようだけど試してない。対応していないブラウザに対しては&lt;code&gt;timeupdate&lt;/code&gt;毎に、3000ms以内にまた発生しないか等をチェックしたりする必要があるかもしれない。&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;Q: ユーザーにvideoやmp3をダウンロードさせたくないんですけど&lt;/p&gt;
 
 &lt;p&gt;諦めろ（よく聞かれる）&lt;br /&gt;もしくはすっごい予算かけてなにかすごいサーバーの仕組みを作る&lt;/p&gt;
@@ -223,7 +231,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id310'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id49'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -263,7 +271,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id311'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id50'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -399,7 +407,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id312'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id51'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 

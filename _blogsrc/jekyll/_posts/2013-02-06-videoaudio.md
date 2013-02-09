@@ -61,7 +61,11 @@ Q: 時間をすごい先にしたら全部プリロードできちゃったり�
 
 Q: `canplaythrough`が発火しない
 
-FirefoxとOperaは`element.load()`しても読み込まない風。`element.play()` `element.muted = true`して、50ms後ぐらいに`element.pause()` `element.muted = false`すれば読み込みを開始する。ひどい。あと、`element.readyState`が4以上になるのも監視したほうがいい。（よくわかってない）
+FirefoxとOperaは`element.load()`しても読み込まない風。一度ビデオを再生させなければならない。`element.play()` `element.muted = true`して、50ms後ぐらいに`element.pause()` `element.muted = false`すれば読み込みを開始する。ひどい。あと、`element.readyState`が4以上になるのも監視したほうがいい。（よくわかってない。canplaythroughはreadyStateのラッパ？）
+
+そして、上記をやり、再生し、すぐストップさせるっていうのをやるわけだけど、ここでまたOperaが`pause()`、`muted=true`を失敗し、プリロード中にvideoの音が垂れ流されるという現象が発生する。これはスペックにも依存するのだけれども、videoのプリロードは1つずつ行ったほうが良さそう。こんなこともあるため、ビデオの初め2秒ぐらいは無音状態にしておいたほうがいい。
+
+また、このプレイポーズのプリロードキックは、非常に処理負荷の高い動作。そして、FirefoxとOperaでしか必要のないことなので、ブラウザ判別して、この2つのブラウザだけにこれを行ったほうがいい。具体的にはこれを全ブラウザに対してやると、IE9やら10が落ちる。
 
 ---
 
@@ -206,6 +210,12 @@ Q: ちょっと前のブラウザで何かおかしい
 Q: iOSでvideoを`visibility:hidden`にしてるけどなんか表示されちゃう
 
 videoがHTML内にある時点で、ブラウザは何かしら処理を始めちゃうって思ったほうがいい。`document.createElement('video')`からオンザフライで色々してください
+
+---
+
+Q: ビデオの再生がダウンロードに追っつかなくなった時に何かしたい
+
+`stalled`というイベントがあるようだけど試してない。対応していないブラウザに対しては`timeupdate`毎に、3000ms以内にまた発生しないか等をチェックしたりする必要があるかもしれない。
 
 ---
 

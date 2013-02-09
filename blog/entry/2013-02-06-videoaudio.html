@@ -131,7 +131,11 @@ _gaq.push(['_trackPageview']);
 <hr />
 <p>Q: <code>canplaythrough</code>が発火しない</p>
 
-<p>FirefoxとOperaは<code>element.load()</code>しても読み込まない風。<code>element.play()</code> <code>element.muted = true</code>して、50ms後ぐらいに<code>element.pause()</code> <code>element.muted = false</code>すれば読み込みを開始する。ひどい。あと、<code>element.readyState</code>が4以上になるのも監視したほうがいい。（よくわかってない）</p>
+<p>FirefoxとOperaは<code>element.load()</code>しても読み込まない風。一度ビデオを再生させなければならない。<code>element.play()</code> <code>element.muted = true</code>して、50ms後ぐらいに<code>element.pause()</code> <code>element.muted = false</code>すれば読み込みを開始する。ひどい。あと、<code>element.readyState</code>が4以上になるのも監視したほうがいい。（よくわかってない。canplaythroughはreadyStateのラッパ？）</p>
+
+<p>そして、上記をやり、再生し、すぐストップさせるっていうのをやるわけだけど、ここでまたOperaが<code>pause()</code>、<code>muted=true</code>を失敗し、プリロード中にvideoの音が垂れ流されるという現象が発生する。これはスペックにも依存するのだけれども、videoのプリロードは1つずつ行ったほうが良さそう。こんなこともあるため、ビデオの初め2秒ぐらいは無音状態にしておいたほうがいい。</p>
+
+<p>また、このプレイポーズのプリロードキックは、非常に処理負荷の高い動作。そして、FirefoxとOperaでしか必要のないことなので、ブラウザ判別して、この2つのブラウザだけにこれを行ったほうがいい。具体的にはこれを全ブラウザに対してやると、IE9やら10が落ちる。</p>
 <hr />
 <p>Q: <code>element.pause()</code>とか<code>element.muted = true</code>とか<code>element.currentTime=0</code>とか失敗する。</p>
 
@@ -228,6 +232,10 @@ _gaq.push(['_trackPageview']);
 <p>Q: iOSでvideoを<code>visibility:hidden</code>にしてるけどなんか表示されちゃう</p>
 
 <p>videoがHTML内にある時点で、ブラウザは何かしら処理を始めちゃうって思ったほうがいい。<code>document.createElement(&#39;video&#39;)</code>からオンザフライで色々してください</p>
+<hr />
+<p>Q: ビデオの再生がダウンロードに追っつかなくなった時に何かしたい</p>
+
+<p><code>stalled</code>というイベントがあるようだけど試してない。対応していないブラウザに対しては<code>timeupdate</code>毎に、3000ms以内にまた発生しないか等をチェックしたりする必要があるかもしれない。</p>
 <hr />
 <p>Q: ユーザーにvideoやmp3をダウンロードさせたくないんですけど</p>
 
