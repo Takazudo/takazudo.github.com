@@ -181,9 +181,11 @@ _gaq.push(['_trackPageview']);
 
 <p>Safari5のvideoの実装は不十分すぎでめちゃくちゃ微妙。<code>element.preload = &#39;auto&#39;</code>で読み込みを開始させる。</p>
 <hr />
-<p>Q: Safari5でブラウザがフリーズする</p>
+<p>Q: Safari5／6でブラウザがフリーズする</p>
 
-<p>複数のvideo要素を扱う時、Safari5でvideoのロード等の処理負荷が一定以上になると、ブラウザがフリーズする。まずは、video要素自体は<code>preload=&quot;none&quot;</code>で作っておき、一定の間隔を置いて一つずつ<code>preload=&quot;auto&quot;</code>にしていくとかして、慎重に扱わないとフリーズする。ひどい。作るものによってはSafari5以下は非サポートとしたほうが良さそう。ちなみに、HTMLにvideo要素を直接書いた方が安定した気がしたかも。Safari6は段違いに優秀。</p>
+<p>Mac OSX 10.8（Moutain Lion）未満では、複数のvideo要素を扱う時、Safari5でvideoのロード等の処理負荷が一定以上になると、ブラウザがフリーズする。まずは、video要素自体は<code>preload=&quot;none&quot;</code>で作っておき、一定の間隔を置いて一つずつ<code>preload=&quot;auto&quot;</code>にしていくとかして、慎重に扱わないとフリーズする。作るものによっては、Mac OS X 10.8未満のSafari（5/6）は非サポートとしたほうが良さそう。ちなみに、HTMLにvideo要素を直接書いた方が安定した気がしたかも。Mac OSX 10.8のSafari6ではこの現象は起こったことがない。</p>
+
+<p>そして、この、10.7 (Lion)、10.6 (Snow Leopard) のSafari5／6では、マシンによってこの現象が起こるものと起こらないものがあるみたい。要するにスペックやらCPUやらグラボに起因する問題なのかなと思われた。</p>
 <hr />
 <p>Q: IE10が落ちる</p>
 

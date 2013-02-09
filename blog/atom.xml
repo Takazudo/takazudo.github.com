@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-10T03:25:05+09:00</updated>
+  <updated>2013-02-10T03:30:00+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -119,9 +119,11 @@
 
 &lt;p&gt;Safari5のvideoの実装は不十分すぎでめちゃくちゃ微妙。&lt;code&gt;element.preload = &amp;#39;auto&amp;#39;&lt;/code&gt;で読み込みを開始させる。&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;Q: Safari5でブラウザがフリーズする&lt;/p&gt;
+&lt;p&gt;Q: Safari5／6でブラウザがフリーズする&lt;/p&gt;
 
-&lt;p&gt;複数のvideo要素を扱う時、Safari5でvideoのロード等の処理負荷が一定以上になると、ブラウザがフリーズする。まずは、video要素自体は&lt;code&gt;preload=&amp;quot;none&amp;quot;&lt;/code&gt;で作っておき、一定の間隔を置いて一つずつ&lt;code&gt;preload=&amp;quot;auto&amp;quot;&lt;/code&gt;にしていくとかして、慎重に扱わないとフリーズする。ひどい。作るものによってはSafari5以下は非サポートとしたほうが良さそう。ちなみに、HTMLにvideo要素を直接書いた方が安定した気がしたかも。Safari6は段違いに優秀。&lt;/p&gt;
+&lt;p&gt;Mac OSX 10.8（Moutain Lion）未満では、複数のvideo要素を扱う時、Safari5でvideoのロード等の処理負荷が一定以上になると、ブラウザがフリーズする。まずは、video要素自体は&lt;code&gt;preload=&amp;quot;none&amp;quot;&lt;/code&gt;で作っておき、一定の間隔を置いて一つずつ&lt;code&gt;preload=&amp;quot;auto&amp;quot;&lt;/code&gt;にしていくとかして、慎重に扱わないとフリーズする。作るものによっては、Mac OS X 10.8未満のSafari（5/6）は非サポートとしたほうが良さそう。ちなみに、HTMLにvideo要素を直接書いた方が安定した気がしたかも。Mac OSX 10.8のSafari6ではこの現象は起こったことがない。&lt;/p&gt;
+
+&lt;p&gt;そして、この、10.7 (Lion)、10.6 (Snow Leopard) のSafari5／6では、マシンによってこの現象が起こるものと起こらないものがあるみたい。要するにスペックやらCPUやらグラボに起因する問題なのかなと思われた。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: IE10が落ちる&lt;/p&gt;
 
@@ -231,7 +233,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id49'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id67'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -271,7 +273,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id50'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id68'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -407,7 +409,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id51'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id69'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 
