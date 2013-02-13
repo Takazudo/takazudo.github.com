@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-13T22:42:36+09:00</updated>
+  <updated>2013-02-14T03:36:08+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -185,6 +185,10 @@
 
 &lt;p&gt;&lt;code&gt;stalled&lt;/code&gt;というイベントがあるようだけど試してない。対応していないブラウザに対しては&lt;code&gt;timeupdate&lt;/code&gt;毎に、3000ms以内にまた発生しないか等をチェックしたりする必要があるかもしれない。&lt;/p&gt;
 &lt;hr /&gt;
+&lt;p&gt;Q: サーバーが落ちます／負荷が高すぎて耐えられない&lt;/p&gt;
+
+&lt;p&gt;普通のサーバーでアクセス数が多いなら死にます。フロントだけでなく、バックエンドも色々と検討する必要があるでしょう。&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;Q: ユーザーにvideoやmp3をダウンロードさせたくないんですけど&lt;/p&gt;
 
 &lt;p&gt;諦めろ（よく聞かれる）&lt;br /&gt;もしくはすっごい予算かけてなにかすごいサーバーの仕組みを作る&lt;/p&gt;
@@ -241,7 +245,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id34'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id58'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -281,7 +285,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id35'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id59'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -417,7 +421,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id36'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id60'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 
