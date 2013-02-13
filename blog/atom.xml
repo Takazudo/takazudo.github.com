@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-13T20:49:39+09:00</updated>
+  <updated>2013-02-13T22:42:36+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -103,7 +103,7 @@
 
 &lt;p&gt;自前でキュー作って順番にロードせよ。&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;Q: &lt;code&gt;elememtn.play()&lt;/code&gt;しても0.5秒ぐらい再生が始まらない (IE10)&lt;/p&gt;
+&lt;p&gt;Q: &lt;code&gt;element.play()&lt;/code&gt;しても0.5秒ぐらい再生が始まらない (IE10)&lt;/p&gt;
 
 &lt;p&gt;マシンスペックによる。低スペックなマシンだと起こる。回避無理そう。&lt;/p&gt;
 &lt;hr /&gt;
@@ -165,9 +165,13 @@
 
 &lt;p&gt;videoを&lt;code&gt;opacity:0&lt;/code&gt;で隠しておくとOperaでやたら重くなる。&lt;code&gt;display:none&lt;/code&gt;の方がいい。&lt;/p&gt;
 &lt;hr /&gt;
+&lt;p&gt;Q: Safariでなんかしらんけど真っ暗&lt;/p&gt;
+
+&lt;p&gt;displayを&lt;code&gt;block&lt;/code&gt;にしたり&lt;code&gt;none&lt;/code&gt;にしたりしてるとなった。だから隠すには&lt;code&gt;opacity:0&lt;/code&gt;のほうがいいのかも。えーっとOperaは諦めた。&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;Q: windows XPでやたら変&lt;/p&gt;
 
-&lt;p&gt;同じバージョンのブラウザであっても、windows XPでは音や映像が飛びまくったり止まったりなどして、何か色々おかしい。Vista以上だと大丈夫。&lt;/p&gt;
+&lt;p&gt;同じバージョンのブラウザであっても、windows XPでは音や映像が飛びまくったり止まったりなどして、何か色々おかしい。Vista以上だと大丈夫。要するにXPだとかなり無理。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: ちょっと前のブラウザで何かおかしい&lt;/p&gt;
 
@@ -195,11 +199,11 @@
 &lt;/ol&gt;&lt;hr /&gt;
 &lt;p&gt;Q: videoを使うのは大変なんでしょうか&lt;/p&gt;
 
-&lt;p&gt;ただの再生ならそこまでではないけども、APIやイベントを使って色々したいのであれば、かなり大変という印象。まだまだこれからっていう感じ。Chromeだけならとても楽しく利用できる…。canvasと組み合わせたりするとかなり夢広がる。2012年2月時点での自分の感想は、Chrome以外全部微妙で不具合がある。特に多数のvideoを使うとどれでもカナリだめ。&lt;/p&gt;
+&lt;p&gt;ただの再生ならそこまでではないけども、APIやイベントを使って色々したいのであれば、かなり大変という印象。まだまだこれからっていう感じ。Chromeだけならとても楽しく利用できる…。canvasと組み合わせたりするとかなり夢広がる。2012年2月時点での自分の感想は、Chrome以外全部微妙で不具合がある。特に多数のvideoを使うとどれでもかなりダメ。&lt;/p&gt;
 
 &lt;p&gt;そんでもって、video非対応なブラウザ、videoが微妙なブラウザに対しても色々メッセージ出したりなんのしないといけないんでそのへんも地味に大変。&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;気づいたら追加しまっす&lt;/p&gt;</content>
+&lt;p&gt;他、気づいたら追加しまっす&lt;/p&gt;</content>
   </entry>
   
   <entry>
@@ -237,7 +241,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id1'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id34'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -277,7 +281,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id2'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id35'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -413,7 +417,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id3'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id36'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 
