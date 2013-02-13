@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-10T03:30:00+09:00</updated>
+  <updated>2013-02-13T20:49:39+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -137,6 +137,10 @@
 
 &lt;p&gt;たぶんブラウザが悪いけどなぜかそうなる。&lt;/p&gt;
 &lt;hr /&gt;
+&lt;p&gt;Q: IE10／9で「この操作を完了するための十分な記憶域がありません」&lt;/p&gt;
+
+&lt;p&gt;IE10ではvideoを18個作って、ひと通り再生してリロードしたら、このエラーが出て、関係ないところのJSがエラー出しまくりました。これを14個にしたらこのエラーが出なくなった。これは、動画のクオリティには関係ない話らしい。高画質でも低画質でも18個だとエラー出たし、14個だとエラー出なかった。videoはいっぱい作っちゃダメっぽいですな。ちなみにこれもマシンによって出たり出なかったりするんで。&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;Q: 連続してSEみたいな短いaudioを鳴らせない&lt;/p&gt;
 
 &lt;p&gt;5個ぐらい作って代わる代わるplayさせるといいんじゃない… 僕はそうしました…&lt;/p&gt;
@@ -191,7 +195,7 @@
 &lt;/ol&gt;&lt;hr /&gt;
 &lt;p&gt;Q: videoを使うのは大変なんでしょうか&lt;/p&gt;
 
-&lt;p&gt;ただの再生ならそこまでではないけども、APIやイベントを使って色々したいのであれば、かなり大変という印象。まだまだこれからっていう感じ。Chromeだけならとても楽しく利用できる…。canvasと組み合わせたりするとかなり夢広がる。2012年2月時点での自分の感想は、Chrome以外全部微妙で不具合がある。&lt;/p&gt;
+&lt;p&gt;ただの再生ならそこまでではないけども、APIやイベントを使って色々したいのであれば、かなり大変という印象。まだまだこれからっていう感じ。Chromeだけならとても楽しく利用できる…。canvasと組み合わせたりするとかなり夢広がる。2012年2月時点での自分の感想は、Chrome以外全部微妙で不具合がある。特に多数のvideoを使うとどれでもカナリだめ。&lt;/p&gt;
 
 &lt;p&gt;そんでもって、video非対応なブラウザ、videoが微妙なブラウザに対しても色々メッセージ出したりなんのしないといけないんでそのへんも地味に大変。&lt;/p&gt;
 &lt;hr /&gt;
@@ -233,7 +237,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id67'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id1'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -273,7 +277,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id68'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id2'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -409,7 +413,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id69'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id3'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 
