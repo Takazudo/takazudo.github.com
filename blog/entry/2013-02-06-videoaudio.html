@@ -133,13 +133,13 @@ _gaq.push(['_trackPageview']);
 
 <p>FirefoxとOperaは<code>element.load()</code>しても読み込まない風。一度ビデオを再生させなければならない。<code>element.play()</code> <code>element.muted = true</code>して、50ms後ぐらいに<code>element.pause()</code> <code>element.muted = false</code>すれば読み込みを開始する。ひどい。あと、<code>element.readyState</code>が4以上になるのも監視したほうがいい。（よくわかってない。canplaythroughはreadyStateのラッパ？）</p>
 
-<p>そして、上記をやり、再生し、すぐストップさせるっていうのをやるわけだけど、ここでまたOperaが<code>pause()</code>、<code>muted=true</code>を失敗し、プリロード中にvideoの音が垂れ流されるという現象が発生する。これはスペックにも依存するのだけれども、videoのプリロードは1つずつ行ったほうが良さそう。こんなこともあるため、ビデオの初め2秒ぐらいは無音状態にしておいたほうがいい。</p>
+<p>そして、上記をやり、再生し、すぐストップさせるっていうのをやるわけだけど、ここでまたOperaが<code>pause()</code>、<code>muted=true</code>を失敗し、プリロード中にvideoの音が垂れ流されるという現象が発生する。これはスペックにも依存するのだけれども、videoのプリロードは1つずつ行ったほうが良さそう。こんなこともあるため、ビデオの初め2秒ぐらいは無音状態にしておいたほうがいい。このへんがうまくいくか行かないかは、ビデオのクオリティにもよりそう。</p>
 
-<p>また、このプレイポーズのプリロードキックは、非常に処理負荷の高い動作。そして、FirefoxとOperaでしか必要のないことなので、ブラウザ判別して、この2つのブラウザだけにこれを行ったほうがいい。具体的にはこれを全ブラウザに対してやると、IE9やら10が落ちる。</p>
+<p>また、このプレイポーズのプリロードキックは、非常に処理負荷の高い動作。そして、FirefoxとOperaでしか必要のないことなので、ブラウザ判別して、この2つのブラウザだけにこれを行ったほうがいい。具体的にはこれを全ブラウザに対してやると、IE9やら10が落ちる可能性がある。</p>
 <hr />
 <p>Q: <code>element.pause()</code>とか<code>element.muted = true</code>とか<code>element.currentTime=0</code>とか失敗する。</p>
 
-<p><code>try</code>/<code>catch</code>せよ。これらは失敗する可能性がある。IE9では<code>element.currentTime</code>をいじれるのは再生した後。</p>
+<p><code>try</code>/<code>catch</code>せよ。これらは失敗する可能性がある。IE9では<code>element.currentTime</code>をいじれるのは再生した後。そして、可能な限り必要のない時にvideoのメソッドを呼ばないほうがいい。たぶん、ビデオ関連の操作は、ブラウザにとって特殊な操作であると考えられるのかなと感じた。外部のAPIを呼んだり、ハードウェアに近い部分を操作するという意味で。</p>
 <hr />
 <p>Q: <code>canplaythrough</code>って信じられるの？</p>
 
@@ -159,7 +159,7 @@ _gaq.push(['_trackPageview']);
 <hr />
 <p>Q: video要素をそのままHTMLに書いた方がいいの？オンザフライで作った方がいいの？</p>
 
-<p>状況によるけど、沢山のvideo要素を扱う場合は、必要な物だけオンザフライで作ったほうが良かった。videoに<code>preload=&quot;none&quot;</code>を指定していても、IE9, 10ではそれを全部、はじめの部分だけ読みに行き、メモリ不足がどうとか言い出してエラー出しまくって最悪フリーズした。オンザフライで作る場合は、<code>Modernizr.video.webm</code>、<code>Modernizr.video.h264</code>で判別して対応するファイルへのパスをvideoのsrcに指定する。</p>
+<p>状況によるけど、沢山のvideo要素を扱う場合は、必要な物だけオンザフライで作ったほうが良かった。videoに<code>preload=&quot;none&quot;</code>を指定していても、IE9, 10ではそれを全部、はじめの部分だけ読みに行き、メモリ不足がどうとか言い出してエラー出しまくって最悪フリーズした。オンザフライで作る場合は、<code>Modernizr.video.webm</code>、<code>Modernizr.video.h264</code>で判別して対応するファイルへのパスをvideoのsrcに指定する。っていうのをやった。</p>
 <hr />
 <p>Q: 読込中にブラウザがフリーズします</p>
 
@@ -171,15 +171,15 @@ _gaq.push(['_trackPageview']);
 <hr />
 <p>Q: videoのプレイ進捗が知りたい</p>
 
-<p><code>element.currentTime</code>に現在の再生位置時間が入ってる。<code>timeupdate</code>イベントがプレイ中に起こり続ける。ただし、<code>timeupdate</code>は1秒間に1〜4回ぐらいしか発火しない。もっと細かく取りたかったらtimeupdate間でタイマー回して取る。</p>
+<p><code>element.currentTime</code>に現在の再生位置時間が入ってる。<code>timeupdate</code>イベントがプレイ中に起こり続ける。ただし、<code>timeupdate</code>は1秒間に1〜4回ぐらいしか発火しない。もっと細かく取りたかったらtimeupdate間でタイマー回して取るのが吉か。</p>
 <hr />
 <p>Q: <code>ended</code>イベントが発火しない(IE10)</p>
 
-<p>低スペックPCで発生する。<code>element.play()</code>時に<code>new Date</code>して、タイマー回して、<code>element.duration</code>分経ったかを合わせてチェックする…</p>
+<p>低スペックPCで発生する。<code>element.play()</code>時に<code>new Date</code>して、タイマー回して、<code>element.duration</code>分経ったかを合わせてチェックするっていうのをやった。</p>
 <hr />
 <p>Q: Safari5で<code>element.load()</code>が効かない</p>
 
-<p>Safari5のvideoの実装は不十分すぎでめちゃくちゃ微妙。<code>element.preload = &#39;auto&#39;</code>で読み込みを開始させる。</p>
+<p>Safari5のvideoの実装は不十分すぎでめちゃくちゃ微妙。<code>element.preload = &#39;auto&#39;</code>で読み込みが開始される。</p>
 <hr />
 <p>Q: Safari5／6でブラウザがフリーズする</p>
 
@@ -189,11 +189,11 @@ _gaq.push(['_trackPageview']);
 <hr />
 <p>Q: IE10が落ちる</p>
 
-<p>IE10はChromeの次ぐらいに優秀なんだけれども、処理性能はマシンスペック依存。でかすぎるvideoはIE10を落としたり不安定にするんで、控えめにvideo使わないとダメ。低スペックPCでも見れるコンテンツを安全に作りたかったら重いコンテンツはNG。</p>
+<p>IE10はChromeの次ぐらいに優秀なんだけれども、処理性能はマシンスペック依存。でかすぎるvideoはIE10を落としたり不安定にするんで、控えめにvideo使わないとダメかもしれない。低スペックPCでも見れるコンテンツを安全に作りたかったら重いコンテンツはNGかと思う。</p>
 <hr />
 <p>Q: 読み込みに失敗するんだけど</p>
 
-<p><code>error</code>イベントをしっかり取ってエラーを出しましょう。あと、同時にいっぱい読むとエラーが起こりやすい。</p>
+<p><code>error</code>イベントをしっかり取ってエラーを出しましょう。あと、同時にいっぱい読むとエラーが起こりやすい。ビデオ読み込みのエラーはどこでもいずこかで発生するものと思ったほうがいい。</p>
 <hr />
 <p>Q: 複数タブで同じページを表示すると片方でvideoを読み込まない</p>
 
@@ -201,7 +201,7 @@ _gaq.push(['_trackPageview']);
 <hr />
 <p>Q: IE10／9で「この操作を完了するための十分な記憶域がありません」</p>
 
-<p>IE10ではvideoを18個作って、ひと通り再生してリロードしたら、このエラーが出て、関係ないところのJSがエラー出しまくりました。これを14個にしたらこのエラーが出なくなった。これは、動画のクオリティには関係ない話らしい。高画質でも低画質でも18個だとエラー出たし、14個だとエラー出なかった。videoはいっぱい作っちゃダメっぽいですな。ちなみにこれもマシンによって出たり出なかったりするんで。</p>
+<p>IE10ではvideoを18個作って、ひと通り再生してリロードしたら、このエラーが出て、関係ないところのJSがエラー出しまくりました。これを14個にしたらこのエラーが出なくなった。これは、動画のクオリティには関係ない話らしい。高画質でも低画質でも18個だとエラー出たし、14個だとエラー出なかった。videoはいっぱい作っちゃダメっぽいですな。ちなみにこれもマシンによって出たり出なかったりするんで…。</p>
 <hr />
 <p>Q: 連続してSEみたいな短いaudioを鳴らせない</p>
 
@@ -251,6 +251,20 @@ _gaq.push(['_trackPageview']);
 
 <p>普通のサーバーでアクセス数が多いなら死にます。フロントだけでなく、バックエンドも色々と検討する必要があるでしょう。</p>
 <hr />
+<p>Q: Chromeでビデオの読み込みに失敗する</p>
+
+<p>stackoverflowによれば、Chromeでは7本以上のビデオを一つのページに読み込むとエラーになるらしい。</p>
+
+<ul>
+<li><a href='http://stackoverflow.com/questions/10658654/chrome-html5-videos-stop-working-if-too-many-tabs-are-open-memory-issue'>Chrome HTML5 Videos stop working if too many tabs are open - Memory issue? - Stack Overflow</a></li>
+</ul>
+
+<p>この現象は、自分の環境では、Windows端末にて確認できた。しかし、全てのWindows端末で起こるわけではないようだ。この現象が起こるChromeを判別するのは、多分ムリだろう。アップデートを待つしか無い。</p>
+<hr />
+<p>Q: IE10を閉じるとIEが強制終了されましたと出る</p>
+
+<p>window onunload時に全てのvideoをremoveしたら直ったかもしれない</p>
+<hr />
 <p>Q: ユーザーにvideoやmp3をダウンロードさせたくないんですけど</p>
 
 <p>諦めろ（よく聞かれる）<br />もしくはすっごい予算かけてなにかすごいサーバーの仕組みを作る</p>
@@ -262,14 +276,20 @@ _gaq.push(['_trackPageview']);
 <li>YouTube使え</li>
 <li>h264とwebm用意して見れないやつはあきらめたほうがいい</li>
 <li>無限に工数と予算が増えることを許可してくれるならやりますけど動作は保証できないんでほとんどコストに見合わないと思う</li>
-</ol><hr />
+</ol>
+<p>PCでは、いくつかのフォーマットを用意すれば、モダンブラウザで動作させることが可能だろう。しかし、iOSやAndroidは、バージョンや端末により、高ビットレート、フレームだと再生できないことがあるらしい（私自身は試してない。聞いた話、ググった内容等から）。Youtubeの中の人によると、Youtubeでは、ひとつの動画に対し、20本近くのトランスコードを行なっているそうだ。端末の解像度やUAなどにより、出す動画を選択しているとのこと。それをおおよそ普通の案件で行うのは無理だろう…。おおよそほとんどの端末で見れるようにするためには、低ビットレートの動画になってしまうのかなと思う（それでも再生されるかは分からない）</p>
+<hr />
 <p>Q: videoを使うのは大変なんでしょうか</p>
 
-<p>ただの再生ならそこまでではないけども、APIやイベントを使って色々したいのであれば、かなり大変という印象。まだまだこれからっていう感じ。Chromeだけならとても楽しく利用できる…。canvasと組み合わせたりするとかなり夢広がる。2012年2月時点での自分の感想は、Chrome以外全部微妙で不具合がある。特に多数のvideoを使うとどれでもかなりダメ。</p>
+<p>ただの再生ならそこまでではないけども、APIやイベントを使って色々したいのであれば、かなり大変という印象。まだまだこれからっていう感じ。Chromeだけならとても楽しく利用できる…。canvasと組み合わせたりするとかなり夢広がる。2012年2月時点での自分の感想は、一番マシなのはChromeで、Chrome以外は全部微妙で不具合がある（それでも動かないChromeもある）。特に多数のvideoを使うとどれでもかなりダメ。</p>
 
 <p>そんでもって、video非対応なブラウザ、videoが微妙なブラウザに対しても色々メッセージ出したりなんのしないといけないんでそのへんも地味に大変。</p>
 <hr />
-<p>他、気づいたら追加しまっす</p>
+<p>そんなvideoに苦労したサイトはこちら。</p>
+
+<ul>
+<li><a href='http://www.itsumokawaii.jp/'>Interactive Film “itsumo kawaii” - KIRINJI</a></li>
+</ul>
 	</div>
 	<div class="mod-entry-share">
 		<a href="http://twitter.com/share"

@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-14T03:36:08+09:00</updated>
+  <updated>2013-02-22T01:17:50+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -71,13 +71,13 @@
 
 &lt;p&gt;FirefoxとOperaは&lt;code&gt;element.load()&lt;/code&gt;しても読み込まない風。一度ビデオを再生させなければならない。&lt;code&gt;element.play()&lt;/code&gt; &lt;code&gt;element.muted = true&lt;/code&gt;して、50ms後ぐらいに&lt;code&gt;element.pause()&lt;/code&gt; &lt;code&gt;element.muted = false&lt;/code&gt;すれば読み込みを開始する。ひどい。あと、&lt;code&gt;element.readyState&lt;/code&gt;が4以上になるのも監視したほうがいい。（よくわかってない。canplaythroughはreadyStateのラッパ？）&lt;/p&gt;
 
-&lt;p&gt;そして、上記をやり、再生し、すぐストップさせるっていうのをやるわけだけど、ここでまたOperaが&lt;code&gt;pause()&lt;/code&gt;、&lt;code&gt;muted=true&lt;/code&gt;を失敗し、プリロード中にvideoの音が垂れ流されるという現象が発生する。これはスペックにも依存するのだけれども、videoのプリロードは1つずつ行ったほうが良さそう。こんなこともあるため、ビデオの初め2秒ぐらいは無音状態にしておいたほうがいい。&lt;/p&gt;
+&lt;p&gt;そして、上記をやり、再生し、すぐストップさせるっていうのをやるわけだけど、ここでまたOperaが&lt;code&gt;pause()&lt;/code&gt;、&lt;code&gt;muted=true&lt;/code&gt;を失敗し、プリロード中にvideoの音が垂れ流されるという現象が発生する。これはスペックにも依存するのだけれども、videoのプリロードは1つずつ行ったほうが良さそう。こんなこともあるため、ビデオの初め2秒ぐらいは無音状態にしておいたほうがいい。このへんがうまくいくか行かないかは、ビデオのクオリティにもよりそう。&lt;/p&gt;
 
-&lt;p&gt;また、このプレイポーズのプリロードキックは、非常に処理負荷の高い動作。そして、FirefoxとOperaでしか必要のないことなので、ブラウザ判別して、この2つのブラウザだけにこれを行ったほうがいい。具体的にはこれを全ブラウザに対してやると、IE9やら10が落ちる。&lt;/p&gt;
+&lt;p&gt;また、このプレイポーズのプリロードキックは、非常に処理負荷の高い動作。そして、FirefoxとOperaでしか必要のないことなので、ブラウザ判別して、この2つのブラウザだけにこれを行ったほうがいい。具体的にはこれを全ブラウザに対してやると、IE9やら10が落ちる可能性がある。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: &lt;code&gt;element.pause()&lt;/code&gt;とか&lt;code&gt;element.muted = true&lt;/code&gt;とか&lt;code&gt;element.currentTime=0&lt;/code&gt;とか失敗する。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;try&lt;/code&gt;/&lt;code&gt;catch&lt;/code&gt;せよ。これらは失敗する可能性がある。IE9では&lt;code&gt;element.currentTime&lt;/code&gt;をいじれるのは再生した後。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;try&lt;/code&gt;/&lt;code&gt;catch&lt;/code&gt;せよ。これらは失敗する可能性がある。IE9では&lt;code&gt;element.currentTime&lt;/code&gt;をいじれるのは再生した後。そして、可能な限り必要のない時にvideoのメソッドを呼ばないほうがいい。たぶん、ビデオ関連の操作は、ブラウザにとって特殊な操作であると考えられるのかなと感じた。外部のAPIを呼んだり、ハードウェアに近い部分を操作するという意味で。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: &lt;code&gt;canplaythrough&lt;/code&gt;って信じられるの？&lt;/p&gt;
 
@@ -97,7 +97,7 @@
 &lt;hr /&gt;
 &lt;p&gt;Q: video要素をそのままHTMLに書いた方がいいの？オンザフライで作った方がいいの？&lt;/p&gt;
 
-&lt;p&gt;状況によるけど、沢山のvideo要素を扱う場合は、必要な物だけオンザフライで作ったほうが良かった。videoに&lt;code&gt;preload=&amp;quot;none&amp;quot;&lt;/code&gt;を指定していても、IE9, 10ではそれを全部、はじめの部分だけ読みに行き、メモリ不足がどうとか言い出してエラー出しまくって最悪フリーズした。オンザフライで作る場合は、&lt;code&gt;Modernizr.video.webm&lt;/code&gt;、&lt;code&gt;Modernizr.video.h264&lt;/code&gt;で判別して対応するファイルへのパスをvideoのsrcに指定する。&lt;/p&gt;
+&lt;p&gt;状況によるけど、沢山のvideo要素を扱う場合は、必要な物だけオンザフライで作ったほうが良かった。videoに&lt;code&gt;preload=&amp;quot;none&amp;quot;&lt;/code&gt;を指定していても、IE9, 10ではそれを全部、はじめの部分だけ読みに行き、メモリ不足がどうとか言い出してエラー出しまくって最悪フリーズした。オンザフライで作る場合は、&lt;code&gt;Modernizr.video.webm&lt;/code&gt;、&lt;code&gt;Modernizr.video.h264&lt;/code&gt;で判別して対応するファイルへのパスをvideoのsrcに指定する。っていうのをやった。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: 読込中にブラウザがフリーズします&lt;/p&gt;
 
@@ -109,15 +109,15 @@
 &lt;hr /&gt;
 &lt;p&gt;Q: videoのプレイ進捗が知りたい&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;element.currentTime&lt;/code&gt;に現在の再生位置時間が入ってる。&lt;code&gt;timeupdate&lt;/code&gt;イベントがプレイ中に起こり続ける。ただし、&lt;code&gt;timeupdate&lt;/code&gt;は1秒間に1〜4回ぐらいしか発火しない。もっと細かく取りたかったらtimeupdate間でタイマー回して取る。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;element.currentTime&lt;/code&gt;に現在の再生位置時間が入ってる。&lt;code&gt;timeupdate&lt;/code&gt;イベントがプレイ中に起こり続ける。ただし、&lt;code&gt;timeupdate&lt;/code&gt;は1秒間に1〜4回ぐらいしか発火しない。もっと細かく取りたかったらtimeupdate間でタイマー回して取るのが吉か。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: &lt;code&gt;ended&lt;/code&gt;イベントが発火しない(IE10)&lt;/p&gt;
 
-&lt;p&gt;低スペックPCで発生する。&lt;code&gt;element.play()&lt;/code&gt;時に&lt;code&gt;new Date&lt;/code&gt;して、タイマー回して、&lt;code&gt;element.duration&lt;/code&gt;分経ったかを合わせてチェックする…&lt;/p&gt;
+&lt;p&gt;低スペックPCで発生する。&lt;code&gt;element.play()&lt;/code&gt;時に&lt;code&gt;new Date&lt;/code&gt;して、タイマー回して、&lt;code&gt;element.duration&lt;/code&gt;分経ったかを合わせてチェックするっていうのをやった。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: Safari5で&lt;code&gt;element.load()&lt;/code&gt;が効かない&lt;/p&gt;
 
-&lt;p&gt;Safari5のvideoの実装は不十分すぎでめちゃくちゃ微妙。&lt;code&gt;element.preload = &amp;#39;auto&amp;#39;&lt;/code&gt;で読み込みを開始させる。&lt;/p&gt;
+&lt;p&gt;Safari5のvideoの実装は不十分すぎでめちゃくちゃ微妙。&lt;code&gt;element.preload = &amp;#39;auto&amp;#39;&lt;/code&gt;で読み込みが開始される。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: Safari5／6でブラウザがフリーズする&lt;/p&gt;
 
@@ -127,11 +127,11 @@
 &lt;hr /&gt;
 &lt;p&gt;Q: IE10が落ちる&lt;/p&gt;
 
-&lt;p&gt;IE10はChromeの次ぐらいに優秀なんだけれども、処理性能はマシンスペック依存。でかすぎるvideoはIE10を落としたり不安定にするんで、控えめにvideo使わないとダメ。低スペックPCでも見れるコンテンツを安全に作りたかったら重いコンテンツはNG。&lt;/p&gt;
+&lt;p&gt;IE10はChromeの次ぐらいに優秀なんだけれども、処理性能はマシンスペック依存。でかすぎるvideoはIE10を落としたり不安定にするんで、控えめにvideo使わないとダメかもしれない。低スペックPCでも見れるコンテンツを安全に作りたかったら重いコンテンツはNGかと思う。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: 読み込みに失敗するんだけど&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;error&lt;/code&gt;イベントをしっかり取ってエラーを出しましょう。あと、同時にいっぱい読むとエラーが起こりやすい。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;error&lt;/code&gt;イベントをしっかり取ってエラーを出しましょう。あと、同時にいっぱい読むとエラーが起こりやすい。ビデオ読み込みのエラーはどこでもいずこかで発生するものと思ったほうがいい。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: 複数タブで同じページを表示すると片方でvideoを読み込まない&lt;/p&gt;
 
@@ -139,7 +139,7 @@
 &lt;hr /&gt;
 &lt;p&gt;Q: IE10／9で「この操作を完了するための十分な記憶域がありません」&lt;/p&gt;
 
-&lt;p&gt;IE10ではvideoを18個作って、ひと通り再生してリロードしたら、このエラーが出て、関係ないところのJSがエラー出しまくりました。これを14個にしたらこのエラーが出なくなった。これは、動画のクオリティには関係ない話らしい。高画質でも低画質でも18個だとエラー出たし、14個だとエラー出なかった。videoはいっぱい作っちゃダメっぽいですな。ちなみにこれもマシンによって出たり出なかったりするんで。&lt;/p&gt;
+&lt;p&gt;IE10ではvideoを18個作って、ひと通り再生してリロードしたら、このエラーが出て、関係ないところのJSがエラー出しまくりました。これを14個にしたらこのエラーが出なくなった。これは、動画のクオリティには関係ない話らしい。高画質でも低画質でも18個だとエラー出たし、14個だとエラー出なかった。videoはいっぱい作っちゃダメっぽいですな。ちなみにこれもマシンによって出たり出なかったりするんで…。&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;Q: 連続してSEみたいな短いaudioを鳴らせない&lt;/p&gt;
 
@@ -189,6 +189,20 @@
 
 &lt;p&gt;普通のサーバーでアクセス数が多いなら死にます。フロントだけでなく、バックエンドも色々と検討する必要があるでしょう。&lt;/p&gt;
 &lt;hr /&gt;
+&lt;p&gt;Q: Chromeでビデオの読み込みに失敗する&lt;/p&gt;
+
+&lt;p&gt;stackoverflowによれば、Chromeでは7本以上のビデオを一つのページに読み込むとエラーになるらしい。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://stackoverflow.com/questions/10658654/chrome-html5-videos-stop-working-if-too-many-tabs-are-open-memory-issue'&gt;Chrome HTML5 Videos stop working if too many tabs are open - Memory issue? - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;この現象は、自分の環境では、Windows端末にて確認できた。しかし、全てのWindows端末で起こるわけではないようだ。この現象が起こるChromeを判別するのは、多分ムリだろう。アップデートを待つしか無い。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Q: IE10を閉じるとIEが強制終了されましたと出る&lt;/p&gt;
+
+&lt;p&gt;window onunload時に全てのvideoをremoveしたら直ったかもしれない&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;Q: ユーザーにvideoやmp3をダウンロードさせたくないんですけど&lt;/p&gt;
 
 &lt;p&gt;諦めろ（よく聞かれる）&lt;br /&gt;もしくはすっごい予算かけてなにかすごいサーバーの仕組みを作る&lt;/p&gt;
@@ -200,14 +214,20 @@
 &lt;li&gt;YouTube使え&lt;/li&gt;
 &lt;li&gt;h264とwebm用意して見れないやつはあきらめたほうがいい&lt;/li&gt;
 &lt;li&gt;無限に工数と予算が増えることを許可してくれるならやりますけど動作は保証できないんでほとんどコストに見合わないと思う&lt;/li&gt;
-&lt;/ol&gt;&lt;hr /&gt;
+&lt;/ol&gt;
+&lt;p&gt;PCでは、いくつかのフォーマットを用意すれば、モダンブラウザで動作させることが可能だろう。しかし、iOSやAndroidは、バージョンや端末により、高ビットレート、フレームだと再生できないことがあるらしい（私自身は試してない。聞いた話、ググった内容等から）。Youtubeの中の人によると、Youtubeでは、ひとつの動画に対し、20本近くのトランスコードを行なっているそうだ。端末の解像度やUAなどにより、出す動画を選択しているとのこと。それをおおよそ普通の案件で行うのは無理だろう…。おおよそほとんどの端末で見れるようにするためには、低ビットレートの動画になってしまうのかなと思う（それでも再生されるかは分からない）&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;Q: videoを使うのは大変なんでしょうか&lt;/p&gt;
 
-&lt;p&gt;ただの再生ならそこまでではないけども、APIやイベントを使って色々したいのであれば、かなり大変という印象。まだまだこれからっていう感じ。Chromeだけならとても楽しく利用できる…。canvasと組み合わせたりするとかなり夢広がる。2012年2月時点での自分の感想は、Chrome以外全部微妙で不具合がある。特に多数のvideoを使うとどれでもかなりダメ。&lt;/p&gt;
+&lt;p&gt;ただの再生ならそこまでではないけども、APIやイベントを使って色々したいのであれば、かなり大変という印象。まだまだこれからっていう感じ。Chromeだけならとても楽しく利用できる…。canvasと組み合わせたりするとかなり夢広がる。2012年2月時点での自分の感想は、一番マシなのはChromeで、Chrome以外は全部微妙で不具合がある（それでも動かないChromeもある）。特に多数のvideoを使うとどれでもかなりダメ。&lt;/p&gt;
 
 &lt;p&gt;そんでもって、video非対応なブラウザ、videoが微妙なブラウザに対しても色々メッセージ出したりなんのしないといけないんでそのへんも地味に大変。&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;他、気づいたら追加しまっす&lt;/p&gt;</content>
+&lt;p&gt;そんなvideoに苦労したサイトはこちら。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://www.itsumokawaii.jp/'&gt;Interactive Film “itsumo kawaii” - KIRINJI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
   </entry>
   
   <entry>
@@ -245,7 +265,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id58'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id133'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -285,7 +305,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id59'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id134'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -421,7 +441,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id60'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id135'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 
