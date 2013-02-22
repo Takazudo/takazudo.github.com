@@ -45,7 +45,7 @@ htdocs
 all.min.css
 all.min.js
 
-/node_modules
+node_modules
 /bundle
 /.bundle
 /Gemfile.lock

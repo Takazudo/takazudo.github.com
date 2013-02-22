@@ -4,29 +4,32 @@
  */
 module.exports = function(grunt){
 
+  var utils = require('./gruntcomponents/misc/commonutils')(grunt);
+  grunt.task.loadTasks('gruntcomponents/tasks');
+  grunt.task.loadNpmTasks('grunt-contrib-watch');
+  grunt.task.loadNpmTasks('grunt-contrib-concat');
+  grunt.task.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.task.loadNpmTasks('grunt-contrib-uglify');
+
   grunt.initConfig({
+    growl: {
+      ok: {
+        title: 'COMPLETE!!',
+        msg: '＼(^o^)／'
+      }
+    },
     watch: {
       coffee: {
         files: [
           'coffee/*.coffee'
         ],
-        tasks: 'coffee uglify concat copy ok'
+        tasks: ['coffee','uglify','concat:js','growl:ok']
       },
       sass: {
         files: [
           'scss/*.scss'
         ],
-        tasks: 'sass cssmin concat copy ok'
-      }
-    },
-    copy: {
-      css: {
-        from: 'css/style.css',
-        to: 'jekyll/css/style.css'
-      },
-      cssmin: {
-        from: 'css/style.min.css',
-        to: 'jekyll/css/style.min.css'
+        tasks: ['sass','cssmin','concat:copy_css','concat:copy_cssmin','growl:ok']
       }
     },
     concat: {
@@ -40,6 +43,14 @@ module.exports = function(grunt){
           'js/setup_coffeecompiled.min.js'
         ],
         dest: 'jekyll/js/all.js'
+      },
+      copy_css: {
+        src: ['css/style.css'],
+        dest: 'jekyll/css/style.css'
+      },
+      copy_cssmin: {
+        src: ['css/style.min.css'],
+        dest: 'jekyll/css/style.min.css'
       }
     },
     uglify: {
@@ -68,7 +79,13 @@ module.exports = function(grunt){
     }
   });
 
-  grunt.loadTasks('gruntTasks');
-  grunt.registerTask('default', 'coffee uglify concat copy sass cssmin ok');
+  grunt.event.on('sass.error', function (msg) {
+    utils.growl('ERROR!!', msg);
+  });
+  grunt.event.on('coffee.error', function (msg) {
+    utils.growl('ERROR!!', msg);
+  });
+
+  grunt.registerTask('default', ['coffee','uglify','concat:js','sass','cssmin','concat:copy_css','concat:copy_cssmin','growl:ok']);
 
 };

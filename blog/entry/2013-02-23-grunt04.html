@@ -1,0 +1,254 @@
+<!doctype html>
+<html class="no-js" lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:og="http://ogp.me/ns#"
+	xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Takazudolog - Grunt v0.4.0 での変更点</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/blog/css/style.min.css">
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<meta property="fb:app_id" content="178201135654794">
+<meta property="og:site_name" content="Takazudolog">
+<meta property="og:title" content="Takazudolog - Grunt v0.4.0 での変更点">
+<meta property="og:image" content="http://takazudo.github.com/blog/img/octocat.png">
+<meta property="og:description" content="[Grunt](http://gruntjs.com/) がめでたく version 0.4.0 になりました。version 0.3.xからの変更点をざっくり。自分で昔書いたタスクを書きなおす上で必要だったことのみですけど。
+
+">
+<meta property="og:url" content="http://takazudo.github.com/blog/entry/2013-02-23-grunt04.html">
+<meta property="og:type" content="article">
+<script src="/blog/js/modernizr.min.js"></script>
+<script>if(!Modernizr.mq()) Modernizr.load('/blog/js/respond.min.js');</script>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-183024-7']);
+_gaq.push(['_trackPageview']);
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</head>
+
+<body><div class="mod-all" id="top"><div class="mod-allinner">
+
+	<header class="mod-header"><hgroup>
+	<h1><a href="/blog/">Takazudolog</a></h1>
+	<h2>Takazudo's blog on GitHub</h2>
+	<div class="mod-header-icons">
+		<a class="apply-nolazy" href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><img src="/blog/img/rss.png" alt="RSS"></a>
+		<a href="https://twitter.com/Takazudo"><img src="http://www.gravatar.com/avatar/a88cc23988f41bba5503dd0bd8ff7750.png?s=48" alt="Takazudo"></a>
+	</div>
+</hgroup></header>
+
+	<nav class="mod-headnavbar"><div class="mod-headnavbar-inner">
+	<ul class="mod-headnavbar-mainnav">
+		<li><a href="/blog/">Top</a></li>
+		<li><a href="/blog/archives.html">Archives</a></li>
+		<li><a href="/blog/about.html">About</a></li>
+	</ul>
+	<form class="mod-headnavbar-search" action="http://google.com/search" method="get">
+		<fieldset role="search">
+			<input type="hidden" name="q" value="site:Takazudo.github.com/blog" />
+			<input class="mod-headnavbar-search-input" type="text" name="q" results="0" placeholder="Search"/>
+		</fieldset>
+	</form>
+</div></nav>
+
+	<div class="mod-body"><div class="mod-body-inner">
+		<div class="mod-main"><div class="mod-main-inner">
+			<div id="lazyjaxdavisroot">
+				<!-- LazyJaxDavis start -->
+					<article class="mod-entry">
+	<header class="mod-entry-header">
+		<h1>Grunt v0.4.0 での変更点</h1>
+		<p><time>23 Feb 2013</time> | <a href="#postcomments">Comments</a></p>
+		
+			<ul>
+				
+					<li>[ JavaScript ]</li>
+				
+					<li>[ grunt ]</li>
+				
+					<li>[ build ]</li>
+				
+			</ul>
+		
+	</header>
+	<div class="mod-entry-body">
+		<p><a href='http://gruntjs.com/'>Grunt</a> がめでたく version 0.4.0 になりました。version 0.3.xからの変更点をざっくり。自分で昔書いたタスクを書きなおす上で必要だったことのみですけど。</p>
+<p><span id="more"></span></p>
+<p>箇条書きで書くとこんなかんじでした。</p>
+<ul>
+<li>ドキュメントがめっちゃ親切になった</li>
+<li>Grunt本体はグローバルにインストールされなくなった</li>
+<li>grunt-cliのみをグローバルにインストールすればOK</li>
+<li>ビルトインのタスクは全てnpm moduleになった</li>
+<li>Grunt本家がビルトインで存在していたタスクをnpm moduleとして用意した</li>
+<li>コンフィグのファイルはgrunt.jsではなく、Gruntfile.js及びGruntfile.coffeeになった</li>
+<li>コンフィグのファイル及びタスクはCoffeeScriptで書いても良くなった</li>
+<li>タスク内でイベントが使えるようになった</li>
+<li>テンプレート機能が改善</li>
+<li>registerHelperが無くなった</li>
+</ul>
+<h2 id='id491'>ドキュメントが整備された件</h2>
+
+<p>今までは頑張ってソースを読んだりなどもしなければ細かくはわかりませんでしたけど、かなり親切にドキュメントが用意されました。順に読んでいけば分かる感じになってます。cool</p>
+
+<ul>
+<li><a href='http://gruntjs.com/'>Grunt: The JavaScript Task Runner</a></li>
+</ul>
+
+<h2 id='grunt'>Grunt本体はグローバルにインストールされなくなった件</h2>
+
+<p>今まで、Grunt本体は、<code>npm install -g grunt</code>で、グローバルにインストールしなければなりませんでした。しかし、これには問題がありました。その大きな理由は、異なるGruntのバージョンがインストールされている環境では、動かない可能性があるということです。私のマシンには v0.3.2 だけど あなたのマシンには v0.3.4 が入っていて、このプロジェクト、こっちの環境ではは動くけどあなたの環境では動かない。あーしかし複数のプロジェクトでGrunt使ってるのでアップデートも難しいなー…。ということがありましたが、これからはこれが無くなります。</p>
+
+<p>Gruntは、<code>grunt-cli</code> というものを用意しました。これは、<code>npm install -g grunt-cli</code>でグローバルにインストールします。これをやらないと、Gruntは使えません。<code>grunt-cli</code>をインストールすると、<code>grunt</code>コマンドが使えるようになります。</p>
+
+<p>ありゃ？それって変わってなくない？と思いきやそうではないのです。<code>grunt-cli</code>自体は、ローカルにインストールされたGruntを実行するということをだけをやる、非常に小さいコマンドです。Grunt本体はどうするかというと、そのプロジェクトのディレクトリに、ローカルにインストールします。</p>
+
+<p>今まで、ローカルにインストールするのは、npm taskだけでした。しかし、v0.4からは、Grunt自身も<code>package.json</code>に<code>devDependencies</code>としてバージョンとともに指定し、ローカルにインストールする必要があります。で、<code>grunt</code>コマンドである、<code>grunt-cli</code>は、そのローカルのGruntを実行するだけのコマンドになので、プロジェクトごとに、異なるバージョンのGruntを使い分けることができるようになった - ってことみたいです。</p>
+
+<h2 id='npm_module'>ビルトインのタスクは全てnpm moduleになった件</h2>
+
+<p>今まで、watchとかconcatとかminとか、最初っから存在していたタスクは、全て無くなりました。その代わりに、これらは、独立したnpm moduleとして存在することとなりました。これらのタスクは、以下のプラグインのページより探すことができます。</p>
+
+<ul>
+<li><a href='http://gruntjs.com/plugins'>Plugins - Grunt: The JavaScript Task Runner</a></li>
+</ul>
+
+<p>contrib-で始まるものは全て、Grunt Teamが用意したタスクのようです。今までビルトインで存在していたタスクは、全て存在しています。今までのGruntプロジェクトをアップデートする場合は、使っていたビルトインのタスクを、<code>loadNpmTasks</code>で読み込む必要があります。コンフィグファイルの書き方は、ほとんど変わっていないので、比較的スムーズに移行できる感じです。</p>
+
+<p>このようにビルトインのタスクが独立したため、Grunt自体が担う機能は、Gruntのベースとなる部分に絞られました。こうしないと、ビルトインのタスクが無限に増えてGrunt自体がどんどんでかくなってしまうため、将来性を考慮した設計と言えそうです。</p>
+
+<p>ついでに、npm taskは、どこの誰が作ったか分からない、動作するか、将来的にもメンテされていくのか不安があるものでした（個人の感想）。Grunt Teamが作った公式のnpm taskが用意されることで、これらのnpm taskの動作は、かなり信頼性のあるものであると思っていいんじゃないでしょうか。</p>
+
+<h2 id='gruntfilejs__gruntfilecoffee'>Gruntfile.js / Gruntfile.coffee</h2>
+
+<p>今までコンフィグのファイルは<code>grunt.js</code>でしたが、これからは<code>Gruntfile.js</code>か<code>Gruntfile.coffee</code>です。<code>RakeFile</code>や<code>MakeFile</code>と合わせたんじゃないでしょうか多分。</p>
+
+<h2 id='coffeescript'>CoffeeScript</h2>
+
+<p><code>Gruntfile.coffee</code>の拡張子から分かるように、CoffeeScriptも利用可能になりました。タスクのファイルも同様です。こういうコンフィグを書く分には、CoffeeScriptはシンプルに書けるというメリットしかなさそうなので、いい感じなんじゃないでしょうか。</p>
+
+<h2 id='id492'>タスク内でイベントが使えるようになった</h2>
+
+<p>今まで、タスクをまたいだ処理は書きづらいものとなっていました。ですがv0.4.0からは、イベントが実装されたので、かなり自由に処理を書くことができます。</p>
+
+<ul>
+<li><a href='http://gruntjs.com/api/grunt.event'>grunt.event - Grunt: The JavaScript Task Runner</a></li>
+</ul>
+
+<h2 id='id493'>テンプレート機能が改善</h2>
+
+<p>今まで、コンフィグ内の他のプロパティを読む場合、<code>&#39;&lt;config:taskName.src&gt;&#39;</code>とかいう書き方でしたが、これは<code>&#39;&lt;%= taskName.src %&gt;&#39;</code>と、Gruntのテンプレート機能を使うようになりました。よりテンプレート機能が汎用的なものとなったようです。</p>
+
+<h2 id='registerhelper'>registerHelperが無くなった</h2>
+
+<p>今まで、タスク間をまたぐ処理は、<code>grunt.registerHelper</code>を経由して行なっていました。ですが、この<code>registerHelper</code>は、Gruntの名前空間に自前のヘルパー関数を登録するような感じです。これを使うと、タスク同士でヘルパー名が競合する可能性がありました。よって、この機能は無くなりました。</p>
+
+<p>複数のタスクで共有される機能を使う場合は、その共通機能自体をタスクとして別立てにするか、普通に<code>require</code>して読み込ませるかのどちらかの方法を取る必要があります。</p>
+
+<p>&#8230;</p>
+
+<p>という感じで、Grunt v0.4.0はイケてるなーと思いました。<br />今まで使ってた人は、「アップデートせなーーー！」と思うでしょうが、そこまで大変じゃないかと思います。自分でタスク書いてた人は諸々変える必要がありますけど。</p>
+
+<p>私自身は、ちょっとしたタスクを自分で書いていたため、これを機に、v0.4.0に合わせて書き直しました。自分でタスク書きたいけどどう書くのか分からんという人は覗いてみると参考になる部分があるかもしれないです。</p>
+
+<ul>
+<li><a href='https://github.com/Takazudo/gruntExamples'>Takazudo/gruntExamples · GitHub</a></li>
+</ul>
+
+<p>自分のタスクを整理していて思いましたが、Gruntがリリースされて日がそんなに経っていない頃と比べると、npm taskの数と品質がずっと上がっており、たぶん、普通のことをしたいのであれば、自分でタスクを書く必要はもうあんまりないかと思います。いやーGruntすごいなー。</p>
+	</div>
+	<div class="mod-entry-share">
+		<a href="http://twitter.com/share"
+			class="twitter-share-button"
+			data-url="http://takazudo.github.com/blog/entry/2013-02-23-grunt04.html"
+			data-via="Takazudo"
+			data-counturl="http://takazudo.github.com/blog/entry/2013-02-23-grunt04.html"
+		>Tweet</a>
+		<div class="g-plusone" data-size="medium"></div>
+		<div class="fb-likewrap"><div class="fb-like" data-send="false" data-width="450" data-show-faces="true" data-colorscheme="dark"></div></div>
+	</div>
+	<section class="mod-entry-comments" id="postcomments">
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+	</section>
+</article>
+
+<ul class="mod-postpager">
+	
+	
+		<li><span>Older post:</span> <a href="/blog/entry/2013-02-06-videoaudio.html">地獄のvideo／audio要素</a></li>
+	
+</ul>
+
+
+				<!-- LazyJaxDavis end -->
+			</div>
+			<div class="mod-main-loadingplacer" id="loadingplacer"></div>
+		</div></div>
+		<aside class="mod-side">
+	<div class="mod-sidenavblocks">
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>Recent Posts</h1>
+				<ul>
+					
+						<li><a href="/blog/entry/2013-02-23-grunt04.html">Grunt v0.4.0 での変更点</a></li>
+					
+						<li><a href="/blog/entry/2013-02-06-videoaudio.html">地獄のvideo／audio要素</a></li>
+					
+						<li><a href="/blog/entry/2012-12-10-oocsssass.html">OOCSSとSass</a></li>
+					
+						<li><a href="/blog/entry/2012-12-03-imgloader.html">jQuery.ImgLoader has XHR2 feature now</a></li>
+					
+						<li><a href="/blog/entry/2012-07-20-grunt-loadnpmtasks.html">grunt loadNpmTasks</a></li>
+					
+						<li><a href="/blog/entry/2012-04-14-grunt-coffee.html">Compiling CoffeeScript with grunt</a></li>
+					
+						<li><a href="/blog/entry/2012-04-11-firstpost.html">This blog is powered by Jekyll</a></li>
+					
+				</ul>
+			</section>
+		</div>
+		<div class="mod-sidenavblocks-group">
+			<section>
+				<h1>GitHub Repos</h1>
+				<ul>
+					<li><a href="https://github.com/Takazudo/jQuery.LazyJaxDavis">jQuery.LazyJaxDavis</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ui.domwindow">jQuery.ui.domwindow</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.ImgLoader">jQuery.ImgLoader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.tinyscroller">jQuery.tinyscroller</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.PresetPreloader">jQuery.PresetPreloader</a></li>
+					<li><a href="https://github.com/Takazudo/jQuery.TmplDeck">jQuery.TmplDeck</a></li>
+					<li><a href="https://github.com/Takazudo/BackboneTwitterExample">BackboneTwitterExample</a></li>
+					<li><a href="https://github.com/Takazudo/gruntExamples">gruntExamples</a></li>
+					<li><a href="https://github.com/Takazudo">@Takazudo</a> on GitHub</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+</aside>
+
+	</div></div>
+	<div class="mod-footback"><a href="#top">∧</a></div>
+<footer class="mod-footer"><div class="mod-footer-inner">
+	<small>Copyright &copy; 2012 - "Takazudo" Takeshi Takatsudo.</small>
+	<span>Powered by <a href="http://jekyllrb.com/">Jekyll</a></span>
+</div></footer>
+
+
+	<div id="fb-root"></div>
+
+</div></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/blog/js/all.js"></script>
+</body>
+</html>

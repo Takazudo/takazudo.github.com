@@ -4,13 +4,108 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-22T01:17:50+09:00</updated>
+  <updated>2013-02-23T05:45:20+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
 		<email>takazudo@gmail.com</email>
   </author>
 
+  
+  <entry>
+		<id>http://takazudo.github.com/blog/entry/2013-02-23-grunt04.html</id>
+    <link type="text/html" rel="alternate" href="http://takazudo.github.com/blog/entry/2013-02-23-grunt04.html"/>
+    <title>Grunt v0.4.0 での変更点</title>
+    <updated>2013-02-23T00:00:00+09:00</updated>
+    <author>
+			<name>"Takazudo" Takeshi Takatsudo</name>
+      <uri>http://takazudo.github.com/blog</uri>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href='http://gruntjs.com/'&gt;Grunt&lt;/a&gt; がめでたく version 0.4.0 になりました。version 0.3.xからの変更点をざっくり。自分で昔書いたタスクを書きなおす上で必要だったことのみですけど。&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;箇条書きで書くとこんなかんじでした。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ドキュメントがめっちゃ親切になった&lt;/li&gt;
+&lt;li&gt;Grunt本体はグローバルにインストールされなくなった&lt;/li&gt;
+&lt;li&gt;grunt-cliのみをグローバルにインストールすればOK&lt;/li&gt;
+&lt;li&gt;ビルトインのタスクは全てnpm moduleになった&lt;/li&gt;
+&lt;li&gt;Grunt本家がビルトインで存在していたタスクをnpm moduleとして用意した&lt;/li&gt;
+&lt;li&gt;コンフィグのファイルはgrunt.jsではなく、Gruntfile.js及びGruntfile.coffeeになった&lt;/li&gt;
+&lt;li&gt;コンフィグのファイル及びタスクはCoffeeScriptで書いても良くなった&lt;/li&gt;
+&lt;li&gt;タスク内でイベントが使えるようになった&lt;/li&gt;
+&lt;li&gt;テンプレート機能が改善&lt;/li&gt;
+&lt;li&gt;registerHelperが無くなった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id='id491'&gt;ドキュメントが整備された件&lt;/h2&gt;
+
+&lt;p&gt;今までは頑張ってソースを読んだりなどもしなければ細かくはわかりませんでしたけど、かなり親切にドキュメントが用意されました。順に読んでいけば分かる感じになってます。cool&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://gruntjs.com/'&gt;Grunt: The JavaScript Task Runner&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='grunt'&gt;Grunt本体はグローバルにインストールされなくなった件&lt;/h2&gt;
+
+&lt;p&gt;今まで、Grunt本体は、&lt;code&gt;npm install -g grunt&lt;/code&gt;で、グローバルにインストールしなければなりませんでした。しかし、これには問題がありました。その大きな理由は、異なるGruntのバージョンがインストールされている環境では、動かない可能性があるということです。私のマシンには v0.3.2 だけど あなたのマシンには v0.3.4 が入っていて、このプロジェクト、こっちの環境ではは動くけどあなたの環境では動かない。あーしかし複数のプロジェクトでGrunt使ってるのでアップデートも難しいなー…。ということがありましたが、これからはこれが無くなります。&lt;/p&gt;
+
+&lt;p&gt;Gruntは、&lt;code&gt;grunt-cli&lt;/code&gt; というものを用意しました。これは、&lt;code&gt;npm install -g grunt-cli&lt;/code&gt;でグローバルにインストールします。これをやらないと、Gruntは使えません。&lt;code&gt;grunt-cli&lt;/code&gt;をインストールすると、&lt;code&gt;grunt&lt;/code&gt;コマンドが使えるようになります。&lt;/p&gt;
+
+&lt;p&gt;ありゃ？それって変わってなくない？と思いきやそうではないのです。&lt;code&gt;grunt-cli&lt;/code&gt;自体は、ローカルにインストールされたGruntを実行するということをだけをやる、非常に小さいコマンドです。Grunt本体はどうするかというと、そのプロジェクトのディレクトリに、ローカルにインストールします。&lt;/p&gt;
+
+&lt;p&gt;今まで、ローカルにインストールするのは、npm taskだけでした。しかし、v0.4からは、Grunt自身も&lt;code&gt;package.json&lt;/code&gt;に&lt;code&gt;devDependencies&lt;/code&gt;としてバージョンとともに指定し、ローカルにインストールする必要があります。で、&lt;code&gt;grunt&lt;/code&gt;コマンドである、&lt;code&gt;grunt-cli&lt;/code&gt;は、そのローカルのGruntを実行するだけのコマンドになので、プロジェクトごとに、異なるバージョンのGruntを使い分けることができるようになった - ってことみたいです。&lt;/p&gt;
+
+&lt;h2 id='npm_module'&gt;ビルトインのタスクは全てnpm moduleになった件&lt;/h2&gt;
+
+&lt;p&gt;今まで、watchとかconcatとかminとか、最初っから存在していたタスクは、全て無くなりました。その代わりに、これらは、独立したnpm moduleとして存在することとなりました。これらのタスクは、以下のプラグインのページより探すことができます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://gruntjs.com/plugins'&gt;Plugins - Grunt: The JavaScript Task Runner&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;contrib-で始まるものは全て、Grunt Teamが用意したタスクのようです。今までビルトインで存在していたタスクは、全て存在しています。今までのGruntプロジェクトをアップデートする場合は、使っていたビルトインのタスクを、&lt;code&gt;loadNpmTasks&lt;/code&gt;で読み込む必要があります。コンフィグファイルの書き方は、ほとんど変わっていないので、比較的スムーズに移行できる感じです。&lt;/p&gt;
+
+&lt;p&gt;このようにビルトインのタスクが独立したため、Grunt自体が担う機能は、Gruntのベースとなる部分に絞られました。こうしないと、ビルトインのタスクが無限に増えてGrunt自体がどんどんでかくなってしまうため、将来性を考慮した設計と言えそうです。&lt;/p&gt;
+
+&lt;p&gt;ついでに、npm taskは、どこの誰が作ったか分からない、動作するか、将来的にもメンテされていくのか不安があるものでした（個人の感想）。Grunt Teamが作った公式のnpm taskが用意されることで、これらのnpm taskの動作は、かなり信頼性のあるものであると思っていいんじゃないでしょうか。&lt;/p&gt;
+
+&lt;h2 id='gruntfilejs__gruntfilecoffee'&gt;Gruntfile.js / Gruntfile.coffee&lt;/h2&gt;
+
+&lt;p&gt;今までコンフィグのファイルは&lt;code&gt;grunt.js&lt;/code&gt;でしたが、これからは&lt;code&gt;Gruntfile.js&lt;/code&gt;か&lt;code&gt;Gruntfile.coffee&lt;/code&gt;です。&lt;code&gt;RakeFile&lt;/code&gt;や&lt;code&gt;MakeFile&lt;/code&gt;と合わせたんじゃないでしょうか多分。&lt;/p&gt;
+
+&lt;h2 id='coffeescript'&gt;CoffeeScript&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;Gruntfile.coffee&lt;/code&gt;の拡張子から分かるように、CoffeeScriptも利用可能になりました。タスクのファイルも同様です。こういうコンフィグを書く分には、CoffeeScriptはシンプルに書けるというメリットしかなさそうなので、いい感じなんじゃないでしょうか。&lt;/p&gt;
+
+&lt;h2 id='id492'&gt;タスク内でイベントが使えるようになった&lt;/h2&gt;
+
+&lt;p&gt;今まで、タスクをまたいだ処理は書きづらいものとなっていました。ですがv0.4.0からは、イベントが実装されたので、かなり自由に処理を書くことができます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://gruntjs.com/api/grunt.event'&gt;grunt.event - Grunt: The JavaScript Task Runner&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='id493'&gt;テンプレート機能が改善&lt;/h2&gt;
+
+&lt;p&gt;今まで、コンフィグ内の他のプロパティを読む場合、&lt;code&gt;&amp;#39;&amp;lt;config:taskName.src&amp;gt;&amp;#39;&lt;/code&gt;とかいう書き方でしたが、これは&lt;code&gt;&amp;#39;&amp;lt;%= taskName.src %&amp;gt;&amp;#39;&lt;/code&gt;と、Gruntのテンプレート機能を使うようになりました。よりテンプレート機能が汎用的なものとなったようです。&lt;/p&gt;
+
+&lt;h2 id='registerhelper'&gt;registerHelperが無くなった&lt;/h2&gt;
+
+&lt;p&gt;今まで、タスク間をまたぐ処理は、&lt;code&gt;grunt.registerHelper&lt;/code&gt;を経由して行なっていました。ですが、この&lt;code&gt;registerHelper&lt;/code&gt;は、Gruntの名前空間に自前のヘルパー関数を登録するような感じです。これを使うと、タスク同士でヘルパー名が競合する可能性がありました。よって、この機能は無くなりました。&lt;/p&gt;
+
+&lt;p&gt;複数のタスクで共有される機能を使う場合は、その共通機能自体をタスクとして別立てにするか、普通に&lt;code&gt;require&lt;/code&gt;して読み込ませるかのどちらかの方法を取る必要があります。&lt;/p&gt;
+
+&lt;p&gt;&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;という感じで、Grunt v0.4.0はイケてるなーと思いました。&lt;br /&gt;今まで使ってた人は、「アップデートせなーーー！」と思うでしょうが、そこまで大変じゃないかと思います。自分でタスク書いてた人は諸々変える必要がありますけど。&lt;/p&gt;
+
+&lt;p&gt;私自身は、ちょっとしたタスクを自分で書いていたため、これを機に、v0.4.0に合わせて書き直しました。自分でタスク書きたいけどどう書くのか分からんという人は覗いてみると参考になる部分があるかもしれないです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='https://github.com/Takazudo/gruntExamples'&gt;Takazudo/gruntExamples · GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;自分のタスクを整理していて思いましたが、Gruntがリリースされて日がそんなに経っていない頃と比べると、npm taskの数と品質がずっと上がっており、たぶん、普通のことをしたいのであれば、自分でタスクを書く必要はもうあんまりないかと思います。いやーGruntすごいなー。&lt;/p&gt;</content>
+  </entry>
   
   <entry>
 		<id>http://takazudo.github.com/blog/entry/2013-02-06-videoaudio.html</id>
@@ -265,7 +360,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id133'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id488'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -305,7 +400,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id134'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id489'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -441,7 +536,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id135'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id490'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 
