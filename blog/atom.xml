@@ -4,7 +4,7 @@
 	<title>Takazudolog</title>
 	<link href="http://takazudo.github.com/blog"/>
 	<link type="application/atom+xml" rel="self" href="http://takazudo.github.com/blog/atom.xml"/>
-  <updated>2013-02-23T05:45:20+09:00</updated>
+  <updated>2013-02-27T14:44:02+09:00</updated>
   <id>http://takazudo.github.com/blog</id>
   <author>
 		<name>"Takazudo" Takeshi Takatsudo</name>
@@ -36,7 +36,7 @@
 &lt;li&gt;テンプレート機能が改善&lt;/li&gt;
 &lt;li&gt;registerHelperが無くなった&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id='id491'&gt;ドキュメントが整備された件&lt;/h2&gt;
+&lt;h2 id='id4'&gt;ドキュメントが整備された件&lt;/h2&gt;
 
 &lt;p&gt;今までは頑張ってソースを読んだりなどもしなければ細かくはわかりませんでしたけど、かなり親切にドキュメントが用意されました。順に読んでいけば分かる感じになってます。cool&lt;/p&gt;
 
@@ -76,7 +76,7 @@
 
 &lt;p&gt;&lt;code&gt;Gruntfile.coffee&lt;/code&gt;の拡張子から分かるように、CoffeeScriptも利用可能になりました。タスクのファイルも同様です。こういうコンフィグを書く分には、CoffeeScriptはシンプルに書けるというメリットしかなさそうなので、いい感じなんじゃないでしょうか。&lt;/p&gt;
 
-&lt;h2 id='id492'&gt;タスク内でイベントが使えるようになった&lt;/h2&gt;
+&lt;h2 id='id5'&gt;タスク内でイベントが使えるようになった&lt;/h2&gt;
 
 &lt;p&gt;今まで、タスクをまたいだ処理は書きづらいものとなっていました。ですがv0.4.0からは、イベントが実装されたので、かなり自由に処理を書くことができます。&lt;/p&gt;
 
@@ -84,7 +84,7 @@
 &lt;li&gt;&lt;a href='http://gruntjs.com/api/grunt.event'&gt;grunt.event - Grunt: The JavaScript Task Runner&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id='id493'&gt;テンプレート機能が改善&lt;/h2&gt;
+&lt;h2 id='id6'&gt;テンプレート機能が改善&lt;/h2&gt;
 
 &lt;p&gt;今まで、コンフィグ内の他のプロパティを読む場合、&lt;code&gt;&amp;#39;&amp;lt;config:taskName.src&amp;gt;&amp;#39;&lt;/code&gt;とかいう書き方でしたが、これは&lt;code&gt;&amp;#39;&amp;lt;%= taskName.src %&amp;gt;&amp;#39;&lt;/code&gt;と、Gruntのテンプレート機能を使うようになりました。よりテンプレート機能が汎用的なものとなったようです。&lt;/p&gt;
 
@@ -360,7 +360,7 @@
 
 &lt;p&gt;それを、簡単なモジュールを作りつつ、見ていくことにします。&lt;/p&gt;
 
-&lt;h2 id='id488'&gt;黒か白か&lt;/h2&gt;
+&lt;h2 id='id1'&gt;黒か白か&lt;/h2&gt;
 
 &lt;p&gt;まず、TwitterとFacebookのボタンを作ってみます。&lt;br /&gt;Twitterボタンは赤、Facebookボタンは青&amp;#8230;としましょう。そんなコードを、おれならこう書くぜ！ドーーン&lt;/p&gt;
 
@@ -400,7 +400,7 @@
 
 &lt;p&gt;これが、プログラミング言語における、「クラスの継承」っぽいでしょ？っていう感じでObjected Oriented CSSと名付けられたようです。まぁその呼び方はどうなのよっていう意見もありますが、要するにこういうのがOOCSSの考え方（の一部）です。これなら、CSSに無駄がありませんね。同じようなgoogle plusボタンが現れたとしても、&lt;code&gt;btnbase googleplus&lt;/code&gt;っていうクラスをあててスタイルが適用されるように作ればいいんですから&amp;#8230;！&lt;/p&gt;
 
-&lt;h2 id='id489'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
+&lt;h2 id='id2'&gt;オイオイその冗談みたいなクラス名は何だ&lt;/h2&gt;
 
 &lt;p&gt;でもちょっとまってください。&lt;/p&gt;
 
@@ -536,7 +536,7 @@
 
 &lt;p&gt;これは確かに盲点です。それだったらHTMLのclass属性でOOCSSした方がいいかもしれません。しかしそうするとHTMLにスタイル指定の一部を担わせることになり&amp;#8230; と、悩みはつきません。&lt;/p&gt;
 
-&lt;h2 id='id490'&gt;まとめ&lt;/h2&gt;
+&lt;h2 id='id3'&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;HTMLもCSSも完璧なものではありません。その完璧じゃない部分を、Sass等のCSSプリプロセッサは、大いに補強してくれるものですが、それで万事OKだというわけではない事も念頭に入れておく必要があるでしょう。&lt;/p&gt;
 

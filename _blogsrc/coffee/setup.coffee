@@ -52,7 +52,7 @@ socialutil_fblike = do ->
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {return;}
       js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+      js.src = "//connect.facebook.net/en_US/all.js#appId=121042718060158&xfbml=1";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));`
     fbLoaded = true
