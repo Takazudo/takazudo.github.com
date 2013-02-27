@@ -66,18 +66,29 @@
       $.getScript("https://apis.google.com/js/plusone.js");
       return gplusoneLoaded = true;
     };
-    return function($el) {
+    return function() {
       if (!gplusoneLoaded) {
-        return init();
+        init();
       } else if (gapi) {
-        return gapi.plusone.go();
+        gapi.plusone.go();
       }
+      return this;
     };
   })();
 
-  socialutil_twitter = function() {
-    return $.getScript('https://platform.twitter.com/widgets.js');
-  };
+  socialutil_twitter = (function() {
+    var twitterLoaded;
+    twitterLoaded = false;
+    return function() {
+      if (!twitterLoaded) {
+        $.getScript('https://platform.twitter.com/widgets.js');
+        twitterLoaded = true;
+      } else {
+        twttr.widgets.load();
+      }
+      return this;
+    };
+  })();
 
   $.fn.disableCurrentLinks = function() {
     var className;
@@ -87,10 +98,11 @@
         var $a;
         $a = $(this);
         if (($a.attr('href')) === location.pathname) {
-          return $a.addClass(className);
+          $a.addClass(className);
         } else {
-          return $a.removeClass(className);
+          $a.removeClass(className);
         }
+        return this;
       });
     });
   };

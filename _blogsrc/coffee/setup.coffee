@@ -72,19 +72,27 @@ socialutil_gplus = do ->
   init = ->
     $.getScript("https://apis.google.com/js/plusone.js")
     gplusoneLoaded = true
-  ($el) ->
+  ->
     if not gplusoneLoaded
       init()
     else if gapi
       gapi.plusone.go()
+    @
 
 
 # =======================================================
 # twitter
-# I don't know better way of this...
+# https://dev.twitter.com/discussions/6860
 
-socialutil_twitter = ->
-  $.getScript('https://platform.twitter.com/widgets.js')
+socialutil_twitter = do ->
+  twitterLoaded = false
+  ->
+    if not twitterLoaded
+      $.getScript('https://platform.twitter.com/widgets.js')
+      twitterLoaded = true
+    else
+      twttr.widgets.load()
+    @
 
 
 # =======================================================
@@ -99,6 +107,7 @@ $.fn.disableCurrentLinks = ->
         $a.addClass className
       else
         $a.removeClass className
+      @
 
 # =======================================================
 # handleCodeHighlight
